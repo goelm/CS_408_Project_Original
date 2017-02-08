@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:padding="20dp"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:srcCompat="@drawable/upload_image"
+        android:id="@+id/imageView3"
+        android:layout_weight="0.68" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.49" >
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Firstname"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_width="1dp"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Lastname"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_width="1dp"
+            android:layout_weight="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.68" >
+
+        <RadioButton
+            android:text="Instructor"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton3"
+            android:layout_weight="1"
+            android:layout_width="wrap_content" />
+
+        <RadioButton
+            android:text="TA"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content" />
+    </TableRow>
+
+    <RatingBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar" />
+
+
+
+    <Button
+        android:text="Button"
+        android:layout_width="345dp"
+        android:layout_height="match_parent"
+        android:id="@+id/button2"
+        android:elevation="0dp" />
+
+
+    <!--
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.63">
+        <EditText
+            android:id="@+id/Test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+
+    -->
+
+</LinearLayout>
