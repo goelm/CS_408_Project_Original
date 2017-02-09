@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -8,7 +8,20 @@
     android:weightSum="1"
     android:orientation="vertical">
 
-    <ImageView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.73" />
+
+        <ImageView
         android:layout_width="match_parent"
         android:layout_height="55dp"
         app:srcCompat="@drawable/upload_image"
@@ -59,36 +72,103 @@
             android:layout_width="wrap_content" />
     </TableRow>
 
-    <RatingBar
-        android:layout_width="match_parent"
+        <RatingBar
+        android:layout_width="286dp"
         android:layout_height="match_parent"
         android:id="@+id/ratingBar"
         style="@style/Widget.AppCompat.RatingBar" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="0.73" />
 
-    <Button
-        android:text="Button"
-        android:layout_width="345dp"
-        android:layout_height="match_parent"
-        android:id="@+id/button2"
-        android:elevation="0dp" />
+        <TextView
+            android:text="Help Session Availability"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_weight="0.73"
+            android:gravity="center"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_weight="0.73" >
+
+            <RadioButton
+                android:text="Very Accessible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/accessButton1" />
+
+            <RadioButton
+                android:text="Hardly Accessible"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/accessButton2"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.73" />
+        </TableRow>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="0.73" />
+
+        <TextView
+            android:text="Any Chance For Extra Credit?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_weight="0.73"
+            android:gravity="center"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_weight="0.73" >
+
+            <RadioButton
+                android:text="Yes!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yesButton1" />
+
+            <RadioButton
+                android:text="@string/No"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:id="@+id/noButton1"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.73" />
+        </TableRow>
+
+        <Button
+            android:text="@string/submit_review"
+            android:layout_width="293dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitBut"
+            android:elevation="0dp" />
 
 
-    <!--
+        <!--
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.63">
-        <EditText
-            android:id="@+id/Test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.63">
+            <EditText
+                android:id="@+id/Test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
 
-    -->
-
-</LinearLayout>
+        -->
+    </LinearLayout>
+</ScrollView>
