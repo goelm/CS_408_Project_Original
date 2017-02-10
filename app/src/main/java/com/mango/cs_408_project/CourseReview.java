@@ -43,28 +43,27 @@ public class CourseReview extends AppCompatActivity{
     int toughness; //1 for easy, 2 for mild, 3 for typical, 4 for tough, 5 for unreasonable
     boolean electronics; //true for allowed and false for not allowed
 
+    /* Button variables */
+    RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
+    RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
+    RadioButton rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
+    RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
+    RadioButton rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
+    RadioButton rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
+    RadioButton rb_no1 = (RadioButton) findViewById(R.id.noButton1);
+    RadioButton rb_no2 = (RadioButton) findViewById(R.id.noButton2);
+    RadioButton rb_difEz = (RadioButton) findViewById(R.id.diffButton1);
+    RadioButton rb_difMild = (RadioButton) findViewById(R.id.diffButton2);
+    RadioButton rb_difNorm = (RadioButton) findViewById(R.id.diffButton3);
+    RadioButton rb_difTough = (RadioButton) findViewById(R.id.diffButton4);
+    RadioButton rb_difCrazy = (RadioButton) findViewById(R.id.diffButton5);
+    Button submit_button = (Button) findViewById(R.id.submitBut);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_info);
-
-        /* Button variables */
-        RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
-        RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
-        RadioButton rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
-        RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
-        RadioButton rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
-        RadioButton rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
-        RadioButton rb_no1 = (RadioButton) findViewById(R.id.noButton1);
-        RadioButton rb_no2 = (RadioButton) findViewById(R.id.noButton2);
-        final RadioButton rb_difEz = (RadioButton) findViewById(R.id.diffButton1);
-        final RadioButton rb_difMild = (RadioButton) findViewById(R.id.diffButton2);
-        final RadioButton rb_difNorm = (RadioButton) findViewById(R.id.diffButton3);
-        final RadioButton rb_difTough = (RadioButton) findViewById(R.id.diffButton4);
-        final RadioButton rb_difCrazy = (RadioButton) findViewById(R.id.diffButton5);
-        Button submit_button = (Button) findViewById(R.id.submitBut);
-
 
         /*
         RADIOBUTTON SWITCHING

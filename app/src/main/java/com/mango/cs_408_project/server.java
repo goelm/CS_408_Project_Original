@@ -16,8 +16,11 @@ public class server {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
 
+    int user_id = 123456;
+
 
     public void write_instructor_review(String name, String review){
-        myRef.child("reviews").child("instructor").child(name).setValue(review);
+        DatabaseReference inst = myRef.child("reviews").child("instructor").child(name).push();
+        inst.setValue(Integer.toString(user_id)+ "," + review);
     }
 }
