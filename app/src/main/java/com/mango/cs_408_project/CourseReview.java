@@ -44,26 +44,41 @@ public class CourseReview extends AppCompatActivity{
     boolean electronics; //true for allowed and false for not allowed
 
     /* Button variables */
-    RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
-    RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
-    RadioButton rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
-    RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
-    RadioButton rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
-    RadioButton rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
-    RadioButton rb_no1 = (RadioButton) findViewById(R.id.noButton1);
-    RadioButton rb_no2 = (RadioButton) findViewById(R.id.noButton2);
-    RadioButton rb_difEz = (RadioButton) findViewById(R.id.diffButton1);
-    RadioButton rb_difMild = (RadioButton) findViewById(R.id.diffButton2);
-    RadioButton rb_difNorm = (RadioButton) findViewById(R.id.diffButton3);
-    RadioButton rb_difTough = (RadioButton) findViewById(R.id.diffButton4);
-    RadioButton rb_difCrazy = (RadioButton) findViewById(R.id.diffButton5);
-    Button submit_button = (Button) findViewById(R.id.submitBut);
+    RadioButton rb_instructor;
+    RadioButton rb_ta;
+    RadioButton rb_ezAccess;
+    RadioButton rb_hardAccess;
+    RadioButton rb_yes1;
+    RadioButton rb_yes2;
+    RadioButton rb_no1;
+    RadioButton rb_no2;
+    RadioButton rb_difEz;
+    RadioButton rb_difMild;
+    RadioButton rb_difNorm;
+    RadioButton rb_difTough;
+    RadioButton rb_difCrazy;
+    Button submit_button;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_info);
+
+        rb_instructor = (RadioButton) findViewById(R.id.instructor);
+        rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
+        rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
+        rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
+        rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
+        rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
+        rb_no1 = (RadioButton) findViewById(R.id.noButton1);
+        rb_no2 = (RadioButton) findViewById(R.id.noButton2);
+        rb_difEz = (RadioButton) findViewById(R.id.diffButton1);
+        rb_difMild = (RadioButton) findViewById(R.id.diffButton2);
+        rb_difNorm = (RadioButton) findViewById(R.id.diffButton3);
+        rb_difTough = (RadioButton) findViewById(R.id.diffButton4);
+        rb_difCrazy = (RadioButton) findViewById(R.id.diffButton5);
+        submit_button = (Button) findViewById(R.id.submitBut);
 
         /*
         RADIOBUTTON SWITCHING
@@ -204,11 +219,11 @@ public class CourseReview extends AppCompatActivity{
                 RatingBar rating_bar = (RatingBar) findViewById(R.id.instructor_rating);
                 rating = rating_bar.getNumStars();
                 String review = String.valueOf(prof);
-                review += Integer.toString(rating);
-                review += String.valueOf(help_session);
-                review += String.valueOf(extra_credit);
-                review += Integer.toString(toughness);
-                review += String.valueOf(electronics);
+                review += "," + Integer.toString(rating);
+                review += "," + String.valueOf(help_session);
+                review += "," + String.valueOf(extra_credit);
+                review += "," + Integer.toString(toughness);
+                review += "," + String.valueOf(electronics);
                 s.write_instructor_review(first.getText().toString()+last.getText().toString(), review);
             }
 
