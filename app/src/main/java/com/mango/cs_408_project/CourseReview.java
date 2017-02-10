@@ -34,7 +34,7 @@ public class CourseReview extends AppCompatActivity{
         setContentView(R.layout.add_info);
 
         RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
-        RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassitant);
+        RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
         RadioButton rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
         RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
         RadioButton rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
@@ -55,7 +55,7 @@ public class CourseReview extends AppCompatActivity{
         //TA or Instructor
         rb_instructor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassitant);
+                RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
                 rb_ta.setChecked(false);
             }
         });

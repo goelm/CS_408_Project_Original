@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "813394032411",
-    "firebase_url": "https://cs408project-bd8ab.firebaseio.com",
-    "project_id": "cs408project-bd8ab",
-    "storage_bucket": "cs408project-bd8ab.appspot.com"
+    "project_number": "394139225858",
+    "firebase_url": "https://cs408project-1c9dc.firebaseio.com",
+    "project_id": "cs408project-1c9dc",
+    "storage_bucket": "cs408project-1c9dc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:813394032411:android:0501ebe779738e91",
+        "mobilesdk_app_id": "1:394139225858:android:0501ebe779738e91",
         "android_client_info": {
           "package_name": "com.mango.cs_408_project"
         }
       },
       "oauth_client": [
         {
-          "client_id": "813394032411-b8nfa4k9fpbnfjdu1e378446i77iincd.apps.googleusercontent.com",
+          "client_id": "394139225858-7kr0sgsal4db25o6n9g8qr704f1nadck.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB3QfDJaYe6b8Vo6lYpOfTP9bmGEw7-9TQ"
+          "current_key": "AIzaSyAQye3VGVre8KtWsCAdiOdj_yl859UC5Ck"
         }
       ],
       "services": {
@@ -32,7 +32,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "813394032411-b8nfa4k9fpbnfjdu1e378446i77iincd.apps.googleusercontent.com",
+              "client_id": "394139225858-7kr0sgsal4db25o6n9g8qr704f1nadck.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

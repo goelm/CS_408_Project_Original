@@ -11,10 +11,13 @@ import android.widget.RadioButton;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+
+import java.util.Arrays;
 
 import static com.mango.cs_408_project.R.styleable.View;
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MainActivity";
+    private static final int RC_SIGN_IN = 0;
 
     // Initialize Facebook Login button
     /*mCallbackManager = CallbackManager.Factory.create();
@@ -33,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_info);
-
+        setContentView(R.layout.activity_main);
+        /*
         //Firebase authentication
         mAuth = FirebaseAuth.getInstance();
 
@@ -52,6 +56,20 @@ public class MainActivity extends AppCompatActivity {
                 // ...
             }
         };
+
+        */
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null) { //The user is already signed in
+
+        } else {
+            startActivityForResult(AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setProviders(Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                            //  new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
+                            //  new AuthUI.IdpConfig.Builder(AuthUI.TWITTER_PROVIDER).build(),
+                            new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build()))
+                    .build(), RC_SIGN_IN);
+        }
 
     }
 

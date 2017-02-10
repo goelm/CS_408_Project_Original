@@ -67,7 +67,7 @@
         <RadioButton
             android:text="TA"
             android:layout_height="wrap_content"
-            android:id="@+id/teachingassitant"
+            android:id="@+id/teachingassistant"
             android:layout_weight="1"
             android:layout_width="wrap_content" />
     </TableRow>
