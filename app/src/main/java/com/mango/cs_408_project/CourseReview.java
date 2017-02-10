@@ -33,30 +33,21 @@ public class CourseReview extends AppCompatActivity{
         setContentView(R.layout.add_info);
 
         RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
-        //rb_instructor.setOnCheckedChangeListener(this);
         RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassitant);
-        //rb_ta.setonRadioButtonClicked();
+
+        rb_instructor.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassitant);
+                rb_ta.setChecked(false);
+            }
+        });
+
+        rb_ta.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
+                rb_instructor.setChecked(false);
+            }
+        });
     }
-
-    //Course Review Stuff:
-    /*public void onRadioButtonClicked(android.view.View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.instructor:
-                if (checked){
-                    System.out.println("the instructor button was checked");
-                    RadioButton ta = (RadioButton)findViewById(R.id.teachingassitant);
-                    ta.setChecked(false);
-                }
-                break;
-            case R.id.teachingassitant:
-                if (checked)
-                    System.out.println("the teaching assistant button was checked");
-                break;
-        }
-    }*/
 
 }
