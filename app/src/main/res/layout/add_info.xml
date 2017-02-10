@@ -60,14 +60,14 @@
         <RadioButton
             android:text="Instructor"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton3"
+            android:id="@+id/instructor"
             android:layout_weight="1"
             android:layout_width="wrap_content" />
 
         <RadioButton
             android:text="TA"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton2"
+            android:id="@+id/teachingassitant"
             android:layout_weight="1"
             android:layout_width="wrap_content" />
     </TableRow>
