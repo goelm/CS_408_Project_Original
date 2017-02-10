@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "813394032411",
+    "firebase_url": "https://cs408project-bd8ab.firebaseio.com",
+    "project_id": "cs408project-bd8ab",
+    "storage_bucket": "cs408project-bd8ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813394032411:android:0501ebe779738e91",
+        "android_client_info": {
+          "package_name": "com.mango.cs_408_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813394032411-b8nfa4k9fpbnfjdu1e378446i77iincd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3QfDJaYe6b8Vo6lYpOfTP9bmGEw7-9TQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813394032411-b8nfa4k9fpbnfjdu1e378446i77iincd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

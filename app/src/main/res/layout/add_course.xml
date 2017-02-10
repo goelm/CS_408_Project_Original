@@ -16,61 +16,42 @@
         android:weightSum="1"
         android:orientation="vertical">
 
-        <TableRow
-            android:layout_width="match_parent"
+        <EditText
             android:layout_height="wrap_content"
-            android:layout_weight="0.73" />
-
-        <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        app:srcCompat="@drawable/upload_image"
-        android:id="@+id/imageView3"
-        android:layout_weight="0.68" />
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.49" >
+            android:inputType="textPersonName"
+            android:text="Course Name"
+            android:ems="10"
+            android:gravity="center"
+            android:id="@+id/editCourseName"
+            android:layout_width="match_parent" />
 
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Firstname"
-            android:ems="10"
-            android:id="@+id/editText3"
-            android:layout_width="1dp"
-            android:layout_weight="1" />
-
-        <EditText
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Lastname"
-            android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_width="1dp"
-            android:layout_weight="1" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.68" >
-
-        <RadioButton
             android:text="Instructor"
-            android:layout_height="wrap_content"
-            android:id="@+id/instructor"
-            android:layout_weight="1"
-            android:layout_width="wrap_content" />
+            android:ems="10"
+            android:gravity="center"
+            android:id="@+id/addCourseInstructor"
+            android:layout_width="match_parent" />
 
-        <RadioButton
-            android:text="TA"
+        <EditText
             android:layout_height="wrap_content"
-            android:id="@+id/teachingassitant"
-            android:layout_weight="1"
-            android:layout_width="wrap_content" />
-    </TableRow>
+            android:inputType="textPersonName"
+            android:text="TA"
+            android:ems="10"
+            android:gravity="center"
+            android:id="@+id/addCourseTA"
+            android:layout_width="match_parent" />
+
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Course Description"
+            android:ems="10"
+            android:gravity="center"
+            android:id="@+id/editCourseDescription"
+            android:layout_width="match_parent" />
 
         <RatingBar
 
@@ -79,6 +60,7 @@
             android:layout_gravity="center"
             android:id="@+id/ratingBar"
             style="@style/Widget.AppCompat.RatingBar" />
+
 
         <Space
             android:layout_width="match_parent"
@@ -191,11 +173,6 @@
             android:text="Grades: "
             android:textColor="@drawable/com_facebook_button_login_silver_background" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="0.73" />
-
         <TextView
             android:text="Any Chance For Extra Credit?"
             android:layout_width="match_parent"
@@ -303,6 +280,7 @@
 
         </TableLayout>
 
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -350,41 +328,55 @@
                 android:layout_weight="0.73" />
         </TableRow>
 
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_weight="0.73" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Book: "
+            android:textColor="@drawable/com_facebook_button_login_silver_background" />
+
+
+        <TextView
+            android:text="Textbook required?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:layout_weight="0.73"
+            android:gravity="center"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_weight="0.73" >
+
+            <RadioButton
+                android:text="Yes!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yesButton3" />
+
+            <RadioButton
+                android:text="@string/No"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:id="@+id/noButton3"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.73" />
+        </TableRow>
 
         <Button
-            android:text="@string/submit_review"
+            android:text="submit course"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
             android:id="@+id/submitBut"
             android:elevation="0dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="0.73" />
 
-
-
-
-        <!--
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.63">
-            <EditText
-                android:id="@+id/Test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </android.support.design.widget.TextInputLayout>
-
-        -->
     </LinearLayout>
 </ScrollView>

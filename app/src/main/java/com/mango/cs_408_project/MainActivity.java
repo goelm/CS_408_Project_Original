@@ -1,9 +1,12 @@
 package com.mango.cs_408_project;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.RadioButton;
 
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
@@ -12,6 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+
+import static com.mango.cs_408_project.R.styleable.View;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.add_info);
 
         //Firebase authentication
         mAuth = FirebaseAuth.getInstance();
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
+
 
     @Override
     public void onStop(){
@@ -97,4 +103,5 @@ public class MainActivity extends AppCompatActivity {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 */
+
 }
