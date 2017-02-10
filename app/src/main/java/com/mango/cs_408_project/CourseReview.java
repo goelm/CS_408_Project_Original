@@ -160,6 +160,7 @@ public class CourseReview extends AppCompatActivity{
                 rb_difNorm.setChecked(false);
                 rb_difTough.setChecked(false);
             }
+
         });
         /******** End of Radio Buttons *******
          *************************************/
