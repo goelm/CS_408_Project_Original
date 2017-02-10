@@ -1,6 +1,7 @@
 package com.mango.cs_408_project;
 
 
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -62,6 +63,8 @@ public class CourseReview extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_info);
 
@@ -225,6 +228,10 @@ public class CourseReview extends AppCompatActivity{
                 review += "," + Integer.toString(toughness);
                 review += "," + String.valueOf(electronics);
                 s.write_instructor_review(first.getText().toString()+last.getText().toString(), review);
+
+                /* Go back to select a review */
+                Intent i=new Intent(CourseReview.this, SelectReview.class);
+                CourseReview.this.startActivity(i);
             }
 
         });
