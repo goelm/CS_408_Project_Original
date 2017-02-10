@@ -37,7 +37,7 @@ public class CourseReview extends AppCompatActivity{
     /* Instructor info variables */
     String name; // the person's name
     boolean prof; // true  for instructor, false for TA
-    int rating; //Ranges from 0 to 5
+    float rating; //Ranges from 0 to 5
     boolean help_session; //false for none and true if it exists
     boolean extra_credit;
     int toughness; //1 for easy, 2 for mild, 3 for typical, 4 for tough, 5 for unreasonable
@@ -217,9 +217,9 @@ public class CourseReview extends AppCompatActivity{
                 TextView first = (TextView) findViewById(R.id.first_name);
                 TextView last = (TextView) findViewById(R.id.last_name);
                 RatingBar rating_bar = (RatingBar) findViewById(R.id.instructor_rating);
-                rating = rating_bar.getNumStars();
+                rating = rating_bar.getRating();
                 String review = String.valueOf(prof);
-                review += "," + Integer.toString(rating);
+                review += "," + String.valueOf(rating);
                 review += "," + String.valueOf(help_session);
                 review += "," + String.valueOf(extra_credit);
                 review += "," + Integer.toString(toughness);
