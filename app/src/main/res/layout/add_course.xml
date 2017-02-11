@@ -19,7 +19,7 @@
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Course Name"
+            android:hint="Course Name"
             android:ems="10"
             android:gravity="center"
             android:id="@+id/editCourseName"
@@ -28,7 +28,7 @@
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Instructor"
+            android:hint="Instructor"
             android:ems="10"
             android:gravity="center"
             android:id="@+id/addCourseInstructor"
@@ -37,7 +37,7 @@
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="TA"
+            android:hint="TA"
             android:ems="10"
             android:gravity="center"
             android:id="@+id/addCourseTA"
@@ -47,7 +47,7 @@
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Course Description"
+            android:hint="Course Description"
             android:ems="10"
             android:gravity="center"
             android:id="@+id/editCourseDescription"

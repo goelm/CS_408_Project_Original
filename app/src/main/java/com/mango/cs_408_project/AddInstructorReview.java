@@ -2,38 +2,27 @@ package com.mango.cs_408_project;
 
 
 import android.content.Intent;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
 /**
  * Created by elvin on 2/8/17.
  */
 
-public class CourseReview extends AppCompatActivity{
+public class AddInstructorReview extends AppCompatActivity{
 
     // Initialize Facebook Login button
     /*mCallbackManager = CallbackManager.Factory.create();
     LoginButton loginButton = (LoginButton) findViewById(R.id.button_facebook_login);
     loginButton.setReadPermissions("email", "public_profile");*/
 
-    // This is for the server class
-    final server s = new server();
+    // This is for the Server class
+    final Server s = new Server();
 
     /* Instructor info variables */
     String name; // the person's name
@@ -230,8 +219,8 @@ public class CourseReview extends AppCompatActivity{
                 s.write_instructor_review(first.getText().toString()+last.getText().toString(), review);
 
                 /* Go back to select a review */
-                Intent i=new Intent(CourseReview.this, SelectReview.class);
-                CourseReview.this.startActivity(i);
+                Intent i=new Intent(AddInstructorReview.this, SelectReview.class);
+                AddInstructorReview.this.startActivity(i);
             }
 
         });

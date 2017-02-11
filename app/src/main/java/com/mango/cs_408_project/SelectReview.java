@@ -22,7 +22,7 @@ public class SelectReview extends AppCompatActivity {
 
         instructor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i=new Intent(SelectReview.this, CourseReview.class);
+                Intent i=new Intent(SelectReview.this, AddInstructorReview.class);
                 SelectReview.this.startActivity(i);
             }
         });

@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourseReview">
+        <activity android:name=".AddInstructorReview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

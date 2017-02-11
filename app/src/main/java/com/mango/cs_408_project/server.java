@@ -11,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
     This class will contain functions to help communicate with Firebase
     This does not include authentication through Firebase (with Facebook)
  */
-public class server {
+public class Server {
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
@@ -21,6 +21,11 @@ public class server {
 
     public void write_instructor_review(String name, String review){
         DatabaseReference inst = myRef.child("reviews").child("instructor").child(name).push();
+        inst.setValue(Integer.toString(user_id)+ "," + review);
+    }
+
+    public void write_course_review(String name, String review){
+        DatabaseReference inst = myRef.child("reviews").child("course").child(name).push();
         inst.setValue(Integer.toString(user_id)+ "," + review);
     }
 }
