@@ -28,7 +28,7 @@ import com.facebook.appevents.AppEventsLogger;
 public class AddCourseReview extends AppCompatActivity{
 
     // This is for the Server class
-    final Server s = new Server();
+    final server s = new server();
 
     /* Course info variables */
     float rating; //Ranges from 0 to 5

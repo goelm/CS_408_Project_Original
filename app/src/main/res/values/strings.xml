@@ -3,4 +3,6 @@
     <string name="submit_review">SUBMIT REVIEW</string>
     <string name="facebook_application_id" translatable="false">1896356633954124</string>
     <string name="No">No</string>
+    <string name="firebase_error_login">Firebase Login Error</string>
+
 </resources>

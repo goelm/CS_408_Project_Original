@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
+
 /**
  * Created by manasigoel on 2/10/17.
  */
@@ -19,6 +22,10 @@ public class SelectReview extends AppCompatActivity {
 
         Button instructor = (Button) findViewById(R.id.instructor_review);
         Button course = (Button) findViewById(R.id.course_review);
+
+        if (AccessToken.getCurrentAccessToken() == null) {
+            goLoginScreen();
+        }
 
         instructor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -34,5 +41,20 @@ public class SelectReview extends AppCompatActivity {
             }
         });
 
+
+
     }
+
+    private void goLoginScreen() {
+        Intent intent = new Intent(this, FacebookLogin.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    /*
+    public void logout(View view) {
+        LoginManager.getInstance().logOut();
+        goLoginScreen();
+    }
+    */
 }
