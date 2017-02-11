@@ -101,7 +101,7 @@ public class AddInstructorReview extends AppCompatActivity{
             public void onClick(View v) {
                 RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
                 rb_hardAccess.setChecked(false);
-                help_session = true;
+                help_session = false;
             }
         });
 
