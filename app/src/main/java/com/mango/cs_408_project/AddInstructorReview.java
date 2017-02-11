@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class AddInstructorReview extends AppCompatActivity{
 
     // This is for the Server class
-    final server s = new server();
+    final Server s = new Server();
 
     /* Instructor info variables */
     String name; // the person's name

@@ -2,24 +2,13 @@ package com.mango.cs_408_project;
 
 
 import android.content.Intent;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 /**
  * Created by elvin on 2/8/17.
@@ -28,7 +17,7 @@ import com.facebook.appevents.AppEventsLogger;
 public class AddCourseReview extends AppCompatActivity{
 
     // This is for the Server class
-    final server s = new server();
+    final Server s = new Server();
 
     /* Course info variables */
     float rating; //Ranges from 0 to 5
