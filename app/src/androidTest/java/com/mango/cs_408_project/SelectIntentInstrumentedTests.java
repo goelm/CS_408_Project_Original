@@ -32,8 +32,16 @@ public class SelectIntentInstrumentedTests {
 
     @Test
     public void courseButtonStartsAddCourseActivity() throws Exception{
-        onView(withId(R.id.instructor_review)).perform(click());
-        intended(hasComponent(new ComponentName(getTargetContext(), AddInstructorReview.class)));
+        onView(withId(R.id.course_review)).perform(click());
+        intended(hasComponent(new ComponentName(getTargetContext(), AddCourseReview.class)));
+        Thread.sleep(1000);
+
+    }
+
+    @Test
+    public void searchButtonStartsAddCourseActivity() throws Exception{
+        onView(withId(R.id.search)).perform(click());
+        intended(hasComponent(new ComponentName(getTargetContext(), Search.class)));
         Thread.sleep(1000);
 
     }
