@@ -22,7 +22,7 @@
             android:hint="Course Name"
             android:ems="10"
             android:gravity="center"
-            android:id="@+id/editCourseName"
+            android:id="@+id/add_course_courseName"
             android:layout_width="match_parent" />
 
         <EditText
@@ -31,7 +31,7 @@
             android:hint="Instructor"
             android:ems="10"
             android:gravity="center"
-            android:id="@+id/addCourseInstructor"
+            android:id="@+id/add_course_instructor"
             android:layout_width="match_parent" />
 
         <EditText
@@ -40,7 +40,7 @@
             android:hint="TA"
             android:ems="10"
             android:gravity="center"
-            android:id="@+id/addCourseTA"
+            android:id="@+id/add_course_TA"
             android:layout_width="match_parent" />
 
 
@@ -50,7 +50,7 @@
             android:hint="Course Description"
             android:ems="10"
             android:gravity="center"
-            android:id="@+id/editCourseDescription"
+            android:id="@+id/add_course_description"
             android:layout_width="match_parent" />
 
         <RatingBar
@@ -99,14 +99,14 @@
                 android:textSize="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ezAccess" />
+                android:id="@+id/add_course_ezAccess" />
 
             <RadioButton
                 android:text="Hardly Accessible"
                 android:textSize="12dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:id="@+id/hardAccess"
+                android:id="@+id/add_course_hardAccess"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.73" />
         </TableRow>
@@ -193,13 +193,13 @@
                 android:text="Yes!"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/yesButton1" />
+                android:id="@+id/add_course_grade_yes" />
 
             <RadioButton
                 android:text="@string/No"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="90dp"
-                android:id="@+id/noButton1"
+                android:id="@+id/add_course_grade_no"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.73" />
         </TableRow>
@@ -231,7 +231,7 @@
                     android:text="Easy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/diffButton1" />
+                    android:id="@+id/add_course_toughness_easy" />
             </TableRow>
 
             <TableRow
@@ -242,7 +242,7 @@
                     android:text="Mild"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/diffButton2" />
+                    android:id="@+id/add_course_toughness_mild" />
             </TableRow>
 
             <TableRow
@@ -253,7 +253,7 @@
                     android:text="Typical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/diffButton3" />
+                    android:id="@+id/add_course_toughness_typical" />
             </TableRow>
 
             <TableRow
@@ -264,7 +264,7 @@
                     android:text="Tough"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/diffButton4" />
+                    android:id="@+id/add_course_toughness_tough" />
             </TableRow>
 
             <TableRow
@@ -275,7 +275,7 @@
                     android:text="Unreasonable!"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/diffButton5" />
+                    android:id="@+id/add_course_toughness_unreasonable" />
             </TableRow>
 
         </TableLayout>
@@ -317,13 +317,13 @@
                 android:text="Yes!"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/yesButton2" />
+                android:id="@+id/add_course_misc_yes" />
 
             <RadioButton
                 android:text="@string/No"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="90dp"
-                android:id="@+id/noButton2"
+                android:id="@+id/add_course_misc_no"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.73" />
         </TableRow>
@@ -359,13 +359,13 @@
                 android:text="Yes!"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/yesButton3" />
+                android:id="@+id/add_course_book_yes" />
 
             <RadioButton
                 android:text="@string/No"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="90dp"
-                android:id="@+id/noButton3"
+                android:id="@+id/add_course_book_no"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.73" />
         </TableRow>

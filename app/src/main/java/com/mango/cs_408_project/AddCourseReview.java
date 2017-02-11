@@ -30,8 +30,6 @@ public class AddCourseReview extends AppCompatActivity{
     loginButton.setReadPermissions("email", "public_profile");*/
 
 
-    RadioButton rb_instructor;
-    RadioButton rb_ta;
     RadioButton rb_ezAccess;
     RadioButton rb_hardAccess;
     RadioButton rb_yes1;
@@ -54,144 +52,142 @@ public class AddCourseReview extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_course);
 
-            /*rb_instructor = (RadioButton) findViewById(R.id.instructor);
-            rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
-            rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
-            rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
-            rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
-            rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
-            rb_yes3 = (RadioButton) findViewById(R.id.yesButton3);
-            rb_no1 = (RadioButton) findViewById(R.id.noButton1);
-            rb_no2 = (RadioButton) findViewById(R.id.noButton2);
-            rb_no3 = (RadioButton) findViewById(R.id.noButton3);
-            rb_difEz = (RadioButton) findViewById(R.id.diffButton1);
-            rb_difMild = (RadioButton) findViewById(R.id.diffButton2);
-            rb_difNorm = (RadioButton) findViewById(R.id.diffButton3);
-            rb_difTough = (RadioButton) findViewById(R.id.diffButton4);
-            rb_difCrazy = (RadioButton) findViewById(R.id.diffButton5);*/
+        rb_ezAccess = (RadioButton) findViewById(R.id.add_course_ezAccess);
+        rb_hardAccess = (RadioButton) findViewById(R.id.add_course_hardAccess);
+        rb_yes1 = (RadioButton) findViewById(R.id.add_course_grade_yes);
+        rb_yes2 = (RadioButton) findViewById(R.id.add_course_misc_yes);
+        rb_yes3 = (RadioButton) findViewById(R.id.add_course_book_yes);
+        rb_no1 = (RadioButton) findViewById(R.id.add_course_grade_no);
+        rb_no2 = (RadioButton) findViewById(R.id.add_course_misc_no);
+        rb_no3 = (RadioButton) findViewById(R.id.add_course_book_no);
+        rb_difEz = (RadioButton) findViewById(R.id.add_course_toughness_easy);
+        rb_difMild = (RadioButton) findViewById(R.id.add_course_toughness_mild);
+        rb_difNorm = (RadioButton) findViewById(R.id.add_course_toughness_typical);
+        rb_difTough = (RadioButton) findViewById(R.id.add_course_toughness_tough);
+        rb_difCrazy = (RadioButton) findViewById(R.id.add_course_toughness_unreasonable);
 
 
 
         /*
         RADIOBUTTON SWITCHING
          */
-/*
-            //TA or Instructor
-            rb_instructor.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View v) {
-                    RadioButton rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
-                    rb_ta.setChecked(false);
-                }
-            });
 
-            rb_ta.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_instructor = (RadioButton) findViewById(R.id.instructor);
-                    rb_instructor.setChecked(false);
-                }
-            });
+        //Accessibility question
+        rb_hardAccess.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_ezAccess = (RadioButton) findViewById(R.id.add_course_ezAccess);
+                rb_ezAccess.setChecked(false);
+            }
+        });
 
-            //Accessibility question
-            rb_hardAccess.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
-                    rb_ezAccess.setChecked(false);
-                }
-            });
+        rb_ezAccess.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.add_course_hardAccess);
+                rb_hardAccess.setChecked(false);
+            }
+        });
 
-            rb_ezAccess.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
-                    rb_hardAccess.setChecked(false);
-                }
-            });
+        //Extra Credit Question
+        rb_yes1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_no1 = (RadioButton) findViewById(R.id.add_course_grade_no);
+                rb_no1.setChecked(false);
+            }
+        });
 
-            //Extra Credit Question
-            rb_yes1.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_no1 = (RadioButton) findViewById(R.id.noButton1);
-                    rb_no1.setChecked(false);
-                }
-            });
+        rb_no1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_yes1 = (RadioButton) findViewById(R.id.add_course_grade_yes);
+                rb_yes1.setChecked(false);
+            }
+        });
 
-            rb_no1.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
-                    rb_yes1.setChecked(false);
-                }
-            });
+        //Laptops or Phones Question
+        rb_yes2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_no2 = (RadioButton) findViewById(R.id.add_course_misc_no);
+                rb_no2.setChecked(false);
+            }
+        });
 
-            //Laptops or Phones Question
-            rb_yes2.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_no2 = (RadioButton) findViewById(R.id.noButton2);
-                    rb_no2.setChecked(false);
-                }
-            });
+        rb_no2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_yes2 = (RadioButton) findViewById(R.id.add_course_misc_yes);
+                rb_yes2.setChecked(false);
+            }
+        });
 
-            rb_no2.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    RadioButton rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
-                    rb_yes2.setChecked(false);
-                }
-            });
+        //BOOK REQUIREMENT
+        rb_yes3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_no2 = (RadioButton) findViewById(R.id.add_course_book_no);
+                rb_no2.setChecked(false);
+            }
+        });
 
-            //Grading Toughness Question
-            rb_difEz.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    rb_difMild.setChecked(false);
-                    rb_difNorm.setChecked(false);
-                    rb_difTough.setChecked(false);
-                    rb_difCrazy.setChecked(false);
+        rb_no3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb_yes2 = (RadioButton) findViewById(R.id.add_course_book_yes);
+                rb_yes2.setChecked(false);
+            }
+        });
 
-                }
-            });
+        //Grading Toughness Question
+        rb_difEz.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                rb_difMild.setChecked(false);
+                rb_difNorm.setChecked(false);
+                rb_difTough.setChecked(false);
+                rb_difCrazy.setChecked(false);
 
-            rb_difMild.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    rb_difEz.setChecked(false);
-                    rb_difNorm.setChecked(false);
-                    rb_difTough.setChecked(false);
-                    rb_difCrazy.setChecked(false);
+            }
+        });
 
-                }
-            });
+        rb_difMild.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                rb_difEz.setChecked(false);
+                rb_difNorm.setChecked(false);
+                rb_difTough.setChecked(false);
+                rb_difCrazy.setChecked(false);
 
-            rb_difNorm.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    rb_difEz.setChecked(false);
-                    rb_difMild.setChecked(false);
-                    rb_difTough.setChecked(false);
-                    rb_difCrazy.setChecked(false);
+            }
+        });
 
-                }
-            });
+        rb_difNorm.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                rb_difEz.setChecked(false);
+                rb_difMild.setChecked(false);
+                rb_difTough.setChecked(false);
+                rb_difCrazy.setChecked(false);
 
-            rb_difTough.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    rb_difEz.setChecked(false);
-                    rb_difMild.setChecked(false);
-                    rb_difNorm.setChecked(false);
-                    rb_difCrazy.setChecked(false);
+            }
+        });
 
-                }
-            });
+        rb_difTough.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                rb_difEz.setChecked(false);
+                rb_difMild.setChecked(false);
+                rb_difNorm.setChecked(false);
+                rb_difCrazy.setChecked(false);
 
-            rb_difCrazy.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    rb_difEz.setChecked(false);
-                    rb_difMild.setChecked(false);
-                    rb_difNorm.setChecked(false);
-                    rb_difTough.setChecked(false);
-                }
+            }
+        });
 
-            });
+        rb_difCrazy.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                rb_difEz.setChecked(false);
+                rb_difMild.setChecked(false);
+                rb_difNorm.setChecked(false);
+                rb_difTough.setChecked(false);
+            }
 
-*/
-            /******** End of Radio Buttons *******
-             *************************************/
+        });
 
-        }
+
+        /******** End of Radio Buttons *******
+         *************************************/
+
+    }
 
 }
