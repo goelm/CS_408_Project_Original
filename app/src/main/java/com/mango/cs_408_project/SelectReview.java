@@ -22,6 +22,7 @@ public class SelectReview extends AppCompatActivity {
 
         Button instructor = (Button) findViewById(R.id.instructor_review);
         Button course = (Button) findViewById(R.id.course_review);
+        final Button logOut = (Button) findViewById(R.id.logout_button);
 
         if (AccessToken.getCurrentAccessToken() == null) {
             goLoginScreen();
@@ -41,7 +42,11 @@ public class SelectReview extends AppCompatActivity {
             }
         });
 
-
+        logOut.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                   logout(v);
+            }
+        });
 
     }
 
@@ -51,10 +56,10 @@ public class SelectReview extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*
+
     public void logout(View view) {
         LoginManager.getInstance().logOut();
         goLoginScreen();
     }
-    */
+
 }

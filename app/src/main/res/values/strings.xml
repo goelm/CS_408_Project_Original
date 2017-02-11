@@ -4,5 +4,6 @@
     <string name="facebook_application_id" translatable="false">1896356633954124</string>
     <string name="No">No</string>
     <string name="firebase_error_login">Firebase Login Error</string>
-
+    <string name="com_facebook_loginview_log_out_button">Log out</string>
+    <string name="com_facebook_loginview_log_in_button">Log in</string>
 </resources>
