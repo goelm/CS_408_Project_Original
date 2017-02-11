@@ -1,6 +1,7 @@
 package com.mango.cs_408_project;
 
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,15 +44,21 @@ public class FacebookLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (getIntent().hasExtra("LOGOUT")) {
+            finish();
+            FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
+        }
+
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "public_profile");
-        //loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 signedIn = true;
                 handleFacebookAccessToken(loginResult.getAccessToken());
+                mainScreen(); //This would make a good bug!
                 //startActivity(new Intent(FacebookLogin.this, MainActivity.class));
             }
 
@@ -72,6 +80,7 @@ public class FacebookLogin extends AppCompatActivity {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
                     mainScreen();
+                    finish(); //another finish
                 }
             }
         };
@@ -126,10 +135,11 @@ public class FacebookLogin extends AppCompatActivity {
 
     public void mainScreen() {
         signedIn = true;// for testing
-
-        Intent intent = new Intent(this, AddCourseReview.class); //Where you're directed after logging in
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), SelectReview.class); //Where you're directed after logging in
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
 }
