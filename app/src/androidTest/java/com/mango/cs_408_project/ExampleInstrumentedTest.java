@@ -34,21 +34,24 @@ public class ExampleInstrumentedTest {
     public ActivityTestRule<AddCourseReview> addCourseReviewTest =
             new ActivityTestRule<AddCourseReview>(AddCourseReview.class);
 
+
     @Test
-    public void clickVeryAccessableButton() throws Exception {
+    public void buttonStartsUnselected() throws Exception {
         onView(withId(R.id.add_course_ezAccess)).perform(click());
         onView(withId(R.id.add_course_hardAccess)).check(matches(not(isSelected())));
+        Thread.sleep(1000);
     }
-
-
 
     @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.mango.cs_408_project", appContext.getPackageName());
+    public void buttonSwitches() throws Exception {
+        onView(withId(R.id.add_course_hardAccess)).perform(click());
+        onView(withId(R.id.add_course_ezAccess)).perform(click());
+        onView(withId(R.id.add_course_hardAccess)).check(matches(not(isSelected())));
+        Thread.sleep(1000);
     }
+
+
+
 
 
 }
