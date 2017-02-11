@@ -25,16 +25,16 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
-//    @Rule
-//    public ActivityTestRule<AddCourseReview> addCourseReviewTest =
-//            new ActivityTestRule<AddCourseReview>(AddCourseReview.class);
+    @Rule
+    public ActivityTestRule<AddCourseReview> addCourseReviewTest =
+            new ActivityTestRule<AddCourseReview>(AddCourseReview.class);
 
-//    @Test
-//    public void clickVeryAccessbleButton() throws Exception {
-//        onView(withId(R.id.add_course_ezAccess))
-//                .perform(click());
-//
-//    }
+    @Test
+    public void clickVeryAccessbleButton() throws Exception {
+        onView(withId(R.id.add_course_ezAccess)).perform(click());
+        onView(withId(R.id.add_course_hardAccess)).check(matches(isDisplayed()));
+
+    }
 
     @Test
     public void useAppContext() throws Exception {

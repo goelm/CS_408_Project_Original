@@ -192,7 +192,6 @@ public class AddInstructorReview extends AppCompatActivity{
                 rb_difTough.setChecked(false);
                 toughness = 5;
             }
-
         });
         /******** End of Radio Buttons *******
          *************************************/
