@@ -14,6 +14,7 @@ import com.facebook.login.LoginManager;
  */
 
 public class SelectReview extends AppCompatActivity {
+    FacebookLogin f = new FacebookLogin();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,9 @@ public class SelectReview extends AppCompatActivity {
     }
 
     private void goLoginScreen() {
+        //Test to see if the user is logged out
+        f.signedIn = false;
+
         Intent intent = new Intent(this, FacebookLogin.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -58,6 +62,8 @@ public class SelectReview extends AppCompatActivity {
 
 
     public void logout(View view) {
+        f.signedIn = false;
+        //Test to see if the user
         LoginManager.getInstance().logOut();
         goLoginScreen();
     }

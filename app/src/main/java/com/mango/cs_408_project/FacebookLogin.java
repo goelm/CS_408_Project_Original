@@ -28,17 +28,13 @@ import static com.mango.cs_408_project.R.styleable.View;
 
 
 public class FacebookLogin extends AppCompatActivity {
+    public boolean signedIn = false;
+
     private LoginButton loginButton;
     private CallbackManager callbackManager;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    //private static final String TAG = "MainActivity";
-
-    // Initialize Facebook Login button
-    /*mCallbackManager = CallbackManager.Factory.create();
-    LoginButton loginButton = (LoginButton) findViewById(R.id.button_facebook_login);
-    loginButton.setReadPermissions("email", "public_profile");*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +49,7 @@ public class FacebookLogin extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                signedIn = true;
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 //startActivity(new Intent(FacebookLogin.this, MainActivity.class));
             }
@@ -128,6 +125,8 @@ public class FacebookLogin extends AppCompatActivity {
     }
 
     public void mainScreen() {
+        signedIn = true;// for testing
+
         Intent intent = new Intent(this, AddCourseReview.class); //Where you're directed after logging in
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
