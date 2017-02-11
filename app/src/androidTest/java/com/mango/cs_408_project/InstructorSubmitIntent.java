@@ -1,9 +1,7 @@
 package com.mango.cs_408_project;
 
 import android.content.ComponentName;
-import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
-import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,27 +18,18 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
  * Created by manasigoel on 2/11/17.
  */
 
-public class SubmitIntentInstrumentedTests {
+public class InstructorSubmitIntent {
 
     @Rule
-    public IntentsTestRule<AddCourseReview> addCourseReviewIntentsTestRule =
-            new IntentsTestRule<AddCourseReview>(AddCourseReview.class);
+    public IntentsTestRule<AddInstructorReview> addInstructorReviewIntentsTestRule =
+            new IntentsTestRule<AddInstructorReview>(AddInstructorReview.class);
 
     @Test
     public void submitCourseButtonStartsSelectActivity() throws Exception{
-        onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
-        //onView(withId(R.id.course_submitBut)).perform(ViewActions.scrollTo()).perform(click());
+        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
         intended(hasComponent(new ComponentName(getTargetContext(), SelectReview.class)));
         Thread.sleep(1000);
 
     }
 
-/*
-    @Test
-    public void submitInstructorButtonStartsSelectActivity() throws Exception{
-        onView(withId(R.id.submitBut)).perform(click());
-        intended(hasComponent(new ComponentName(getTargetContext(), SelectReview.class)));
-        Thread.sleep(1000);
-
-    }*/
 }
