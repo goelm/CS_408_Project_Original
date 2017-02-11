@@ -16,11 +16,6 @@ import android.widget.TextView;
 
 public class AddInstructorReview extends AppCompatActivity{
 
-    // Initialize Facebook Login button
-    /*mCallbackManager = CallbackManager.Factory.create();
-    LoginButton loginButton = (LoginButton) findViewById(R.id.button_facebook_login);
-    loginButton.setReadPermissions("email", "public_profile");*/
-
     // This is for the Server class
     final Server s = new Server();
 

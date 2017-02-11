@@ -19,13 +19,13 @@ public class Server {
     int user_id = 123456;
 
 
-    public void write_instructor_review(String name, String review){
-        DatabaseReference inst = myRef.child("reviews").child("instructor").child(name).push();
+    public void write_instructor_review(String instructor_name, String review){
+        DatabaseReference inst = myRef.child("reviews").child("instructor").child(instructor_name).push();
         inst.setValue(Integer.toString(user_id)+ "," + review);
     }
 
-    public void write_course_review(String name, String review){
-        DatabaseReference inst = myRef.child("reviews").child("course").child(name).push();
+    public void write_course_review(String course_name, String review){
+        DatabaseReference inst = myRef.child("reviews").child("course").child(course_name).push();
         inst.setValue(Integer.toString(user_id)+ "," + review);
     }
 }

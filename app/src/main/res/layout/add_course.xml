@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:id="@+id/ratingBar"
+            android:id="@+id/course_rating"
             style="@style/Widget.AppCompat.RatingBar" />
 
 
@@ -374,8 +374,8 @@
             android:text="submit course"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
-            android:id="@+id/submitBut"
-            android:elevation="0dp" />
+            android:elevation="0dp"
+            android:id="@+id/course_submitBut" />
 
 
     </LinearLayout>
