@@ -24,13 +24,13 @@ public class SelectReview extends AppCompatActivity {
 
         Button instructor = (Button) findViewById(R.id.instructor_review);
         Button course = (Button) findViewById(R.id.course_review);
-        final Button logOut = (Button) findViewById(R.id.logout_button);
+        Button logOut = (Button) findViewById(R.id.logout_button);
 
-        /*
+
         if (AccessToken.getCurrentAccessToken() == null) {
             goLoginScreen();
         }
-        */
+
         instructor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i=new Intent(SelectReview.this, AddInstructorReview.class);
@@ -47,7 +47,8 @@ public class SelectReview extends AppCompatActivity {
 
         logOut.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                   logout(v);
+                finish();
+                logout(v);
             }
         });
 
@@ -61,6 +62,7 @@ public class SelectReview extends AppCompatActivity {
         Intent intent = new Intent(this, FacebookLogin.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
 
