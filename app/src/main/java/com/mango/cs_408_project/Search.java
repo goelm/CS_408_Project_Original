@@ -22,7 +22,7 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
-/*        Button submit_button = (Button) findViewById(R.id.searchSubmit);
+        Button submit_button = (Button) findViewById(R.id.searchSubmit);
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -38,10 +38,10 @@ public class Search extends AppCompatActivity {
                 if(b)
                     message.setText("Please try again without special characters");
                 else
-                    message.setText("Good searh query!");
+                    message.setText("Good search query!");
 
             }
 
-        });*/
+        });
     }
 }

@@ -1,6 +1,8 @@
 package com.mango.cs_408_project;
 
+import android.support.test.espresso.core.deps.guava.collect.TreeBasedTable;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.uiautomator.Tracer;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -8,6 +10,7 @@ import org.junit.Test;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -25,8 +28,17 @@ public class SearchActivity {
 
 
     @Test
+    public void defaultSearch() throws Exception {
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.success_fail_message)).check(matches(withText("Good search query!")));
+        Thread.sleep(1000);
+    }
+
+
+    @Test
     public void searchWithSpecial() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("search!@#$%^"));
+        onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.success_fail_message)).check(matches(withText("Please try again without special characters")));
         Thread.sleep(1000);
     }
@@ -34,7 +46,8 @@ public class SearchActivity {
     @Test
     public void searchWithoutSpecial() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("search no special characters"));
-        onView(withId(R.id.success_fail_message)).check(matches(withText("Good searh query!")));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.success_fail_message)).check(matches(withText("Good search query!")));
         Thread.sleep(1000);
     }
 
