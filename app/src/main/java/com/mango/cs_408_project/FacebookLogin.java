@@ -38,6 +38,7 @@ public class FacebookLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,6 +50,8 @@ public class FacebookLogin extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             LoginManager.getInstance().logOut();
         }
+
+
 
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);

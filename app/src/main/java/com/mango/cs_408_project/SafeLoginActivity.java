@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by manasigoel on 2/10/17.
  */
 
-public class SelectReview extends AppCompatActivity {
+public class SafeLoginActivity extends AppCompatActivity {
     FacebookLogin f = new FacebookLogin();
 
     @Override
@@ -24,45 +24,24 @@ public class SelectReview extends AppCompatActivity {
 
         Button instructor = (Button) findViewById(R.id.instructor_review);
         Button course = (Button) findViewById(R.id.course_review);
-        //Button logOut = (Button) findViewById(R.id.logout_button);
+        Button logOut = (Button) findViewById(R.id.logout_button);
 
         Button search_button = (Button) findViewById(R.id.search);
 
-        /*
+
         if (AccessToken.getCurrentAccessToken() == null) {
             goLoginScreen();
         }
-        */
-        instructor.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent i=new Intent(SelectReview.this, AddInstructorReview.class);
-                SelectReview.this.startActivity(i);
-            }
-        });
 
-        course.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent j=new Intent(SelectReview.this, AddCourseReview.class);
-                SelectReview.this.startActivity(j);
-            }
-        });
-
-        search_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent k=new Intent(SelectReview.this, Search.class);
-                SelectReview.this.startActivity(k);
-            }
-        });
-        /*
         logOut.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
                 logout(v);
             }
         });
-        */
+
     }
-    /*
+
     private void goLoginScreen() {
         //Test to see if the user is logged out
         f.signedIn = false;
@@ -82,5 +61,5 @@ public class SelectReview extends AppCompatActivity {
         LoginManager.getInstance().logOut();
         goLoginScreen();
     }
-    */
+
 }

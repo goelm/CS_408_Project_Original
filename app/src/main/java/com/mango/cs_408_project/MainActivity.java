@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -41,27 +42,13 @@ public class MainActivity extends AppCompatActivity {
     /*mCallbackManager = CallbackManager.Factory.create();
     LoginButton loginButton = (LoginButton) findViewById(R.id.button_facebook_login);
     loginButton.setReadPermissions("email", "public_profile");*/
+    Button logOut = (Button) findViewById(R.id.logout_button);
+    FacebookLogin f = new FacebookLogin();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_review_type);
-        /*
-        if (AccessToken.getCurrentAccessToken() == null) {
-            goLoginScreen();
-        }
-        */
-    }
-    /*
-    private void goLoginScreen() {
-        Intent intent = new Intent(this, FacebookLogin.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
+        setContentView(R.layout.activity_main);
 
-    public void logout(View view) {
-        LoginManager.getInstance().logOut();
-        goLoginScreen();
     }
-    */
 }
