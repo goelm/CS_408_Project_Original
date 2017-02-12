@@ -180,6 +180,7 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_grade_yes)).check(matches(isChecked()));
         onView(withId(R.id.add_course_grade_no)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
@@ -187,6 +188,7 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_grade_no)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_grade_no)).check(matches(isChecked()));
         onView(withId(R.id.add_course_grade_yes)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
 
@@ -197,12 +199,15 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_misc_yes)).check(matches(isChecked()));
         onView(withId(R.id.add_course_misc_no)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
+
     @Test
     public void miscButton2() throws Exception {
         onView(withId(R.id.add_course_misc_no)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_misc_no)).check(matches(isChecked()));
         onView(withId(R.id.add_course_misc_yes)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
 
@@ -213,6 +218,7 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_book_yes)).check(matches(isChecked()));
         onView(withId(R.id.add_course_book_no)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
@@ -220,6 +226,7 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_book_no)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_book_no)).check(matches(isChecked()));
         onView(withId(R.id.add_course_book_yes)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
 }

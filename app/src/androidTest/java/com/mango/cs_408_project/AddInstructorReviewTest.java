@@ -49,12 +49,14 @@ public class AddInstructorReviewTest {
     public void accessButton() throws Exception {
         onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
         onView(withId(R.id.hardAccess)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
     public void accessButton2() throws Exception {
         onView(withId(R.id.hardAccess)).perform(scrollTo(), click());
         onView(withId(R.id.ezAccess)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
 
@@ -64,12 +66,14 @@ public class AddInstructorReviewTest {
     public void extraCreditButton() throws Exception {
         onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
         onView(withId(R.id.noButton1)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
     public void extraCreditButton2() throws Exception {
-        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
-        onView(withId(R.id.noButton1)).check(matches(not(isChecked())));
+        onView(withId(R.id.noButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton1)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
 
@@ -83,6 +87,7 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.diffButton3)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton4)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton5)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
@@ -93,6 +98,7 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.diffButton3)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton4)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton5)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
@@ -103,6 +109,7 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.diffButton1)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton4)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton5)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
@@ -113,6 +120,7 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.diffButton3)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton1)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton5)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
@@ -123,6 +131,7 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.diffButton3)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton4)).check(matches(not(isChecked())));
         onView(withId(R.id.diffButton1)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
 
@@ -132,11 +141,13 @@ public class AddInstructorReviewTest {
     public void miscButton() throws Exception {
         onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
         onView(withId(R.id.noButton2)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 
     @Test
     public void miscButton2() throws Exception {
         onView(withId(R.id.noButton2)).perform(scrollTo(), click());
         onView(withId(R.id.yesButton2)).check(matches(not(isChecked())));
+        Thread.sleep(1000);
     }
 }

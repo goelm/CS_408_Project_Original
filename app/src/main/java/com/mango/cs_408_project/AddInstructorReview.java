@@ -110,7 +110,7 @@ public class AddInstructorReview extends AppCompatActivity{
             public void onClick(View v) {
                 RadioButton rb_no1 = (RadioButton) findViewById(R.id.noButton1);
                 rb_no1.setChecked(false);
-                extra_credit = true;
+                extra_credit = false;
             }
         });
 
@@ -127,7 +127,7 @@ public class AddInstructorReview extends AppCompatActivity{
             public void onClick(View v) {
                 RadioButton rb_no2 = (RadioButton) findViewById(R.id.noButton2);
                 rb_no2.setChecked(false);
-                electronics = true;
+                electronics = false;
             }
         });
 
