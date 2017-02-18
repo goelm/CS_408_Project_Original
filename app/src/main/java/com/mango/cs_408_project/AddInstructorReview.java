@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 /**
@@ -28,6 +29,9 @@ public class AddInstructorReview extends AppCompatActivity{
     int toughness; //1 for easy, 2 for mild, 3 for typical, 4 for tough, 5 for unreasonable
     boolean electronics; //true for allowed and false for not allowed
 
+    int value; //ranges from 0 to 100
+    int understand; //ranges from 0 to 100
+
     /* Button variables */
     RadioButton rb_instructor;
     RadioButton rb_ta;
@@ -43,6 +47,12 @@ public class AddInstructorReview extends AppCompatActivity{
     RadioButton rb_difTough;
     RadioButton rb_difCrazy;
     Button submit_button;
+
+    SeekBar seekV;
+    SeekBar seekU;
+
+    final TextView textU = (TextView) findViewById(R.id.textUnderstand);
+    final TextView textV = (TextView) findViewById(R.id.textValue);
 
 
     @Override
@@ -196,6 +206,28 @@ public class AddInstructorReview extends AppCompatActivity{
         /******** End of Radio Buttons *******
          *************************************/
 
+        seekV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                value = progress;
+            }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                textV.setText(String.valueOf(value)+"%");
+            }
+        });
+
+        seekU.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                understand = progress;
+            }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                textU.setText(String.valueOf(understand)+"%");
+            }
+        });
 
         /* When submitting the review */
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +242,8 @@ public class AddInstructorReview extends AppCompatActivity{
                 review += "," + String.valueOf(extra_credit);
                 review += "," + Integer.toString(toughness);
                 review += "," + String.valueOf(electronics);
+                review += "," + String.valueOf(value);
+                review += "," + String.valueOf(understand);
                 s.write_instructor_review(first.getText().toString()+last.getText().toString(), review);
 
                 /* Go back to select a review */

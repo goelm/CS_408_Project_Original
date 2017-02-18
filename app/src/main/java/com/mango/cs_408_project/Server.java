@@ -1,7 +1,7 @@
-package com.mango.cs_408_project;
+        package com.mango.cs_408_project;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by manasigoel on 2/10/17.
