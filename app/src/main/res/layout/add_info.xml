@@ -362,6 +362,13 @@
             android:id="@+id/submitBut"
             android:elevation="0dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_info_submitText"
+            android:gravity="center"
+            android:layout_weight="0.73" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp"

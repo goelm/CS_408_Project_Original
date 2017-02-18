@@ -10,6 +10,9 @@ import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by elvin on 2/8/17.
  */
@@ -204,17 +207,47 @@ public class AddInstructorReview extends AppCompatActivity{
                 TextView last = (TextView) findViewById(R.id.last_name);
                 RatingBar rating_bar = (RatingBar) findViewById(R.id.instructor_rating);
                 rating = rating_bar.getRating();
-                String review = String.valueOf(prof);
-                review += "," + String.valueOf(rating);
-                review += "," + String.valueOf(help_session);
-                review += "," + String.valueOf(extra_credit);
-                review += "," + Integer.toString(toughness);
-                review += "," + String.valueOf(electronics);
-                s.write_instructor_review(first.getText().toString()+last.getText().toString(), review);
+
+
+                Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                Matcher firstMatcher = p.matcher(first.getText());
+                Matcher lastMatcher = p.matcher(last.getText());
+
+                boolean firstB = firstMatcher.find();
+                boolean lastB = lastMatcher.find();
+
+                TextView message = (TextView) findViewById(R.id.add_info_submitText);
+
+                if (first.getText().toString().trim().length() == 0 ||
+                        last.getText().toString().trim().length() == 0 ||
+                        (!rb_instructor.isChecked() && !rb_ta.isChecked()) ||
+                        (!rb_ezAccess.isChecked() && !rb_hardAccess.isChecked()) ||
+                        (!rb_yes1.isChecked() && !rb_no1.isChecked()) ||
+                        (!rb_yes2.isChecked() && !rb_no2.isChecked()) ||
+                        (!rb_difEz.isChecked() && !rb_difMild.isChecked() && !rb_difNorm.isChecked()
+                        && !rb_difTough.isChecked() && !rb_difCrazy.isChecked())) {
+                    message.setText("Please fill in every field");
+                }
+
+                else if (firstB || lastB) {
+                    message.setText("Invalid inputs");
+                }
+
+                else {
+
+                    message.setText("Information added");
+                    String review = String.valueOf(prof);
+                    review += "," + String.valueOf(rating);
+                    review += "," + String.valueOf(help_session);
+                    review += "," + String.valueOf(extra_credit);
+                    review += "," + Integer.toString(toughness);
+                    review += "," + String.valueOf(electronics);
+                    s.write_instructor_review(first.getText().toString() + last.getText().toString(), review);
 
                 /* Go back to select a review */
-                Intent i=new Intent(AddInstructorReview.this, SelectReview.class);
-                AddInstructorReview.this.startActivity(i);
+                    Intent i = new Intent(AddInstructorReview.this, SelectReview.class);
+                    AddInstructorReview.this.startActivity(i);
+                }
             }
 
         });
