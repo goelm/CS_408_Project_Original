@@ -4,10 +4,13 @@ package com.mango.cs_408_project;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
+import android.widget.Scroller;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +54,7 @@ public class AddCourseReview extends AppCompatActivity{
 
     Button submit_button;
 
+    EditText courseComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,7 @@ public class AddCourseReview extends AppCompatActivity{
 
         final TextView textU = (TextView) findViewById(R.id.textUnderstand);
         final TextView textV = (TextView) findViewById(R.id.textValue);
+
 
         /*
         RADIOBUTTON SWITCHING
@@ -218,22 +223,23 @@ public class AddCourseReview extends AppCompatActivity{
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 value = progress;
+                textV.setText(String.valueOf(value)+"%");
+
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
             public void onStopTrackingTouch(SeekBar seekBar) {
-                textV.setText(String.valueOf(value)+"%");
             }
         });
 
         seekU.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 understand = progress;
+                textU.setText(String.valueOf(understand)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
             public void onStopTrackingTouch(SeekBar seekBar) {
-                textU.setText(String.valueOf(understand)+"%");
             }
         });
 

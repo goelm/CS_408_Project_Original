@@ -217,22 +217,22 @@ public class AddInstructorReview extends AppCompatActivity{
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 value = progress;
+                textV.setText(String.valueOf(value)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
             public void onStopTrackingTouch(SeekBar seekBar) {
-                textV.setText(String.valueOf(value)+"%");
             }
         });
 
         seekU.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 understand = progress;
+                textU.setText(String.valueOf(understand)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
             public void onStopTrackingTouch(SeekBar seekBar) {
-                textU.setText(String.valueOf(understand)+"%");
             }
         });
 
