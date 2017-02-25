@@ -55,6 +55,13 @@ public class AddCourseReview extends AppCompatActivity{
     SeekBar seekV;
     SeekBar seekU;
 
+    TextView textU;
+    TextView textV;
+
+    int textUProgress = 0;
+    int textVProgress = 0;
+
+
     Button submit_button;
 
     EditText courseComment;
@@ -85,8 +92,8 @@ public class AddCourseReview extends AppCompatActivity{
 
         submit_button = (Button) findViewById(R.id.course_submitBut);
 
-        final TextView textU = (TextView) findViewById(R.id.textUnderstand);
-        final TextView textV = (TextView) findViewById(R.id.textValue);
+        textU = (TextView) findViewById(R.id.textUnderstand);
+        textV = (TextView) findViewById(R.id.textValue);
 
 
         /*
@@ -225,9 +232,10 @@ public class AddCourseReview extends AppCompatActivity{
         seekV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-                value = progress;
-                textV.setText(String.valueOf(value)+"%");
-
+                textVProgress = progress;
+                textV.setText(""+ textVProgress + "%");
+//                value = progress;
+//                textV.setText(String.valueOf(value)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
@@ -237,17 +245,16 @@ public class AddCourseReview extends AppCompatActivity{
 
         seekU.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-                understand = progress;
-                textU.setText(String.valueOf(understand)+"%");
+                textUProgress = progress;
+                textU.setText(""+ textUProgress + "%");
+//                understand = progress;
+//                textU.setText(String.valueOf(understand)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
-
-
 
         /* When submitting the review */
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -294,6 +301,8 @@ public class AddCourseReview extends AppCompatActivity{
                     review += ", TA: " + String.valueOf(ta.getText());
                     review += ", Course Description: " + String.valueOf(description.getText());
                     review += ", Rating: " + String.valueOf(rating);
+                    review += ". Seekbar Value: " + String.valueOf(textVProgress);
+                    review += ", Seekbar Understand " + String.valueOf(textUProgress);
                     review += ", Help session: " + String.valueOf(help_session);
                     review += ", Extra credit: " + String.valueOf(extra_credit);
                     review += ", Toughness: " + Integer.toString(toughness);

@@ -11,8 +11,12 @@ import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
 
 /**
  * Created by elvin on 2/8/17.
@@ -54,6 +58,12 @@ public class AddInstructorReview extends AppCompatActivity{
     SeekBar seekV;
     SeekBar seekU;
 
+    TextView textU;
+    TextView textV;
+
+    int textUProgress = 0;
+    int textVProgress = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +90,9 @@ public class AddInstructorReview extends AppCompatActivity{
         seekV = (SeekBar) findViewById(R.id.seekValue);
         seekU = (SeekBar) findViewById(R.id.seekUnderstand);
 
-        final TextView textU = (TextView) findViewById(R.id.textUnderstand);
-        final TextView textV = (TextView) findViewById(R.id.textValue);
+        textU = (TextView) findViewById(R.id.textUnderstand);
+        textV = (TextView) findViewById(R.id.textValue);
+
 
         /*
         RADIOBUTTON SWITCHING
@@ -216,8 +227,10 @@ public class AddInstructorReview extends AppCompatActivity{
         seekV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-                value = progress;
-                textV.setText(String.valueOf(value)+"%");
+                textVProgress = progress;
+                textV.setText(""+ textVProgress + "%");
+//                value = progress;
+//                textV.setText(String.valueOf(value)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
@@ -227,8 +240,10 @@ public class AddInstructorReview extends AppCompatActivity{
 
         seekU.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-                understand = progress;
-                textU.setText(String.valueOf(understand)+"%");
+                textUProgress = progress;
+                textU.setText(""+ textUProgress + "%");
+//                understand = progress;
+//                textU.setText(String.valueOf(understand)+"%");
             }
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
@@ -274,6 +289,8 @@ public class AddInstructorReview extends AppCompatActivity{
                     message.setText("Information added");
                     String review = "Professor: " + String.valueOf(prof);
                     review += ", Rating: " + String.valueOf(rating);
+                    review += ". Seekbar Value: " + String.valueOf(textVProgress);
+                    review += ", Seekbar Understand " + String.valueOf(textUProgress);
                     review += ", Help session: " + String.valueOf(help_session);
                     review += ", Extra credit: " + String.valueOf(extra_credit);
                     review += ", Toughness: " + Integer.toString(toughness);
