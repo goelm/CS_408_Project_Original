@@ -272,14 +272,14 @@ public class AddInstructorReview extends AppCompatActivity{
                 else {
 
                     message.setText("Information added");
-                    String review = String.valueOf(prof);
-                    review += "," + String.valueOf(rating);
-                    review += "," + String.valueOf(help_session);
-                    review += "," + String.valueOf(extra_credit);
-                    review += "," + Integer.toString(toughness);
-                    review += "," + String.valueOf(electronics);
-                    review += "," + String.valueOf(value);
-                    review += "," + String.valueOf(understand);
+                    String review = "Professor: " + String.valueOf(prof);
+                    review += ", Rating: " + String.valueOf(rating);
+                    review += ", Help session: " + String.valueOf(help_session);
+                    review += ", Extra credit: " + String.valueOf(extra_credit);
+                    review += ", Toughness: " + Integer.toString(toughness);
+                    review += ", Electronics: " + String.valueOf(electronics);
+                    review += ", Value: " + String.valueOf(value);
+                    review += ", Understand " + String.valueOf(understand);
                     s.write_instructor_review(first.getText().toString() + last.getText().toString(), review);
 
                 /* Go back to select a review */
