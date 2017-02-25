@@ -54,13 +54,15 @@ public class AddCourseReview extends AppCompatActivity{
 
     SeekBar seekV;
     SeekBar seekU;
+    RatingBar add_course_rating_bar;
 
     TextView textU;
     TextView textV;
+    TextView add_courseratingBarText;
 
     int textUProgress = 0;
     int textVProgress = 0;
-
+    float add_course_ratingProgress = 0;
 
     Button submit_button;
 
@@ -94,6 +96,10 @@ public class AddCourseReview extends AppCompatActivity{
 
         textU = (TextView) findViewById(R.id.textUnderstand);
         textV = (TextView) findViewById(R.id.textValue);
+        add_courseratingBarText = (TextView) findViewById(R.id.add_course_RatingBarValue);
+
+
+        add_course_rating_bar = (RatingBar) findViewById(R.id.course_rating);
 
 
         /*
@@ -229,6 +235,8 @@ public class AddCourseReview extends AppCompatActivity{
         /******** End of Radio Buttons *******
          *************************************/
 
+
+        // Seekbar
         seekV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
@@ -256,6 +264,15 @@ public class AddCourseReview extends AppCompatActivity{
             }
         });
 
+        // Ratingbar
+        add_course_rating_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                add_course_ratingProgress = rating;
+                add_courseratingBarText.setText("" + add_course_ratingProgress);
+            }
+        });
+
         /* When submitting the review */
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -263,8 +280,6 @@ public class AddCourseReview extends AppCompatActivity{
                 TextView instructor = (TextView) findViewById(R.id.add_course_instructor);
                 TextView ta = (TextView) findViewById(R.id.add_course_TA);
                 TextView description = (TextView) findViewById(R.id.add_course_description);
-                RatingBar rating_bar = (RatingBar) findViewById(R.id.course_rating);
-                rating = rating_bar.getRating();
 
 
                 Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
@@ -300,7 +315,7 @@ public class AddCourseReview extends AppCompatActivity{
                     review += ", Instructor: " + String.valueOf(instructor.getText());
                     review += ", TA: " + String.valueOf(ta.getText());
                     review += ", Course Description: " + String.valueOf(description.getText());
-                    review += ", Rating: " + String.valueOf(rating);
+                    review += ", Rating: " + String.valueOf(add_course_ratingProgress);
                     review += ". Seekbar Value: " + String.valueOf(textVProgress);
                     review += ", Seekbar Understand " + String.valueOf(textUProgress);
                     review += ", Help session: " + String.valueOf(help_session);

@@ -81,6 +81,14 @@
             android:id="@+id/instructor_rating"
             style="@style/Widget.AppCompat.RatingBar" />
 
+        <TextView
+            android:text="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_info_RatingBarValue"
+            android:layout_weight="0.73"
+            android:textAlignment="center" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp"

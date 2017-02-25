@@ -16,8 +16,6 @@ import org.w3c.dom.Text;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 /**
  * Created by elvin on 2/8/17.
  */
@@ -30,7 +28,6 @@ public class AddInstructorReview extends AppCompatActivity{
     /* Instructor info variables */
     String name; // the person's name
     boolean prof; // true  for instructor, false for TA
-    float rating; //Ranges from 0 to 5
     boolean help_session; //false for none and true if it exists
     boolean extra_credit;
     int toughness; //1 for easy, 2 for mild, 3 for typical, 4 for tough, 5 for unreasonable
@@ -57,12 +54,15 @@ public class AddInstructorReview extends AppCompatActivity{
 
     SeekBar seekV;
     SeekBar seekU;
+    RatingBar rating_bar;
 
     TextView textU;
     TextView textV;
+    TextView ratingBarText;
 
     int textUProgress = 0;
     int textVProgress = 0;
+    float ratingProgress = 0;
 
 
     @Override
@@ -90,8 +90,13 @@ public class AddInstructorReview extends AppCompatActivity{
         seekV = (SeekBar) findViewById(R.id.seekValue);
         seekU = (SeekBar) findViewById(R.id.seekUnderstand);
 
+
+        rating_bar = (RatingBar) findViewById(R.id.instructor_rating);
+
         textU = (TextView) findViewById(R.id.textUnderstand);
         textV = (TextView) findViewById(R.id.textValue);
+        ratingBarText = (TextView) findViewById(R.id.add_info_RatingBarValue);
+
 
 
         /*
@@ -224,6 +229,7 @@ public class AddInstructorReview extends AppCompatActivity{
          *************************************/
 
 
+        // Seekbar
         seekV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
@@ -251,14 +257,20 @@ public class AddInstructorReview extends AppCompatActivity{
             }
         });
 
+        // Ratingbar
+        rating_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratingProgress = rating;
+                ratingBarText.setText("" + ratingProgress);
+            }
+        });
+
         /* When submitting the review */
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 TextView first = (TextView) findViewById(R.id.first_name);
                 TextView last = (TextView) findViewById(R.id.last_name);
-                RatingBar rating_bar = (RatingBar) findViewById(R.id.instructor_rating);
-                rating = rating_bar.getRating();
-
 
                 Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
                 Matcher firstMatcher = p.matcher(first.getText());
@@ -288,7 +300,7 @@ public class AddInstructorReview extends AppCompatActivity{
 
                     message.setText("Information added");
                     String review = "Professor: " + String.valueOf(prof);
-                    review += ", Rating: " + String.valueOf(rating);
+                    review += ", Rating: " + String.valueOf(ratingProgress);
                     review += ". Seekbar Value: " + String.valueOf(textVProgress);
                     review += ", Seekbar Understand " + String.valueOf(textUProgress);
                     review += ", Help session: " + String.valueOf(help_session);
