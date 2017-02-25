@@ -15,6 +15,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by elvin on 2/8/17.
  */
@@ -255,22 +258,54 @@ public class AddCourseReview extends AppCompatActivity{
                 TextView description = (TextView) findViewById(R.id.add_course_description);
                 RatingBar rating_bar = (RatingBar) findViewById(R.id.course_rating);
                 rating = rating_bar.getRating();
-                String review = String.valueOf(instructor.getText());
-                review += String.valueOf(ta.getText());
-                review += String.valueOf(description.getText());
-                review += "," + String.valueOf(rating);
-                review += "," + String.valueOf(help_session);
-                review += "," + String.valueOf(extra_credit);
-                review += "," + Integer.toString(toughness);
-                review += "," + String.valueOf(electronics);
-                review += "," + String.valueOf(textbook);
-                review += "," + String.valueOf(value);
-                review += "," + String.valueOf(understand);
-                s.write_course_review(String.valueOf(course.getText()), review);
+
+
+                Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                Matcher courseMatcher = p.matcher(course.getText());
+                Matcher instructorMatcher = p.matcher(instructor.getText());
+                Matcher taMatcher = p.matcher(ta.getText());
+
+                boolean invalidCourseName = courseMatcher.find();
+                boolean invalidInstructorName = instructorMatcher.find();
+                boolean invalidTaName = taMatcher.find();
+
+                TextView message = (TextView) findViewById(R.id.add_course_submitText);
+
+                if (course.getText().toString().trim().length() == 0 ||
+                        instructor.getText().toString().trim().length() == 0 ||
+                        (!rb_ezAccess.isChecked() && !rb_hardAccess.isChecked()) ||
+                        (!rb_yes1.isChecked() && !rb_no1.isChecked()) ||
+                        (!rb_yes2.isChecked() && !rb_no2.isChecked()) ||
+                        (!rb_yes3.isChecked() && !rb_no3.isChecked()) ||
+                        (!rb_difEz.isChecked() && !rb_difMild.isChecked() &&
+                        !rb_difNorm.isChecked() && !rb_difTough.isChecked() &&
+                        !rb_difCrazy.isChecked()))  {
+                    message.setText("Please fill in every field");
+                }
+
+                else if (invalidCourseName || invalidInstructorName || invalidTaName) {
+                    message.setText("Invalid inputs");
+                }
+
+                else {
+                    message.setText("Information added");
+                    String review = String.valueOf(instructor.getText());
+                    review += String.valueOf(ta.getText());
+                    review += String.valueOf(description.getText());
+                    review += "," + String.valueOf(rating);
+                    review += "," + String.valueOf(help_session);
+                    review += "," + String.valueOf(extra_credit);
+                    review += "," + Integer.toString(toughness);
+                    review += "," + String.valueOf(electronics);
+                    review += "," + String.valueOf(textbook);
+                    review += "," + String.valueOf(value);
+                    review += "," + String.valueOf(understand);
+                    s.write_course_review(String.valueOf(course.getText()), review);
 
                 /* Go back to select a review */
-                Intent i=new Intent(AddCourseReview.this, SelectReview.class);
-                AddCourseReview.this.startActivity(i);
+                    Intent i = new Intent(AddCourseReview.this, SelectReview.class);
+                    AddCourseReview.this.startActivity(i);
+                }
             }
 
         });

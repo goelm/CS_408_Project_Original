@@ -16,13 +16,12 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter> </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_application_id"/>
-        <!-- <activity android:name=".SafeLoginActivity">
+        <activity android:name=".SafeLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        -->
         <activity android:name=".SelectReview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -430,6 +430,13 @@
             android:elevation="0dp"
             android:id="@+id/course_submitBut" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_course_submitText"
+            android:gravity="center"
+            android:layout_weight="0.73" />
+
 
     </LinearLayout>
 </ScrollView>
