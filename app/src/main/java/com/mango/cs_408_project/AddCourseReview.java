@@ -289,17 +289,18 @@ public class AddCourseReview extends AppCompatActivity{
 
                 else {
                     message.setText("Information added");
-                    String review = String.valueOf(instructor.getText());
-                    review += String.valueOf(ta.getText());
-                    review += String.valueOf(description.getText());
-                    review += "," + String.valueOf(rating);
-                    review += "," + String.valueOf(help_session);
-                    review += "," + String.valueOf(extra_credit);
-                    review += "," + Integer.toString(toughness);
-                    review += "," + String.valueOf(electronics);
-                    review += "," + String.valueOf(textbook);
-                    review += "," + String.valueOf(value);
-                    review += "," + String.valueOf(understand);
+                    String review = "Course: " + String.valueOf(course.getText());
+                    review += ", Instructor: " + String.valueOf(instructor.getText());
+                    review += ", TA: " + String.valueOf(ta.getText());
+                    review += ", Course Description: " + String.valueOf(description.getText());
+                    review += ", Rating: " + String.valueOf(rating);
+                    review += ", Help session: " + String.valueOf(help_session);
+                    review += ", Extra credit: " + String.valueOf(extra_credit);
+                    review += ", Toughness: " + Integer.toString(toughness);
+                    review += ", Electronics: " + String.valueOf(electronics);
+                    review += ", Textbook: " + String.valueOf(textbook);
+                    review += ", Value: " + String.valueOf(value);
+                    review += ", Understand: " + String.valueOf(understand);
                     s.write_course_review(String.valueOf(course.getText()), review);
 
                 /* Go back to select a review */
