@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
@@ -60,6 +61,8 @@ public class AddInstructorReview extends AppCompatActivity{
     TextView textV;
     TextView ratingBarText;
 
+    EditText profComment;
+
     int textUProgress = 0;
     int textVProgress = 0;
     float ratingProgress = 0;
@@ -97,8 +100,7 @@ public class AddInstructorReview extends AppCompatActivity{
         textV = (TextView) findViewById(R.id.textValue);
         ratingBarText = (TextView) findViewById(R.id.add_info_RatingBarValue);
 
-
-
+        profComment = (EditText) findViewById(R.id.profComment);
         /*
         RADIOBUTTON SWITCHING
          */
@@ -298,6 +300,7 @@ public class AddInstructorReview extends AppCompatActivity{
 
                 else {
 
+
                     message.setText("Information added");
                     String review = "Professor: " + String.valueOf(prof);
                     review += ", Rating: " + String.valueOf(ratingProgress);
@@ -309,6 +312,7 @@ public class AddInstructorReview extends AppCompatActivity{
                     review += ", Electronics: " + String.valueOf(electronics);
                     review += ", Value: " + String.valueOf(value);
                     review += ", Understand " + String.valueOf(understand);
+                    review += ", Comment: " + String.valueOf(profComment.getText());
                     s.write_instructor_review(first.getText().toString() + last.getText().toString(), review);
 
                 /* Go back to select a review */

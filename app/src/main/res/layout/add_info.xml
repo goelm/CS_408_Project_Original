@@ -408,7 +408,7 @@
                     android:layout_height="100dp"
                     android:inputType="textMultiLine"
                     android:ems="10"
-                    android:id="@+id/editText"
+                    android:id="@+id/profComment"
                     android:layout_weight="0.15" />
             </LinearLayout>
         </ScrollView>

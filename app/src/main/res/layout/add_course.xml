@@ -61,7 +61,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:id="@+id/course_rating"
-            style="@style/Widget.AppCompat.RatingBar" />
+            style="@style/Widget.AppCompat.RatingBar"
+            android:numStars="5" />
 
         <TextView
             android:text="0"
@@ -425,7 +426,7 @@
                     android:layout_height="100dp"
                     android:inputType="textMultiLine"
                     android:ems="10"
-                    android:id="@+id/commentText"
+                    android:id="@+id/courseComment"
                     android:layout_weight="0.15" />
             </LinearLayout>
         </ScrollView>

@@ -15,6 +15,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +68,6 @@ public class AddCourseReview extends AppCompatActivity{
     float add_course_ratingProgress = 0;
 
     Button submit_button;
-
     EditText courseComment;
 
     @Override
@@ -98,9 +100,8 @@ public class AddCourseReview extends AppCompatActivity{
         textV = (TextView) findViewById(R.id.textValue);
         add_courseratingBarText = (TextView) findViewById(R.id.add_course_RatingBarValue);
 
-
         add_course_rating_bar = (RatingBar) findViewById(R.id.course_rating);
-
+        courseComment = (EditText) findViewById(R.id.courseComment);
 
         /*
         RADIOBUTTON SWITCHING
@@ -310,21 +311,37 @@ public class AddCourseReview extends AppCompatActivity{
                 }
 
                 else {
+                    //All are added to an object for better organization
+                    courseReview review = new courseReview();
+                    review.setCourseName(String.valueOf(course.getText()));
+                    review.setInstructorName(String.valueOf(instructor.getText()));
+                    review.setTaName(String.valueOf(ta.getText()));
+                    review.setCourseDescr(String.valueOf(description.getText()));
+                    review.setRating(add_course_ratingProgress);
+                    review.setSeekV(textVProgress);
+                    review.setSeekU(textUProgress);
+                    review.setHelpSession(help_session);
+                    review.setExtraCredit(extra_credit);
+                    review.setToughness(toughness);
+                    review.setElectronics(electronics);
+                    review.setTextBook(textbook);
+                    review.setCourseComment(String.valueOf(courseComment.getText()));
+                    /*
                     message.setText("Information added");
                     String review = "Course: " + String.valueOf(course.getText());
                     review += ", Instructor: " + String.valueOf(instructor.getText());
                     review += ", TA: " + String.valueOf(ta.getText());
                     review += ", Course Description: " + String.valueOf(description.getText());
                     review += ", Rating: " + String.valueOf(add_course_ratingProgress);
-                    review += ". Seekbar Value: " + String.valueOf(textVProgress);
+                    review += ", Seekbar Value: " + String.valueOf(textVProgress);
                     review += ", Seekbar Understand " + String.valueOf(textUProgress);
                     review += ", Help session: " + String.valueOf(help_session);
                     review += ", Extra credit: " + String.valueOf(extra_credit);
                     review += ", Toughness: " + Integer.toString(toughness);
                     review += ", Electronics: " + String.valueOf(electronics);
                     review += ", Textbook: " + String.valueOf(textbook);
-                    review += ", Value: " + String.valueOf(value);
-                    review += ", Understand: " + String.valueOf(understand);
+                    review += ", Comment: " + String.valueOf(courseComment.getText());
+                    */
                     s.write_course_review(String.valueOf(course.getText()), review);
 
                 /* Go back to select a review */
@@ -334,6 +351,10 @@ public class AddCourseReview extends AppCompatActivity{
             }
 
         });
+
+
+        // Retrieving from the Database
+
 
     }
 

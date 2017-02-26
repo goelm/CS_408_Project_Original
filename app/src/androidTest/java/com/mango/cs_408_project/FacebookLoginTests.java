@@ -47,4 +47,20 @@ public class FacebookLoginTests {
         Thread.sleep(4000);
         onView(withId(R.id.instructor_review)).check(matches(isDisplayed())); //Checks to see if instructor button is there
     }
+
+    @Test
+    public void logsOut() throws Exception{
+        onView(withId(R.id.login_button)).perform(click());
+        Thread.sleep(1000);
+
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        Thread.sleep(2000); //Using Dummy account
+        device.findObject(new UiSelector().className("android.widget.EditText")).setText("etanyacatori@gmail.com"); //Email field
+        device.findObject(new UiSelector().resourceId("u_0_2")).setText("cs408project"); //Password Field
+        device.findObject(new UiSelector().resourceId("u_0_6")).click(); //Clicks login button
+        Thread.sleep(3000);
+        device.findObject(new UiSelector().resourceId("u_0_1")).click(); //Clicks ok to confirm
+        Thread.sleep(4000);
+        onView(withId(R.id.instructor_review)).check(matches(isDisplayed())); //Checks to see if instructor button is there
+    }
 }
