@@ -26,9 +26,10 @@ public class CourseDisplay extends AppCompatActivity {
     private ListView mListView;
     private float rating = 0;
     private float counter = 0;
+    private static CustomAdapter adapter;
 
 
-    final List<CourseReview> reviews = new ArrayList<CourseReview>();
+    final ArrayList<CourseReview> reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference courseInfo = database.getReference("message/reviews/course");
 
@@ -38,7 +39,6 @@ public class CourseDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_info);
-
         display_course_review("HIST 371");
 
     }
@@ -53,9 +53,8 @@ public class CourseDisplay extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
         DatabaseReference ref = courseInfo.child(course_name);
 
-        final ArrayAdapter<CourseReview> arrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_list_item_1, reviews);
+       // final ArrayAdapter<CourseReview> arrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_list_item_1, reviews);
 
-        mListView.setAdapter(arrayAdapter);
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -67,7 +66,8 @@ public class CourseDisplay extends AppCompatActivity {
                             counter++;
                             rating += course.rating;
                         }
-                        arrayAdapter.notifyDataSetChanged();
+                        //arrayAdapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -76,6 +76,8 @@ public class CourseDisplay extends AppCompatActivity {
                     }
                 }
         );
+        adapter = new CustomAdapter(reviews, getApplicationContext());
+        mListView.setAdapter(adapter);
 
         stars.setRating((rating / counter));
     }

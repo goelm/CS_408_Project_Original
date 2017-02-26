@@ -312,7 +312,7 @@ public class AddCourseReview extends AppCompatActivity{
 
                 else {
                     //All are added to an object for better organization
-                    courseReview review = new courseReview();
+                    CourseReview review = new CourseReview();
                     review.setCourseName(String.valueOf(course.getText()));
                     review.setInstructorName(String.valueOf(instructor.getText()));
                     review.setTaName(String.valueOf(ta.getText()));

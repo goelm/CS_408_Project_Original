@@ -25,7 +25,7 @@ import java.lang.Object;
 public class Server extends AppCompatActivity {
     private TextView testDisplay;
     private ListView mListView;
-    final List<courseReview> reviews = new ArrayList<courseReview>();
+    final List<CourseReview> reviews = new ArrayList<>();
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
@@ -42,7 +42,7 @@ public class Server extends AppCompatActivity {
         inst.setValue(Integer.toString(user_id)+ "," + review);
     }
 
-    public void write_course_review(String course_name, courseReview review){
+    public void write_course_review(String course_name, CourseReview review){
         DatabaseReference inst = myRef.child("reviews").child("course").child(course_name).push();
         inst.setValue(review);//Integer.toString(user_id)+ "," + review);
     }
