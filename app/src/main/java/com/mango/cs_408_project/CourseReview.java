@@ -7,7 +7,7 @@ package com.mango.cs_408_project;
 public class CourseReview {
     public String courseName;
     public String instructorName;
-    public String taName;
+    public String semester;
     public String courseDescr;
     public float rating;
     public int seekU;
@@ -31,8 +31,8 @@ public class CourseReview {
         this.courseDescr = courseDescr;
     }
 
-    public void setTaName(String taName) {
-        this.taName = taName;
+    public void setSemesterTaken(String semester) {
+        this.semester = semester;
     }
 
     public void setSeekU(int seekU) {

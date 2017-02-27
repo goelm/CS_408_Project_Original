@@ -24,6 +24,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
     // View lookup cache
     private static class ViewHolder {
         TextView instructorName;
+        TextView semesterTaken;
         RatingBar stars;
         TextView courseComment;
         ImageView info;
@@ -56,10 +57,11 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
+        // Get the data item for that position
         CourseReview dataModel = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
-        ViewHolder viewHolder; // view lookup cache stored in tag
+        // Check if an existing view is being reused, else inflate the view
+        ViewHolder viewHolder; // view lookup cache in tag
+
 
         final View result;
 
@@ -69,6 +71,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.review_item, parent, false);
             viewHolder.instructorName = (TextView) convertView.findViewById(R.id.instructor_name);
+            viewHolder.semesterTaken = (TextView) convertView.findViewById(R.id.semester_taken);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.reviewStars);
             viewHolder.courseComment = (TextView) convertView.findViewById(R.id.courseComment2);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
@@ -83,6 +86,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         viewHolder.instructorName.setText(dataModel.instructorName);
         viewHolder.stars.setRating(dataModel.rating);
         viewHolder.courseComment.setText(dataModel.courseComment);
+        viewHolder.semesterTaken.setText(dataModel.semester);
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen

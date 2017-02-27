@@ -39,17 +39,17 @@
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="TA"
+            android:hint="Semester Taken"
             android:ems="10"
             android:gravity="center"
-            android:id="@+id/add_course_TA"
+            android:id="@+id/add_semesterField"
             android:layout_width="match_parent" />
 
 
         <EditText
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Course Description"
+            android:hint="Short Description (Comment Below!)"
             android:ems="10"
             android:gravity="center"
             android:id="@+id/add_course_description"

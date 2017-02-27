@@ -23,9 +23,7 @@ import java.lang.Object;
     This does not include authentication through Firebase (with Facebook)
  */
 public class Server extends AppCompatActivity {
-    private TextView testDisplay;
-    private ListView mListView;
-    final List<CourseReview> reviews = new ArrayList<>();
+
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
