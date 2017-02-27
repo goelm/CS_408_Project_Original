@@ -27,23 +27,14 @@
             android:layout_weight="0.10"
             android:textSize="20sp"
             android:textAlignment="center" />
-        <RatingBar
 
+        <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:id="@+id/course_rating"
             style="@style/Widget.AppCompat.RatingBar"
             android:isIndicator="true" />
-
-
-        <TextView
-            android:text="Course Description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textDescription"
-            android:textAlignment="center"
-            android:layout_weight="0.73" />
 
 
         <ListView

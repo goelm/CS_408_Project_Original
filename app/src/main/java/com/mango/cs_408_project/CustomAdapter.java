@@ -43,6 +43,13 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         Object object= getItem(position);
         CourseReview dataModel =(CourseReview)object;
 
+        switch (v.getId())
+        {
+            case R.id.info_item:
+                Snackbar.make(v, "Course Description: " +dataModel.courseDescr, Snackbar.LENGTH_LONG)
+                        .setAction("No action", null).show();
+                break;
+        }
     }
 
     private int lastPosition = -1;
@@ -64,7 +71,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             viewHolder.instructorName = (TextView) convertView.findViewById(R.id.instructor_name);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.reviewStars);
             viewHolder.courseComment = (TextView) convertView.findViewById(R.id.courseComment2);
-            viewHolder.info = (ImageView) convertView.findViewById(R.id.helpfulness_button);
+            viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
 
             convertView.setTag(viewHolder);
         } else {

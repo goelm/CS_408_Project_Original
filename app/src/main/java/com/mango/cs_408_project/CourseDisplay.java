@@ -33,14 +33,11 @@ public class CourseDisplay extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference courseInfo = database.getReference("message/reviews/course");
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_info);
         display_course_review("HIST 371");
-
     }
 
     public void display_course_review(String course_name) {
@@ -53,8 +50,6 @@ public class CourseDisplay extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
         DatabaseReference ref = courseInfo.child(course_name);
 
-       // final ArrayAdapter<CourseReview> arrayAdapter = new ArrayAdapter<CourseReview>(this, android.R.layout.simple_list_item_1, reviews);
-
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -66,7 +61,6 @@ public class CourseDisplay extends AppCompatActivity {
                             counter++;
                             rating += course.rating;
                         }
-                        //arrayAdapter.notifyDataSetChanged();
                         adapter.notifyDataSetChanged();
                     }
 
