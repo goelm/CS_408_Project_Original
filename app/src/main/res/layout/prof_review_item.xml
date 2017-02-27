@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/linearLayout">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/prof_semester_taken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Semester Taken"
+        android:textColor="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/prof_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/profComment2"
+        android:layout_weight="1"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/version_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instructor: "
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_below="@+id/user_id"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/prof_info_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_info"
+        android:layout_below="@+id/profComment2"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/prof_instructor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill in here"
+        android:textAppearance="?android:attr/textAppearanceButton"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/version_heading"
+        android:layout_alignBottom="@+id/version_heading"
+        android:layout_toEndOf="@+id/version_heading" />
+
+    <RatingBar
+        android:id="@+id/prof_reviewStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/semester_taken"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

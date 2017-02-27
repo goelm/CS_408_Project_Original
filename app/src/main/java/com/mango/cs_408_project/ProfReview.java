@@ -6,9 +6,6 @@ package com.mango.cs_408_project;
 
 public class ProfReview {
     public String profName;
-    public String instructorName;
-    public String taName;
-    public String courseDescr;
     public boolean prof;
     public float rating;
     public int seekU;
