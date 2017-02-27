@@ -300,20 +300,20 @@ public class AddInstructorReview extends AppCompatActivity{
 
                 else {
 
-
-                    message.setText("Information added");
-                    String review = "Professor: " + String.valueOf(prof);
-                    review += ", Rating: " + String.valueOf(ratingProgress);
-                    review += ". Seekbar Value: " + String.valueOf(textVProgress);
-                    review += ", Seekbar Understand " + String.valueOf(textUProgress);
-                    review += ", Help session: " + String.valueOf(help_session);
-                    review += ", Extra credit: " + String.valueOf(extra_credit);
-                    review += ", Toughness: " + Integer.toString(toughness);
-                    review += ", Electronics: " + String.valueOf(electronics);
-                    review += ", Value: " + String.valueOf(value);
-                    review += ", Understand " + String.valueOf(understand);
-                    review += ", Comment: " + String.valueOf(profComment.getText());
-                    s.write_instructor_review(first.getText().toString() + last.getText().toString(), review);
+                    ProfReview review = new ProfReview();
+                    review.setProfName(String.valueOf(prof));
+                    review.setProf(prof);
+                    review.setRating(ratingProgress);
+                    review.setSeekV(textVProgress);
+                    review.setSeekU(textUProgress);
+                    review.setHelpSession(help_session);
+                    review.setExtraCredit(extra_credit);
+                    review.setToughness(toughness);
+                    review.setElectronics(electronics);
+                    //review.setValue(value); TODO: what is value?
+                    review.setUnderstand(understand);
+                    review.setProfComment(String.valueOf(profComment.getText()));
+                    s.write_instructor_review(String.valueOf(prof), review);
 
                 /* Go back to select a review */
                     Intent i = new Intent(AddInstructorReview.this, SelectReview.class);

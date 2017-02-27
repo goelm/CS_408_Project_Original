@@ -326,22 +326,6 @@ public class AddCourseReview extends AppCompatActivity{
                     review.setElectronics(electronics);
                     review.setTextBook(textbook);
                     review.setCourseComment(String.valueOf(courseComment.getText()));
-                    /*
-                    message.setText("Information added");
-                    String review = "Course: " + String.valueOf(course.getText());
-                    review += ", Instructor: " + String.valueOf(instructor.getText());
-                    review += ", TA: " + String.valueOf(ta.getText());
-                    review += ", Course Description: " + String.valueOf(description.getText());
-                    review += ", Rating: " + String.valueOf(add_course_ratingProgress);
-                    review += ", Seekbar Value: " + String.valueOf(textVProgress);
-                    review += ", Seekbar Understand " + String.valueOf(textUProgress);
-                    review += ", Help session: " + String.valueOf(help_session);
-                    review += ", Extra credit: " + String.valueOf(extra_credit);
-                    review += ", Toughness: " + Integer.toString(toughness);
-                    review += ", Electronics: " + String.valueOf(electronics);
-                    review += ", Textbook: " + String.valueOf(textbook);
-                    review += ", Comment: " + String.valueOf(courseComment.getText());
-                    */
                     s.write_course_review(String.valueOf(course.getText()), review);
 
                 /* Go back to select a review */

@@ -31,20 +31,18 @@ public class Server extends AppCompatActivity {
     DatabaseReference myRef = database.getReference("message");
     DatabaseReference courseInfo = database.getReference("message/reviews/course");
 
-    int user_id = 123456;
-
     public Server(){
 
     }
 
-    public void write_instructor_review(String instructor_name, String review){
+    public void write_instructor_review(String instructor_name, ProfReview review){
         DatabaseReference inst = myRef.child("reviews").child("instructor").child(instructor_name).push();
-        inst.setValue(Integer.toString(user_id)+ "," + review);
+        inst.setValue(review);
     }
 
     public void write_course_review(String course_name, CourseReview review){
         DatabaseReference inst = myRef.child("reviews").child("course").child(course_name).push();
-        inst.setValue(review);//Integer.toString(user_id)+ "," + review);
+        inst.setValue(review);
     }
 }
 
