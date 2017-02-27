@@ -49,8 +49,6 @@ public class Search extends AppCompatActivity {
 
                 TextView search_query = (TextView) findViewById(R.id.searchQueryField);
 
-
-
                 user_input = search_query.getText().toString();
 
                 Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);

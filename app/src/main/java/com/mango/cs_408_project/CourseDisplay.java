@@ -48,7 +48,7 @@ public class CourseDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_info);
 
-        display_course_review(user_input);
+        display_course_review(user_input.toUpperCase());
     }
 
 
@@ -85,7 +85,7 @@ public class CourseDisplay extends AppCompatActivity {
                         }
 
                         if (!has_user_input) {
-                            Intent i = new Intent(CourseDisplay.this, Search.class);
+                            Intent i = new Intent(CourseDisplay.this, ProfDisplay.class);
                             CourseDisplay.this.startActivity(i);
                         }
 

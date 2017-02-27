@@ -1,5 +1,6 @@
 package com.mango.cs_408_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -13,6 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static com.mango.cs_408_project.CourseDisplay.has_user_input;
+import static com.mango.cs_408_project.Search.user_input;
 
 /**
  * Created by manasigoel on 2/27/17.
@@ -33,7 +37,7 @@ public class ProfDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.professor_info);
-        display_instructor_review("KennyZheng");
+        display_instructor_review(user_input);
     }
 
     public void display_instructor_review(String instructor_name) {
@@ -58,6 +62,17 @@ public class ProfDisplay extends AppCompatActivity {
                             rating += review.rating;
                         }
                         adapter.notifyDataSetChanged();
+
+                        has_user_input = true;
+                        if (reviews.size() == 0) {
+                            has_user_input = false;
+                        }
+
+                        if (!has_user_input) {
+                            Intent i = new Intent(ProfDisplay.this, Search.class);
+                            ProfDisplay.this.startActivity(i);
+                        }
+
                     }
 
                     @Override
