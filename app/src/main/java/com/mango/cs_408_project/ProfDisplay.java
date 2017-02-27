@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class ProfDisplay extends AppCompatActivity {
-    /*private ListView mListView;
+    private ListView mListView;
     private float rating = 0;
     private float counter = 0;
     private static ProfCustomAdapter adapter;
@@ -38,13 +38,13 @@ public class ProfDisplay extends AppCompatActivity {
 
     public void display_instructor_review(String instructor_name) {
 
-        TextView courseName = (TextView) findViewById(R.id.textCourseName); //Set the Name of the Course here
-        courseName.setText(instructor_name);
+        //TextView courseName = (TextView) findViewById(R.id.textInstructorName); //Set the Name of the Course here
+        //courseName.setText(instructor_name);
 
-        RatingBar stars = (RatingBar) findViewById(R.id.course_rating);
+        RatingBar stars = (RatingBar) findViewById(R.id.instructor_rating);
 
         mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
-        DatabaseReference ref = profInfo.child(course_name);
+        DatabaseReference ref = profInfo.child(instructor_name);
 
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -52,10 +52,10 @@ public class ProfDisplay extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                         for (DataSnapshot child: children) {
-                            CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
-                            reviews.add(course);
+                            ProfReview review = child.getValue(ProfReview.class); // <-- do . at end here to specify which child
+                            reviews.add(review);
                             counter++;
-                            rating += course.rating;
+                            rating += review.rating;
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -66,9 +66,9 @@ public class ProfDisplay extends AppCompatActivity {
                     }
                 }
         );
-        adapter = new CustomAdapter(reviews, getApplicationContext());
+        adapter = new ProfCustomAdapter(reviews, getApplicationContext());
         mListView.setAdapter(adapter);
 
         stars.setRating((rating / counter));
-    }*/
+    }
 }
