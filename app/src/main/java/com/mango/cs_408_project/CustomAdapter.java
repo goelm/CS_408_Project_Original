@@ -86,7 +86,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         viewHolder.instructorName.setText(dataModel.instructorName);
         viewHolder.stars.setRating(dataModel.rating);
         viewHolder.courseComment.setText(dataModel.courseComment);
-        viewHolder.semesterTaken.setText(dataModel.semester);
+        //viewHolder.semesterTaken.setText(dataModel.semester);
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen

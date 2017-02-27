@@ -315,7 +315,7 @@ public class AddCourseReview extends AppCompatActivity{
                     CourseReview review = new CourseReview();
                     review.setCourseName(String.valueOf(course.getText()));
                     review.setInstructorName(String.valueOf(instructor.getText()));
-                    review.setSemesterTaken(String.valueOf(semester.getText()));
+                    //review.setSemesterTaken(String.valueOf(semester.getText()));
                     review.setCourseDescr(String.valueOf(description.getText()));
                     review.setRating(add_course_ratingProgress);
                     review.setSeekV(textVProgress);
