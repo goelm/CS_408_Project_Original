@@ -279,18 +279,18 @@ public class AddCourseReview extends AppCompatActivity{
             public void onClick(View v) {
                 TextView course = (TextView) findViewById(R.id.add_course_courseName);
                 TextView instructor = (TextView) findViewById(R.id.add_course_instructor);
-                TextView ta = (TextView) findViewById(R.id.add_course_TA);
+                TextView semester = (TextView) findViewById(R.id.add_semesterField);
                 TextView description = (TextView) findViewById(R.id.add_course_description);
 
 
                 Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
                 Matcher courseMatcher = p.matcher(course.getText());
                 Matcher instructorMatcher = p.matcher(instructor.getText());
-                Matcher taMatcher = p.matcher(ta.getText());
+                Matcher semesterMatcher = p.matcher(semester.getText());
 
                 boolean invalidCourseName = courseMatcher.find();
                 boolean invalidInstructorName = instructorMatcher.find();
-                boolean invalidTaName = taMatcher.find();
+                boolean invalidSemester = semesterMatcher.find();
 
                 TextView message = (TextView) findViewById(R.id.add_course_submitText);
 
@@ -306,7 +306,7 @@ public class AddCourseReview extends AppCompatActivity{
                     message.setText("Please fill in every field");
                 }
 
-                else if (invalidCourseName || invalidInstructorName || invalidTaName) {
+                else if (invalidCourseName || invalidInstructorName || invalidSemester) {
                     message.setText("Invalid inputs");
                 }
 
@@ -315,7 +315,7 @@ public class AddCourseReview extends AppCompatActivity{
                     CourseReview review = new CourseReview();
                     review.setCourseName(String.valueOf(course.getText()));
                     review.setInstructorName(String.valueOf(instructor.getText()));
-                    review.setTaName(String.valueOf(ta.getText()));
+                    review.setSemesterTaken(String.valueOf(semester.getText()));
                     review.setCourseDescr(String.valueOf(description.getText()));
                     review.setRating(add_course_ratingProgress);
                     review.setSeekV(textVProgress);

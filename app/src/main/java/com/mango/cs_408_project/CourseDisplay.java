@@ -45,13 +45,12 @@ public class CourseDisplay extends AppCompatActivity {
         TextView courseName = (TextView) findViewById(R.id.textCourseName); //Set the Name of the Course here
         courseName.setText(course_name);
 
-        RatingBar stars = (RatingBar) findViewById(R.id.course_rating);
+        final RatingBar stars = (RatingBar) findViewById(R.id.course_rating);
 
         mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
         DatabaseReference ref = courseInfo.child(course_name);
 
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Iterable<DataSnapshot> children = dataSnapshot.getChildren();
@@ -59,8 +58,11 @@ public class CourseDisplay extends AppCompatActivity {
                             CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
                             reviews.add(course);
                             counter++;
-                            rating += course.rating;
+                            rating += course.rating;//for stars
                         }
+                        //Set statistics here
+                        stars.setRating(rating/reviews.size());
+
                         adapter.notifyDataSetChanged();
                     }
 
@@ -68,11 +70,9 @@ public class CourseDisplay extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                }
-        );
+                });
         adapter = new CustomAdapter(reviews, getApplicationContext());
         mListView.setAdapter(adapter);
 
-        stars.setRating((rating / counter));
     }
 }
