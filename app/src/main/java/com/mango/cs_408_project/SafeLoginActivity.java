@@ -22,11 +22,11 @@ public class SafeLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_review_type);
 
-        Button instructor = (Button) findViewById(R.id.instructor_review);
-        Button course = (Button) findViewById(R.id.course_review);
+        Button instructor = (Button) findViewById(R.id.instructor_review_button);
+        Button course = (Button) findViewById(R.id.course_review_button);
         Button logOut = (Button) findViewById(R.id.logout_button);
 
-        Button search_button = (Button) findViewById(R.id.search);
+        Button search_button = (Button) findViewById(R.id.search_select_button);
 
 
         if (AccessToken.getCurrentAccessToken() == null) {
@@ -37,6 +37,27 @@ public class SafeLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 logout(v);
+            }
+        });
+
+        instructor.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i=new Intent(SafeLoginActivity.this, AddInstructorReview.class);
+                SafeLoginActivity.this.startActivity(i);
+            }
+        });
+
+        course.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent j=new Intent(SafeLoginActivity.this, AddCourseReview.class);
+                SafeLoginActivity.this.startActivity(j);
+            }
+        });
+
+        search_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent k=new Intent(SafeLoginActivity.this, Search.class);
+                SafeLoginActivity.this.startActivity(k);
             }
         });
 

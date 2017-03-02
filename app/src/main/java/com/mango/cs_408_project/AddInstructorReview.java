@@ -4,6 +4,7 @@ package com.mango.cs_408_project;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -301,7 +302,7 @@ public class AddInstructorReview extends AppCompatActivity{
                 else {
 
                     ProfReview review = new ProfReview();
-                    review.setProfName(String.valueOf(prof));
+                    review.setProfName(first.getText() + " " + last.getText());
                     review.setProf(prof);
                     review.setRating(ratingProgress);
                     review.setSeekV(textVProgress);
@@ -313,7 +314,8 @@ public class AddInstructorReview extends AppCompatActivity{
                     //review.setValue(value); TODO: what is value?
                     review.setUnderstand(understand);
                     review.setProfComment(String.valueOf(profComment.getText()));
-                    s.write_instructor_review(String.valueOf(prof), review);
+                    Log.d("manasi: instructor name", String.valueOf(prof));
+                    s.write_instructor_review(review.profName, review);
 
                 /* Go back to select a review */
                     Intent i = new Intent(AddInstructorReview.this, SelectReview.class);

@@ -22,11 +22,11 @@ public class SelectReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_review_type);
 
-        Button instructor = (Button) findViewById(R.id.instructor_review);
-        Button course = (Button) findViewById(R.id.course_review);
+        Button instructor = (Button) findViewById(R.id.instructor_review_button);
+        Button course = (Button) findViewById(R.id.course_review_button);
         //Button logOut = (Button) findViewById(R.id.logout_button);
 
-        Button search_button = (Button) findViewById(R.id.search);
+        Button search_button = (Button) findViewById(R.id.search_select_button);
 
         /*
         if (AccessToken.getCurrentAccessToken() == null) {
