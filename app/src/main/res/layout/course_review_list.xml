@@ -20,28 +20,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="Course Name"
+            android:text="Reviews for ..."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textCourseName"
+            android:id="@+id/course_name_reviews"
             android:layout_weight="0.10"
             android:textSize="20sp"
             android:textAlignment="center" />
 
-        <RatingBar
+        <ListView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:id="@+id/course_rating"
-            style="@style/Widget.AppCompat.RatingBar"
-            android:isIndicator="true" />
-
-
-        <!--<ListView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="150dp"-->
-            <!--android:id="@+id/listView"-->
-            <!--android:layout_weight="1.01" />-->
+            android:layout_height="150dp"
+            android:id="@+id/listView"
+            android:layout_weight="1.01" />
 
         <Space
             android:layout_width="match_parent"
@@ -49,16 +40,9 @@
             android:layout_weight="0.73" />
 
         <Button
-            android:text="View Reviews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_course_reviews"
-            android:layout_weight="0.10" />
-
-        <Button
             android:text="Add review"
             android:layout_width="301dp"
             android:layout_height="wrap_content"
-            android:id="@+id/course_info_addReview" />
+            android:id="@+id/add_review_course_reviews" />
     </LinearLayout>
 </ScrollView>
