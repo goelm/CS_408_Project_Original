@@ -54,6 +54,7 @@
         android:layout_weight="0.68" >
 
         <TextView
+            android:text="Instructor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/proORta"

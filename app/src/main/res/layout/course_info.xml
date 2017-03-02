@@ -40,7 +40,8 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:id="@+id/listView" />
+            android:id="@+id/listView"
+            android:layout_weight="1.01" />
 
         <Space
             android:layout_width="match_parent"
@@ -49,9 +50,8 @@
 
         <Button
             android:text="Add review"
-            android:layout_width="match_parent"
+            android:layout_width="301dp"
             android:layout_height="wrap_content"
-            android:id="@+id/course_info_addReview"
-            android:layout_weight="0.10" />
+            android:id="@+id/course_info_addReview" />
     </LinearLayout>
 </ScrollView>
