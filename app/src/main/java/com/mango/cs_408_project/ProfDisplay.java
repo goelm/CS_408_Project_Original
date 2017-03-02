@@ -33,11 +33,8 @@ import java.util.Map;
  */
 
 public class ProfDisplay extends AppCompatActivity {
-    private ListView prof_mListView;
     private float rating = 0;
     private float counter = 0;
-    private static ProfCustomAdapter prof_adapter;
-    public static boolean has_user_input = true;
     String user_input;
     Button prof_addReview;
     TextView value_lectures_text;
@@ -50,6 +47,7 @@ public class ProfDisplay extends AppCompatActivity {
     float value_lectures;
     float understandable;
     int extra_credit;
+    Button view_reviews;
 
 
     private final ArrayList<ProfReview> prof_reviews = new ArrayList<>();
@@ -75,6 +73,17 @@ public class ProfDisplay extends AppCompatActivity {
             }
         });
 
+        view_reviews = (Button) findViewById(R.id.view_reviews_button);
+
+        view_reviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfDisplay.this, ProfReviewsDisplay.class);
+                Log.d("manasi prof display", user_input);
+                i.putExtra("user_input", user_input);
+                ProfDisplay.this.startActivity(i);
+            }
+        });
     }
 
 
@@ -86,34 +95,7 @@ public class ProfDisplay extends AppCompatActivity {
 
         final RatingBar stars = (RatingBar) findViewById(R.id.instructor_rating);
 
-        prof_mListView = (ListView) findViewById(R.id.prof_listView); //Checks to see if the strong from database goes in
         final DatabaseReference ref = profInfo.child(prof_name);
-
-
-        //Allows the scrollview to be disabled when scrolling through the list View
-        prof_mListView.setOnTouchListener(new ListView.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        // Allow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-
-                // Handle ListView touch events.
-                v.onTouchEvent(event);
-                return true;
-            }
-        });
-
-
 
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -134,7 +116,6 @@ public class ProfDisplay extends AppCompatActivity {
                 }
                 //Set statistics here
                 stars.setRating(rating/prof_reviews.size());
-                prof_adapter.notifyDataSetChanged();
 
                 num_reviews_text = (TextView) findViewById(R.id.num_reviews_text);
                 num_reviews_text.setText(Integer.toString((int)counter)+" reviews");
@@ -157,7 +138,6 @@ public class ProfDisplay extends AppCompatActivity {
 
                 value_lectures_bar.setProgress((int)(value_lectures/counter));
                 understandable_bar.setProgress((int)(understandable/counter));
-                Log.d("manasi",Integer.toString(extra_credit));
                 extra_credit_bar.setProgress((int)((extra_credit/counter)*100));
 
             }
@@ -167,8 +147,6 @@ public class ProfDisplay extends AppCompatActivity {
 
             }
         });
-        prof_adapter = new ProfCustomAdapter(prof_reviews, getApplicationContext());
-        prof_mListView.setAdapter(prof_adapter);
 
     }
 }
