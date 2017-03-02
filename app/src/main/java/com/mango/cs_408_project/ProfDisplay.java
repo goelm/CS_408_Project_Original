@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.mango.cs_408_project.CourseDisplay.has_user_input;
+//import static com.mango.cs_408_project.CourseDisplay.has_user_input;
 import static com.mango.cs_408_project.Search.user_input;
 
 
@@ -39,6 +39,8 @@ public class ProfDisplay extends AppCompatActivity {
     private float rating = 0;
     private float counter = 0;
     private static ProfCustomAdapter prof_adapter;
+    public static boolean has_user_input = true;
+
 
     Button prof_addReview;
 
@@ -66,6 +68,11 @@ public class ProfDisplay extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
 
     public void display_prof_review(String prof_name) {
 
@@ -111,10 +118,10 @@ public class ProfDisplay extends AppCompatActivity {
 
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children) {
-                    ProfReview course = child.getValue(ProfReview.class); // <-- do . at end here to specify which child
-                    prof_reviews.add(course);
+                    ProfReview instructor = child.getValue(ProfReview.class); // <-- do . at end here to specify which child
+                    prof_reviews.add(instructor);
                     counter++;
-                    rating += course.rating;//for stars
+                    rating += instructor.rating;//for stars
                 }
                 //Set statistics here
                 stars.setRating(rating/prof_reviews.size());

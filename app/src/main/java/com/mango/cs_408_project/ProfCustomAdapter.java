@@ -62,7 +62,6 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
             convertView = inflater.inflate(R.layout.prof_review_item, parent, false);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.prof_reviewStars);
             viewHolder.profComment = (TextView) convertView.findViewById(R.id.profComment2);
-            viewHolder.info = (ImageView) convertView.findViewById(R.id.prof_info_item);
 
             convertView.setTag(viewHolder);
         } else {
