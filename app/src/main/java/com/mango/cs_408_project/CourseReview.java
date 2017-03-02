@@ -19,6 +19,7 @@ public class CourseReview {
     public boolean textBook;
     public String courseComment;
 
+
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
