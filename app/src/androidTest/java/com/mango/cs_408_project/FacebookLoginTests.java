@@ -45,7 +45,7 @@ public class FacebookLoginTests {
         Thread.sleep(3000);
         device.findObject(new UiSelector().resourceId("u_0_1")).click(); //Clicks ok to confirm
         Thread.sleep(4000);
-        onView(withId(R.id.instructor_review)).check(matches(isDisplayed())); //Checks to see if instructor button is there
+        onView(withId(R.id.instructor_review_button)).check(matches(isDisplayed())); //Checks to see if instructor button is there
     }
 
     @Test
@@ -61,6 +61,6 @@ public class FacebookLoginTests {
         Thread.sleep(3000);
         device.findObject(new UiSelector().resourceId("u_0_1")).click(); //Clicks ok to confirm
         Thread.sleep(4000);
-        onView(withId(R.id.instructor_review)).check(matches(isDisplayed())); //Checks to see if instructor button is there
+        onView(withId(R.id.instructor_review_button)).check(matches(isDisplayed())); //Checks to see if instructor button is there
     }
 }
