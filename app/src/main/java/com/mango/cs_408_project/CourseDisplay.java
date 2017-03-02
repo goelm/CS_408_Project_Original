@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.mango.cs_408_project.Search.user_input;
-
 
 /**
  * Created by Elvin Uthuppan on 2/26/2017.
@@ -39,6 +37,7 @@ public class CourseDisplay extends AppCompatActivity {
     private static CustomAdapter adapter;
 
     public static boolean has_user_input = true;
+    String user_input;
 
     Button course_addReview;
 
@@ -50,6 +49,8 @@ public class CourseDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_info);
+
+        user_input = getIntent().getStringExtra("user_input");
 
         display_course_review(user_input.toUpperCase());
     }
@@ -72,6 +73,7 @@ public class CourseDisplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CourseDisplay.this, AddCourseReview.class);
+                i.putExtra("user_input", user_input);
                 CourseDisplay.this.startActivity(i);
             }
         });

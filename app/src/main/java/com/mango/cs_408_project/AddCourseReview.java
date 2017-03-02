@@ -21,8 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.mango.cs_408_project.Search.user_input;
-
 /**
  * Created by elvin on 2/8/17.
  */
@@ -110,7 +108,9 @@ public class AddCourseReview extends AppCompatActivity{
 
         course = (TextView) findViewById(R.id.add_course_courseName);
 
-        course.setText(user_input.toUpperCase());
+        if(getIntent().hasExtra("user_input")){
+            course.setText(getIntent().getStringExtra("user_input").toUpperCase());
+        }
 
 
         /*

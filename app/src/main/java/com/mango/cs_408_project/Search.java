@@ -35,10 +35,28 @@ public class Search extends AppCompatActivity {
 
         Button submit_button = (Button) findViewById(R.id.searchSubmit);
         message = (TextView) findViewById(R.id.success_fail_message);
+        Button new_instructor = (Button) findViewById(R.id.new_instructor_button);
+        Button new_course = (Button) findViewById(R.id.new_course_button);
+        new_instructor.setVisibility(View.GONE);
+        new_course.setVisibility(View.GONE);
 
         if (!has_user_input) {
             message.setText("" + user_input + " does not exist");
             has_user_input = true;
+            new_instructor.setVisibility(View.VISIBLE);
+            new_course.setVisibility(View.VISIBLE);
+            new_instructor.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent i = new Intent(Search.this, AddInstructorReview.class);
+                    Search.this.startActivity(i);
+                }
+            });
+            new_course.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent i = new Intent(Search.this, AddCourseReview.class);
+                    Search.this.startActivity(i);
+                }
+            });
         }
 
         //final CourseDisplay cDisplay = new CourseDisplay();
@@ -68,6 +86,7 @@ public class Search extends AppCompatActivity {
                         message.setText("Good search query!");
 
                         Intent i = new Intent(Search.this, CourseDisplay.class);
+                        i.putExtra("user_input", user_input);
                         Search.this.startActivity(i);
                     }
 
