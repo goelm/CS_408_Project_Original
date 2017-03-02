@@ -51,22 +51,27 @@ public class Search extends AppCompatActivity {
 
                 user_input = search_query.getText().toString();
 
-                Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-                Matcher m = p.matcher(search_query.getText());
-                boolean b = m.find();
+                if (user_input.length() == 0) {
+                    message.setText("Search field can not be empty");
+                } else {
 
-                 if(b)
-                    message.setText("Please try again without special characters");
-                else {
+                    Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                    Matcher m = p.matcher(search_query.getText());
+                    boolean b = m.find();
 
-                    //float c = cDisplay.getCounter();
-                    //Log.d("test", "" + c);
-                    message.setText("Good search query!");
+                    if (b)
+                        message.setText("Please try again without special characters");
+                    else {
 
-                    Intent i = new Intent(Search.this, CourseDisplay.class);
-                    Search.this.startActivity(i);
+                        //float c = cDisplay.getCounter();
+                        //Log.d("test", "" + c);
+                        message.setText("Good search query!");
+
+                        Intent i = new Intent(Search.this, CourseDisplay.class);
+                        Search.this.startActivity(i);
+                    }
+
                 }
-
             }
 
         });
