@@ -44,7 +44,7 @@ public class ProfDisplay extends AppCompatActivity {
 
     private final ArrayList<CourseReview> prof_reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference profInfo = database.getReference("message/reviews/instructore");
+    DatabaseReference profInfo = database.getReference("message/reviews/instructor");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

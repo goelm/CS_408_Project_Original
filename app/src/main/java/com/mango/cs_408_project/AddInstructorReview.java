@@ -302,7 +302,7 @@ public class AddInstructorReview extends AppCompatActivity{
                 else {
 
                     ProfReview review = new ProfReview();
-                    review.setProfName(first.getText() + " " + last.getText());
+                    review.setProfName(first.getText().toString().toUpperCase() + " " + last.getText().toString().toUpperCase());
                     review.setProf(prof);
                     review.setRating(ratingProgress);
                     review.setSeekV(textVProgress);
