@@ -40,7 +40,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
 
         int position=(Integer) v.getTag();
         Object object= getItem(position);
-        CourseReview dataModel =(CourseReview)object;
+        ProfReview dataModel =(ProfReview) object;
 
     }
 
@@ -59,7 +59,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
 
             viewHolder = new ProfCustomAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.review_item, parent, false);
+            convertView = inflater.inflate(R.layout.prof_review_item, parent, false);
             viewHolder.instructorName = (TextView) convertView.findViewById(R.id.prof_instructor_name);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.prof_reviewStars);
             viewHolder.profComment = (TextView) convertView.findViewById(R.id.profComment2);

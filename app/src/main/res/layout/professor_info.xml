@@ -54,11 +54,12 @@
         android:layout_weight="0.68" >
 
         <TextView
-            android:text="Professor / TA for class ****"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textType"
+            android:id="@+id/proORta"
             android:textAlignment="center" />
+
+
     </TableRow>
 
         <RatingBar

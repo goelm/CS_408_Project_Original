@@ -115,6 +115,7 @@ public class CourseDisplay extends AppCompatActivity {
                             counter++;
                             rating += course.rating;//for stars
                         }
+
                         //Set statistics here
                         stars.setRating(rating/reviews.size());
                         adapter.notifyDataSetChanged();

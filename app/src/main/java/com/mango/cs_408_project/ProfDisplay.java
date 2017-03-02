@@ -38,12 +38,12 @@ public class ProfDisplay extends AppCompatActivity {
     private ListView prof_mListView;
     private float rating = 0;
     private float counter = 0;
-    private static CustomAdapter prof_adapter;
+    private static ProfCustomAdapter prof_adapter;
 
     Button prof_addReview;
 
 
-    private final ArrayList<CourseReview> prof_reviews = new ArrayList<>();
+    private final ArrayList<ProfReview> prof_reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference profInfo = database.getReference("message/reviews/instructor");
 
@@ -66,11 +66,6 @@ public class ProfDisplay extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
 
     public void display_prof_review(String prof_name) {
 
@@ -116,7 +111,7 @@ public class ProfDisplay extends AppCompatActivity {
 
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children) {
-                    CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
+                    ProfReview course = child.getValue(ProfReview.class); // <-- do . at end here to specify which child
                     prof_reviews.add(course);
                     counter++;
                     rating += course.rating;//for stars
@@ -144,7 +139,7 @@ public class ProfDisplay extends AppCompatActivity {
 
             }
         });
-        prof_adapter = new CustomAdapter(prof_reviews, getApplicationContext());
+        prof_adapter = new ProfCustomAdapter(prof_reviews, getApplicationContext());
         prof_mListView.setAdapter(prof_adapter);
 
     }
