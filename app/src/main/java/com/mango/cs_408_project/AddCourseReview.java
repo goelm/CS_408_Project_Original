@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.mango.cs_408_project.Search.user_input;
+
 /**
  * Created by elvin on 2/8/17.
  */
@@ -70,6 +72,8 @@ public class AddCourseReview extends AppCompatActivity{
     Button submit_button;
     EditText courseComment;
 
+    TextView course;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -102,6 +106,12 @@ public class AddCourseReview extends AppCompatActivity{
 
         add_course_rating_bar = (RatingBar) findViewById(R.id.course_rating);
         courseComment = (EditText) findViewById(R.id.courseComment);
+
+
+        course = (TextView) findViewById(R.id.add_course_courseName);
+
+        course.setText(user_input.toUpperCase());
+
 
         /*
         RADIOBUTTON SWITCHING
@@ -277,7 +287,8 @@ public class AddCourseReview extends AppCompatActivity{
         /* When submitting the review */
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TextView course = (TextView) findViewById(R.id.add_course_courseName);
+
+
                 TextView instructor = (TextView) findViewById(R.id.add_course_instructor);
                 TextView semester = (TextView) findViewById(R.id.add_semesterField);
                 TextView description = (TextView) findViewById(R.id.add_course_description);
