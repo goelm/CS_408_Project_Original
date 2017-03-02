@@ -395,21 +395,15 @@ public class AddCourseReviewTest {
         DatabaseReference courseInfo = database.getReference("message/reviews/course");
         final DatabaseReference ref = courseInfo.child("CourseNameTest");
         counter = 0;
-        Log.d("manasi", "before listener");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Log.d("manasi inside snapshot","here");
-
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children) {
-                    Log.d("manasi inside loop","here");
                     CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
-                    Log.d("manasi review", course.toString());
                     reviews.add(course);
-                    Log.d("manasi list review", reviews.get(0).toString());
                     counter++;
                 }
             }
@@ -417,12 +411,9 @@ public class AddCourseReviewTest {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-                Log.d("manasi", "error");
-
             }
         });
         Thread.sleep(1000);
-        Log.d("manasi length", Integer.toString(reviews.size()));
         CourseReview review_to_check = reviews.get(counter-1);
         assertEquals(review_to_check.courseName, "CourseNameTest");
         assertEquals(review_to_check.instructorName, "InstructorTest");

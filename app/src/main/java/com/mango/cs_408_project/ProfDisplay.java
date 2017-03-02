@@ -26,9 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-//import static com.mango.cs_408_project.CourseDisplay.has_user_input;
-import static com.mango.cs_408_project.Search.user_input;
-
 
 /**
  * Created by Elvin Uthuppan on 2/26/2017.
@@ -40,8 +37,7 @@ public class ProfDisplay extends AppCompatActivity {
     private float counter = 0;
     private static ProfCustomAdapter prof_adapter;
     public static boolean has_user_input = true;
-
-
+    String user_input;
     Button prof_addReview;
 
 
@@ -53,6 +49,7 @@ public class ProfDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.professor_info);
+        user_input = getIntent().getStringExtra("user_input");
 
         display_prof_review(user_input.toUpperCase());
 
@@ -126,18 +123,6 @@ public class ProfDisplay extends AppCompatActivity {
                 //Set statistics here
                 stars.setRating(rating/prof_reviews.size());
                 prof_adapter.notifyDataSetChanged();
-
-                has_user_input = true;
-
-                if (prof_reviews.size() == 0) {
-                    has_user_input = false;
-                }
-
-                if (!has_user_input) {
-                    Intent i = new Intent(ProfDisplay.this, Search.class);
-                    ProfDisplay.this.startActivity(i);
-                }
-
 
             }
 
