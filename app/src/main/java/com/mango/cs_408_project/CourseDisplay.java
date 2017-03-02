@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +54,7 @@ public class CourseDisplay extends AppCompatActivity {
         user_input = getIntent().getStringExtra("user_input");
 
         display_course_review(user_input.toUpperCase());
+       // display_course_review("HIST 371");
     }
 
 
@@ -63,10 +65,33 @@ public class CourseDisplay extends AppCompatActivity {
         TextView courseName = (TextView) findViewById(R.id.textCourseName); //Set the Name of the Course here
         courseName.setText(course_name);
 
-        final RatingBar stars = (RatingBar) findViewById(R.id.course_rating);
+        final RatingBar stars = (RatingBar) findViewById(R.id.course_rating); //Finds the stars to update
 
         mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
         final DatabaseReference ref = courseInfo.child(course_name);
+
+        //Allows the scrollview to be disabled when scrolling through the list View
+        mListView.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
 
 
         course_addReview.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,9 +52,10 @@ public class ProfDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.professor_info);
 
-        display_prof_review(user_input.toUpperCase());
+        display_prof_review(user_input);
 
         prof_addReview = (Button) findViewById(R.id.professor_info_addReview);
+
 
         prof_addReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +64,10 @@ public class ProfDisplay extends AppCompatActivity {
                 ProfDisplay.this.startActivity(i);
             }
         });
+
     }
+
+
 
 
 
@@ -70,13 +75,40 @@ public class ProfDisplay extends AppCompatActivity {
     public void display_prof_review(String prof_name) {
 
 
-        TextView courseName = (TextView) findViewById(R.id.textProfName); //Set the Name of the Course here
-        courseName.setText(prof_name);
+        TextView profName = (TextView) findViewById(R.id.textProfName); //Set the Name of the Course here
+        profName.setText(prof_name);
 
         final RatingBar stars = (RatingBar) findViewById(R.id.instructor_rating);
 
         prof_mListView = (ListView) findViewById(R.id.prof_listView); //Checks to see if the strong from database goes in
         final DatabaseReference ref = profInfo.child(prof_name);
+
+
+        //Allows the scrollview to be disabled when scrolling through the list View
+        prof_mListView.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
+
+
+
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

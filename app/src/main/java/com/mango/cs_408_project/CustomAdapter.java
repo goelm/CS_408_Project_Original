@@ -34,7 +34,6 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         super(context, R.layout.review_item, data);
         this.dataSet = data;
         this.mContext=context;
-
     }
 
     @Override
@@ -63,13 +62,14 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         ViewHolder viewHolder; // view lookup cache in tag
 
 
+
         final View result;
 
         if (convertView == null) {
 
             viewHolder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.review_item, parent, false);
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.review_item, null);
             viewHolder.instructorName = (TextView) convertView.findViewById(R.id.instructor_name);
             viewHolder.semesterTaken = (TextView) convertView.findViewById(R.id.semester_taken);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.reviewStars);
@@ -77,6 +77,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
 
             convertView.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }

@@ -66,7 +66,6 @@ public class Search extends AppCompatActivity {
             public void onClick(View v) {
 
                 TextView search_query = (TextView) findViewById(R.id.searchQueryField);
-
                 user_input = search_query.getText().toString();
 
                 if (user_input.length() == 0) {
