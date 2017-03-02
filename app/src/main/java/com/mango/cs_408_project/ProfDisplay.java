@@ -52,7 +52,7 @@ public class ProfDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.professor_info);
 
-        display_prof_review(user_input);
+        display_prof_review(user_input.toUpperCase());
 
         prof_addReview = (Button) findViewById(R.id.professor_info_addReview);
 
