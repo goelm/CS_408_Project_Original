@@ -76,6 +76,16 @@ public class AddInstructorReview extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_info);
 
+        TextView first = (TextView) findViewById(R.id.first_name);
+        TextView last = (TextView) findViewById(R.id.last_name);
+
+        if(getIntent().hasExtra("name")){
+            String full_name = getIntent().getStringExtra("name");
+            String [] names = full_name.split(" ");
+            first.setText(names[0]);
+            last.setText(names[1]);
+        }
+
         rb_instructor = (RadioButton) findViewById(R.id.instructor);
         rb_ta = (RadioButton) findViewById(R.id.teachingassistant);
         rb_ezAccess = (RadioButton) findViewById(R.id.ezAccess);
