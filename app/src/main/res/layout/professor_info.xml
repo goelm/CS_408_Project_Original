@@ -108,6 +108,20 @@
             android:layout_weight="0.73" />
 
 
+        <TextView
+            android:text="There is extra credit:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extra_credit_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extra_credit_bar"
+            android:layout_weight="0.68" />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
