@@ -314,7 +314,6 @@ public class AddInstructorReview extends AppCompatActivity{
                     //review.setValue(value); TODO: what is value?
                     review.setUnderstand(understand);
                     review.setProfComment(String.valueOf(profComment.getText()));
-                    Log.d("manasi: instructor name", String.valueOf(prof));
                     s.write_instructor_review(review.profName, review);
 
                 /* Go back to select a review */

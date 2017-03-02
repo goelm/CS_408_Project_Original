@@ -24,7 +24,7 @@ public class SelectIntentInstrumentedTests {
 
     @Test
     public void instructorButtonStartsAddInstructorActivity() throws Exception{
-        onView(withId(R.id.instructor_review)).perform(click());
+        onView(withId(R.id.instructor_review_button)).perform(click());
         intended(hasComponent(new ComponentName(getTargetContext(), AddInstructorReview.class)));
         Thread.sleep(1000);
 
@@ -32,7 +32,7 @@ public class SelectIntentInstrumentedTests {
 
     @Test
     public void courseButtonStartsAddCourseActivity() throws Exception{
-        onView(withId(R.id.course_review)).perform(click());
+        onView(withId(R.id.course_review_button)).perform(click());
         intended(hasComponent(new ComponentName(getTargetContext(), AddCourseReview.class)));
         Thread.sleep(1000);
 
@@ -40,7 +40,7 @@ public class SelectIntentInstrumentedTests {
 
     @Test
     public void searchButtonStartsAddCourseActivity() throws Exception{
-        onView(withId(R.id.search)).perform(click());
+        onView(withId(R.id.search_select_button)).perform(click());
         intended(hasComponent(new ComponentName(getTargetContext(), Search.class)));
         Thread.sleep(1000);
 
