@@ -136,7 +136,7 @@ public class AddInstructorReview extends AppCompatActivity{
             public void onClick(View v) {
                 RadioButton rb_hardAccess = (RadioButton) findViewById(R.id.hardAccess);
                 rb_hardAccess.setChecked(false);
-                help_session = false;
+                help_session = true;
             }
         });
 
@@ -145,7 +145,7 @@ public class AddInstructorReview extends AppCompatActivity{
             public void onClick(View v) {
                 RadioButton rb_no1 = (RadioButton) findViewById(R.id.noButton1);
                 rb_no1.setChecked(false);
-                extra_credit = false;
+                extra_credit = true;
             }
         });
 
@@ -162,7 +162,7 @@ public class AddInstructorReview extends AppCompatActivity{
             public void onClick(View v) {
                 RadioButton rb_no2 = (RadioButton) findViewById(R.id.noButton2);
                 rb_no2.setChecked(false);
-                electronics = false;
+                electronics = true;
             }
         });
 
@@ -305,14 +305,12 @@ public class AddInstructorReview extends AppCompatActivity{
                     review.setProfName(first.getText().toString().toUpperCase() + " " + last.getText().toString().toUpperCase());
                     review.setProf(prof);
                     review.setRating(ratingProgress);
-                    review.setSeekV(textVProgress);
-                    review.setSeekU(textUProgress);
+                    review.setSeekV(textVProgress); //Value of lecture
+                    review.setSeekU(textUProgress); //Understandable trait
                     review.setHelpSession(help_session);
                     review.setExtraCredit(extra_credit);
                     review.setToughness(toughness);
                     review.setElectronics(electronics);
-                    //review.setValue(value); TODO: what is value?
-                    review.setUnderstand(understand);
                     review.setProfComment(String.valueOf(profComment.getText()));
                     s.write_instructor_review(review.profName, review);
 

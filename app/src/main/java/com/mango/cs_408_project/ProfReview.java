@@ -14,7 +14,6 @@ public class ProfReview {
     public boolean extraCredit;
     public int toughness;
     public boolean electronics;
-    public int understand;
     public String profComment;
 
     public void setProfName(String courseName) {
@@ -53,9 +52,6 @@ public class ProfReview {
         this.electronics = electronics;
     }
 
-    public void setUnderstand(int understand) {
-        this.understand = understand;
-    }
 
     public void setProfComment(String profComment) {
         this.profComment = profComment;

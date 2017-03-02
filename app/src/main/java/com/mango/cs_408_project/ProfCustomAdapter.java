@@ -24,7 +24,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
     private static class ViewHolder {
         TextView instructorName;
         RatingBar stars;
-        TextView courseComment;
+        TextView profComment;
         ImageView info;
     }
 
@@ -62,7 +62,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
             convertView = inflater.inflate(R.layout.review_item, parent, false);
             viewHolder.instructorName = (TextView) convertView.findViewById(R.id.prof_instructor_name);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.prof_reviewStars);
-            viewHolder.courseComment = (TextView) convertView.findViewById(R.id.profComment2);
+            viewHolder.profComment = (TextView) convertView.findViewById(R.id.profComment2);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.prof_info_item);
 
             convertView.setTag(viewHolder);
@@ -75,7 +75,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
         //viewHolder.instructorName.setText(dataModel.instructorName);
         // TODO: maybe we could add a course section for each prof review like instructorName?
         viewHolder.stars.setRating(dataModel.rating);
-        viewHolder.courseComment.setText(dataModel.profComment);
+        viewHolder.profComment.setText(dataModel.profComment);
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen
