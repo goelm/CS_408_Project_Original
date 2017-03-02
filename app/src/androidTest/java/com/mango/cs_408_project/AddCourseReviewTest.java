@@ -54,7 +54,7 @@ public class AddCourseReviewTest {
 
 
     // Accessbility Test
-/*
+
     @Test
     public void buttonDisplayed() throws Exception {
         onView(withId(R.id.add_course_ezAccess)).perform(click());
@@ -377,7 +377,7 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_submitText)).check(matches(withText("Information added")));
         Thread.sleep(1000);
     }
-*/
+
     @Test
     public void submitDatabase() throws Exception{
         onView(withId(R.id.add_course_courseName)).perform(typeText("CourseNameTest"));
