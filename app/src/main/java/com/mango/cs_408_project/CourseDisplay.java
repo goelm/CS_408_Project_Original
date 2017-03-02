@@ -120,18 +120,6 @@ public class CourseDisplay extends AppCompatActivity {
                         stars.setRating(rating/reviews.size());
                         adapter.notifyDataSetChanged();
 
-                        has_user_input = true;
-
-                        if (reviews.size() == 0) {
-                            has_user_input = false;
-                        }
-
-                        if (!has_user_input) {
-                            Intent i = new Intent(CourseDisplay.this, ProfDisplay.class);
-                            CourseDisplay.this.startActivity(i);
-                        }
-
-
                     }
 
                     @Override
