@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -37,6 +39,8 @@ public class ProfDisplay extends AppCompatActivity {
     private float counter = 0;
     private static CustomAdapter prof_adapter;
 
+    Button prof_addReview;
+
 
     private final ArrayList<CourseReview> prof_reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -48,7 +52,19 @@ public class ProfDisplay extends AppCompatActivity {
         setContentView(R.layout.professor_info);
 
         display_prof_review(user_input.toUpperCase());
+
+        prof_addReview = (Button) findViewById(R.id.professor_info_addReview);
+
+        prof_addReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfDisplay.this, AddInstructorReview.class);
+                ProfDisplay.this.startActivity(i);
+            }
+        });
     }
+
+
 
 
     public void display_prof_review(String prof_name) {
