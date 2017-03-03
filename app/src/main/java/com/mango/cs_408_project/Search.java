@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +41,7 @@ public class Search extends AppCompatActivity {
     Button new_instructor;
     Button new_course;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,9 +55,6 @@ public class Search extends AppCompatActivity {
         new_course = (Button) findViewById(R.id.new_course_button);
         new_instructor.setVisibility(View.GONE);
         new_course.setVisibility(View.GONE);
-
-        //final CourseDisplay cDisplay = new CourseDisplay();
-
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,7 +76,6 @@ public class Search extends AppCompatActivity {
 
                         message.setText("Good search query!");
 
-
                         //Checking all the courses to see if anything matches
                         final DatabaseReference refcourse = courseInfo.child(user_input.toUpperCase());
 
@@ -87,16 +85,15 @@ public class Search extends AppCompatActivity {
                                 if(dataSnapshot.exists()){
                                     foundcourse = true;
                                     message.setText("exists");
+                                    Log.d("manasi inside course", Boolean.toString(foundcourse));
                                 }
                                 else{
                                     foundcourse = false;
                                 }
-
                             }
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-
                             }
                         });
 
@@ -110,6 +107,7 @@ public class Search extends AppCompatActivity {
                                     if (dataSnapshot.exists()) {
                                         foundprof = true;
                                         message.setText("exists");
+                                        Log.d("manasi inside prof", Boolean.toString(foundprof));
                                     } else {
                                         foundprof = false;
                                         message.setText("does not exist");
@@ -130,7 +128,6 @@ public class Search extends AppCompatActivity {
                                             }
                                         });
                                     }
-
                                 }
 
                                 @Override
@@ -140,24 +137,37 @@ public class Search extends AppCompatActivity {
                             });
                         }
 
-                        // If a course matched then it will open course dispaly and send the user input to that intent
-                        if(foundcourse) {
-                            Intent i = new Intent(Search.this, CourseDisplay.class);
-                            i.putExtra("user_input", user_input);
-                            Search.this.startActivity(i);
+                        Log.d("manasi course", Boolean.toString(foundcourse));
+                        Log.d("manasi prof", Boolean.toString(foundprof));
+
+                        if(foundcourse || foundprof){
+                            foundSomething(foundcourse, foundprof);
                         }
 
-                        // If a professor matched then it will open prof dispaly and send the user input to that intent
-                        if(foundprof){
-                            Intent i = new Intent(Search.this, ProfDisplay.class);
-                            i.putExtra("user_input", user_input);
-                            Search.this.startActivity(i);
-                        }
                     }
 
                 }
             }
 
         });
+    }
+
+    public void foundSomething(boolean course, boolean prof){
+        Log.d("manasi course something", Boolean.toString(course));
+        Log.d("manasi prof something", Boolean.toString(prof));
+
+        // If a course matched then it will open course dispaly and send the user input to that intent
+        if(course) {
+            Intent i = new Intent(Search.this, CourseDisplay.class);
+            i.putExtra("user_input", user_input);
+            Search.this.startActivity(i);
+        }
+
+        // If a professor matched then it will open prof dispaly and send the user input to that intent
+        if(prof){
+            Intent i = new Intent(Search.this, ProfDisplay.class);
+            i.putExtra("user_input", user_input);
+            Search.this.startActivity(i);
+        }
     }
 }

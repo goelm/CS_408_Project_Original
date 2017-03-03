@@ -36,6 +36,113 @@
             style="@style/Widget.AppCompat.RatingBar"
             android:isIndicator="true" />
 
+        <TextView
+            android:text="10 reviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/num_reviews_course_text"
+            android:textAlignment="center"
+            android:layout_weight="0.73" />
+
+        <TextView
+            android:text="Lectures are valuable:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/value_lecture_course_text"
+            android:layout_weight="0.73" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/value_lecture_course_bar"
+            android:layout_weight="0.73" />
+
+        <TextView
+            android:text="Professor is understandable:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/understandable_course_text"
+            android:layout_weight="0.73" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/understandable_course_bar"
+            android:layout_weight="0.73" />
+
+
+        <TextView
+            android:text="There is extra credit:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extra_credit_course_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extra_credit_course_bar"
+            android:layout_weight="0.68" />
+
+        <TextView
+            android:text="There are help sessions:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/help_sessions_course_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/help_sessions_course_bar"
+            android:layout_weight="0.68" />
+
+
+        <TextView
+            android:text="Electronics are allowed:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/electronics_course_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/electronics_course_bar"
+            android:layout_weight="0.68" />
+
+        <TextView
+            android:text="Texbook is required:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textbook_course_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textbook_course_bar"
+            android:layout_weight="0.68" />
+
+        <TextView
+            android:text="Toughness:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toughness_course_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toughness_course_bar"
+            android:layout_weight="0.68" />
 
         <!--<ListView-->
             <!--android:layout_width="wrap_content"-->
