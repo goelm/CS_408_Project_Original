@@ -273,17 +273,4 @@ public class AddInstructorReviewTest {
         Thread.sleep(1000);
     }
 
-    @Test
-    public void informationAdded() throws Exception {
-        onView(withId(R.id.first_name)).perform(typeText("FirstNameTest"));
-        onView(withId(R.id.last_name)).perform(typeText("LastNameTest"));
-        onView(withId(R.id.instructor)).perform(scrollTo(), click());
-        onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
-        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
-        onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
-        onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
-        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
-        onView(withId(R.id.add_info_submitText)).check(matches(withText("Information added")));
-        Thread.sleep(1000);
-    }
 }

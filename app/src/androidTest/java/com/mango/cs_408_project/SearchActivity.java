@@ -2,6 +2,7 @@ package com.mango.cs_408_project;
 
 import android.content.ComponentName;
 import android.support.test.espresso.core.deps.guava.collect.TreeBasedTable;
+import android.support.test.espresso.core.deps.guava.util.concurrent.ThreadFactoryBuilder;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.uiautomator.Tracer;
@@ -47,14 +48,6 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("search!@#$%^"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.success_fail_message)).check(matches(withText("Please try again without special characters")));
-        Thread.sleep(1000);
-    }
-
-    @Test
-    public void searchWithoutSpecial() throws Exception {
-        onView(withId(R.id.searchQueryField)).perform(typeText("search no special characters"));
-        onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         Thread.sleep(1000);
     }
 
@@ -127,6 +120,7 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("FiRsTtEsT lAsTtEsT"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
         intended(hasComponent(new ComponentName(getTargetContext(), ProfDisplay.class)));
         Thread.sleep(1000);
     }
@@ -136,6 +130,7 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("FIRSTTEST LASTTEST"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
         intended(hasComponent(new ComponentName(getTargetContext(), ProfDisplay.class)));
         Thread.sleep(1000);
     }
