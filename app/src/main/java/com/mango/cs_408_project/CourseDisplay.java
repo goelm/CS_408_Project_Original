@@ -32,7 +32,6 @@ import java.util.Map;
  */
 
 public class CourseDisplay extends AppCompatActivity {
-    private ListView mListView;
     private float rating = 0;
     private float counter = 0;
     private static CustomAdapter adapter;
@@ -41,6 +40,8 @@ public class CourseDisplay extends AppCompatActivity {
     String user_input;
 
     Button course_addReview;
+
+    Button view_reviews;
 
     private final ArrayList<CourseReview> reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -67,37 +68,22 @@ public class CourseDisplay extends AppCompatActivity {
 
         final RatingBar stars = (RatingBar) findViewById(R.id.course_rating); //Finds the stars to update
 
-        mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
         final DatabaseReference ref = courseInfo.child(course_name);
-
-        //Allows the scrollview to be disabled when scrolling through the list View
-        mListView.setOnTouchListener(new ListView.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        // Allow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-
-                // Handle ListView touch events.
-                v.onTouchEvent(event);
-                return true;
-            }
-        });
-
 
         course_addReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CourseDisplay.this, AddCourseReview.class);
+                i.putExtra("user_input", user_input);
+                CourseDisplay.this.startActivity(i);
+            }
+        });
+
+        view_reviews = (Button) findViewById(R.id.view_course_reviews);
+        view_reviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CourseDisplay.this, CourseReviewsDisplay.class);
                 i.putExtra("user_input", user_input);
                 CourseDisplay.this.startActivity(i);
             }
@@ -118,8 +104,6 @@ public class CourseDisplay extends AppCompatActivity {
 
                         //Set statistics here
                         stars.setRating(rating/reviews.size());
-                        adapter.notifyDataSetChanged();
-
                     }
 
                     @Override
@@ -127,8 +111,6 @@ public class CourseDisplay extends AppCompatActivity {
 
                     }
                 });
-        adapter = new CustomAdapter(reviews, getApplicationContext());
-        mListView.setAdapter(adapter);
 
     }
 }

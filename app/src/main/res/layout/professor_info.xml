@@ -69,6 +69,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:id="@+id/instructor_rating"
+            android:isIndicator="true"
             style="@style/Widget.AppCompat.RatingBar" />
 
         <TextView
@@ -80,7 +81,7 @@
             android:layout_weight="0.73" />
 
         <TextView
-            android:text="How valuable lectures are:"
+            android:text="Lectures are valuable:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/value_lecture_heading"
@@ -94,7 +95,7 @@
             android:layout_weight="0.73" />
 
         <TextView
-            android:text="How understandable the professor is:"
+            android:text="Professor is understandable:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/understandable_text"
@@ -120,6 +121,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/extra_credit_bar"
+            android:layout_weight="0.68" />
+
+        <TextView
+            android:text="There are help sessions:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/help_sessions_prof"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/help_sessions_bar"
+            android:layout_weight="0.68" />
+
+
+        <TextView
+            android:text="Electronics are allowed:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/electronics_prof_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/electronics_prof_bar"
+            android:layout_weight="0.68" />
+
+        <TextView
+            android:text="Toughness:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toughness_prof_text"
+            android:layout_weight="0.68" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toughness_bar"
             android:layout_weight="0.68" />
 
         <TableLayout

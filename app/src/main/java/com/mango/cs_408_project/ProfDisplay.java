@@ -4,28 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.common.escape.Escaper;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -33,26 +24,40 @@ import java.util.Map;
  */
 
 public class ProfDisplay extends AppCompatActivity {
-    private float rating = 0;
-    private float counter = 0;
+
     String user_input;
-    Button prof_addReview;
+
     TextView value_lectures_text;
     TextView understandable_text;
     TextView num_reviews_text;
     TextView extra_credit_text;
+    TextView help_sessions_text;
+    TextView toughness_text;
+    TextView electronics_text;
+
     ProgressBar value_lectures_bar;
     ProgressBar understandable_bar;
     ProgressBar extra_credit_bar;
-    float value_lectures;
-    float understandable;
-    int extra_credit;
-    Button view_reviews;
+    ProgressBar help_sessions_bar;
+    ProgressBar toughness_bar;
+    ProgressBar electronics_bar;
 
+    float value_lectures = 0;
+    float understandable = 0;
+    int extra_credit = 0;
+    int help_sessions = 0;
+    int toughness = 0;
+    int electronics = 0;
+    private float rating = 0;
+    private float counter = 0;
+
+    Button view_reviews;
+    Button prof_addReview;
 
     private final ArrayList<ProfReview> prof_reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference profInfo = database.getReference("message/reviews/instructor");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +118,14 @@ public class ProfDisplay extends AppCompatActivity {
                     if(instructor.extraCredit == true) {
                         extra_credit++;
                     }
+                    if(instructor.helpSession){
+                        help_sessions++;
+                    }
+                    if(instructor.electronics){
+                        electronics++;
+                    }
+                    toughness += instructor.toughness;
+
                 }
                 //Set statistics here
                 stars.setRating(rating/prof_reviews.size());
@@ -123,14 +136,24 @@ public class ProfDisplay extends AppCompatActivity {
                 value_lectures_text = (TextView) findViewById(R.id.value_lecture_heading);
                 understandable_text = (TextView) findViewById(R.id.understandable_text);
                 extra_credit_text = (TextView) findViewById(R.id.extra_credit_text);
+                help_sessions_text = (TextView) findViewById(R.id.help_sessions_prof);
+                toughness_text = (TextView) findViewById(R.id.toughness_prof_text);
+                electronics_text = (TextView) findViewById(R.id.electronics_prof_text);
 
                 value_lectures_text.setText(value_lectures_text.getText()+" (" + Integer.toString((int)(value_lectures/counter)) + "%)");
                 understandable_text.setText(understandable_text.getText()+" (" + Integer.toString((int)(understandable/counter)) + "%)");
                 extra_credit_text.setText(extra_credit_text.getText()+" (" + Integer.toString((int)((extra_credit/counter)*100)) + "%)");
+                help_sessions_text.setText(help_sessions_text.getText()+" (" + Integer.toString((int)((help_sessions/counter)*100)) + "%)");
+                toughness_text.setText(toughness_text.getText()+" (" + Float.toString(toughness/counter) + "/5)");
+                electronics_text.setText(electronics_text.getText()+" (" + Integer.toString((int)((electronics/counter)*100)) + "%)");
+
 
                 value_lectures_bar = (ProgressBar) findViewById(R.id.value_lecture_bar);
                 understandable_bar = (ProgressBar) findViewById(R.id.understandable_bar);
                 extra_credit_bar = (ProgressBar) findViewById(R.id.extra_credit_bar);
+                help_sessions_bar = (ProgressBar) findViewById(R.id.help_sessions_bar);
+                toughness_bar = (ProgressBar) findViewById(R.id.toughness_bar);
+                electronics_bar = (ProgressBar) findViewById(R.id.electronics_prof_bar);
 
                 value_lectures_bar.setMax(100);
                 understandable_bar.setMax(100);
@@ -139,7 +162,9 @@ public class ProfDisplay extends AppCompatActivity {
                 value_lectures_bar.setProgress((int)(value_lectures/counter));
                 understandable_bar.setProgress((int)(understandable/counter));
                 extra_credit_bar.setProgress((int)((extra_credit/counter)*100));
-
+                help_sessions_bar.setProgress((int)((help_sessions/counter)*100));
+                electronics_bar.setProgress((int)((electronics/counter)*100));
+                toughness_bar.setProgress((int)((toughness/(counter*5))*100));
             }
 
             @Override

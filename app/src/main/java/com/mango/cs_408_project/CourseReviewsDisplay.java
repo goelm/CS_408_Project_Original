@@ -3,12 +3,10 @@ package com.mango.cs_408_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -24,58 +22,42 @@ import java.util.ArrayList;
  * Created by manasigoel on 3/2/17.
  */
 
-public class ProfReviewsDisplay extends  AppCompatActivity{
+public class CourseReviewsDisplay extends AppCompatActivity{
 
-    private ListView prof_mListView;
-    private float rating = 0;
-    private float counter = 0;
-    private static ProfCustomAdapter prof_adapter;
+    private ListView mListView;
+    private static CustomAdapter adapter;
+
     String user_input;
-    Button prof_addReview;
 
-    TextView name_text;
+    Button course_addReview;
 
-
-    private final ArrayList<ProfReview> prof_reviews = new ArrayList<>();
+    private final ArrayList<CourseReview> reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference profInfo = database.getReference("message/reviews/instructor");
+    DatabaseReference courseInfo = database.getReference("message/reviews/course");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prof_review_list);
+        setContentView(R.layout.course_review_list);
+
         user_input = getIntent().getStringExtra("user_input");
-        Log.d("manasi reviews display", user_input);
 
-        name_text = (TextView) findViewById(R.id.reviews_name_text);
-        name_text.setText("Reviews for " + user_input);
-
-        display_prof_review(user_input.toUpperCase());
-
-        prof_addReview = (Button) findViewById(R.id.professor_info_addReview_2);
-
-        prof_addReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfReviewsDisplay.this, AddInstructorReview.class);
-                i.putExtra("name", user_input);
-                ProfReviewsDisplay.this.startActivity(i);
-            }
-        });
-
+        display_course_review(user_input.toUpperCase());
     }
 
 
-    public void display_prof_review(String prof_name) {
+    public void display_course_review(String course_name) {
 
-        final RatingBar stars = (RatingBar) findViewById(R.id.instructor_rating);
+        course_addReview = (Button) findViewById(R.id.add_review_course_reviews);
 
-        prof_mListView = (ListView) findViewById(R.id.prof_listView_reviews); //Checks to see if the strong from database goes in
-        final DatabaseReference ref = profInfo.child(prof_name);
+        TextView courseName = (TextView) findViewById(R.id.course_name_reviews); //Set the Name of the Course here
+        courseName.setText("Reviews for " + course_name);
 
+        mListView = (ListView) findViewById(R.id.listView); //Checks to see if the strong from database goes in
+        final DatabaseReference ref = courseInfo.child(course_name);
 
         //Allows the scrollview to be disabled when scrolling through the list View
-        prof_mListView.setOnTouchListener(new ListView.OnTouchListener() {
+        mListView.setOnTouchListener(new ListView.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
@@ -98,18 +80,26 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
         });
 
 
+        course_addReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CourseReviewsDisplay.this, AddCourseReview.class);
+                i.putExtra("user_input", user_input);
+                CourseReviewsDisplay.this.startActivity(i);
+            }
+        });
+
+
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children) {
-                    ProfReview instructor = child.getValue(ProfReview.class); // <-- do . at end here to specify which child
-                    prof_reviews.add(instructor);
-                    counter++;
+                    CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
+                    reviews.add(course);
                 }
-                //Set statistics here
-                prof_adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -118,8 +108,8 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
 
             }
         });
-        prof_adapter = new ProfCustomAdapter(prof_reviews, getApplicationContext());
-        prof_mListView.setAdapter(prof_adapter);
+        adapter = new CustomAdapter(reviews, getApplicationContext());
+        mListView.setAdapter(adapter);
 
     }
 
