@@ -71,7 +71,7 @@
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="223dp"
+                android:layout_height="327dp"
                 android:id="@+id/prof_listView_reviews" />
 
         </LinearLayout>

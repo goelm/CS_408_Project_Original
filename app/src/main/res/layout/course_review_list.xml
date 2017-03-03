@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="Reviews for ..."
+            android:text="Course Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/course_name_reviews"
@@ -29,10 +29,10 @@
             android:textAlignment="center" />
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_width="308dp"
+            android:layout_height="400dp"
             android:id="@+id/listView"
-            android:layout_weight="1.01" />
+            android:layout_weight="1.02" />
 
         <Space
             android:layout_width="match_parent"

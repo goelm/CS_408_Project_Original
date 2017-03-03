@@ -164,7 +164,7 @@
 
         <Button
             android:text="Add review"
-            android:layout_width="301dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/course_info_addReview" />
     </LinearLayout>
