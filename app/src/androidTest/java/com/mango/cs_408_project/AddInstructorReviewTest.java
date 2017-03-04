@@ -4,8 +4,16 @@ import android.support.test.espresso.core.deps.guava.cache.Weigher;
 import android.support.test.internal.runner.TestSize;
 import android.support.test.rule.ActivityTestRule;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -17,6 +25,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by KennyZheng on 2/11/17.
@@ -24,6 +33,8 @@ import static org.hamcrest.core.IsNot.not;
 
 public class AddInstructorReviewTest {
 
+    int counter;
+    ArrayList<ProfReview> reviews = new ArrayList<>();
 
     @Rule
     public ActivityTestRule<AddInstructorReview> addInstructorReviewClass =
@@ -270,6 +281,57 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
         onView(withId(R.id.submitBut)).perform(scrollTo(), click());
         onView(withId(R.id.add_info_submitText)).check(matches(withText("Please fill in every field")));
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void submitDatabaseProf() throws Exception{
+
+        onView(withId(R.id.first_name)).perform(typeText("FirstTest"));
+        onView(withId(R.id.last_name)).perform(typeText("LastTest"));
+        onView(withId(R.id.instructor)).perform(scrollTo(), click());
+        onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
+        onView(withId(R.id.profComment)).perform(scrollTo(), typeText("ProfCommentTest"));
+        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
+
+        //Read database to see if course info is in firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference courseInfo = database.getReference("message/reviews/instructor");
+        final DatabaseReference ref = courseInfo.child("FIRSTTEST LASTTEST");
+        counter = 0;
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child: children) {
+                    ProfReview prof = child.getValue(ProfReview.class); // <-- do . at end here to specify which child
+                    reviews.add(prof);
+                    counter++;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        Thread.sleep(1000);
+
+        ProfReview review_to_check = reviews.get(0);
+        assertEquals(review_to_check.profName, "FIRSTTEST LASTTEST");
+        assertEquals(review_to_check.prof, true);
+        assertEquals(review_to_check.helpSession, true);
+        assertEquals(review_to_check.extraCredit, true);
+        assertEquals(review_to_check.toughness, 1);
+        assertEquals(review_to_check.electronics, true);
+        assertEquals(review_to_check.profComment, "ProfCommentTest");
+
+
         Thread.sleep(1000);
     }
 

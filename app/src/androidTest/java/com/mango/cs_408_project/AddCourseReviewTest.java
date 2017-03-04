@@ -365,18 +365,19 @@ public class AddCourseReviewTest {
     }
 
     @Test
-    public void submitDatabase() throws Exception{
+    public void submitDatabaseCourse() throws Exception{
         onView(withId(R.id.add_course_courseName)).perform(typeText("CourseNameTest"));
         onView(withId(R.id.add_course_instructor)).perform(typeText("InstructorTest"));
-        //onView(withId(R.id.add_course_RatingBarValue).perform()) //TODO: set the rating and seek bars
+        onView(withId(R.id.add_course_description)).perform(typeText("CourseDescriptionTest"));
         onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
+        onView(withId(R.id.courseComment)).perform(scrollTo(), typeText("CourseCommentTest"));
         onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
 
-        //Read databae to see if course info is in firebase
+        //Read database to see if course info is in firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference courseInfo = database.getReference("message/reviews/course");
         final DatabaseReference ref = courseInfo.child("CourseNameTest");
@@ -400,17 +401,16 @@ public class AddCourseReviewTest {
             }
         });
         Thread.sleep(1000);
-        CourseReview review_to_check = reviews.get(counter-1);
+        CourseReview review_to_check = reviews.get(0);
         assertEquals(review_to_check.courseName, "CourseNameTest");
         assertEquals(review_to_check.instructorName, "InstructorTest");
-        //assertEquals(review_to_check.courseDescr, "");
-        //assertEquals(review_to_check.rating, 4); //TODO: assert the rating and seek bars
-        //assertEquals(review_to_check.helpSession, "CourseNameTest"); //TODO: help sessions
+        assertEquals(review_to_check.courseDescr, "CourseDescriptionTest");
+        assertEquals(review_to_check.helpSession, true);
         assertEquals(review_to_check.extraCredit, true);
         assertEquals(review_to_check.toughness, 1);
-        //assertEquals(review_to_check.electronics, "CourseNameTest"); //TODO: electronics
+        assertEquals(review_to_check.electronics, true);
         assertEquals(review_to_check.textBook, true);
-        //assertEquals(review_to_check.courseComment, "CourseNameTest"); //TODO: course comment
+        assertEquals(review_to_check.courseComment, "CourseCommentTest");
 
 
         Thread.sleep(1000);
