@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class AddCourseReview extends AppCompatActivity{
 
     // This is for the Server class
     final Server s = new Server();
+    String capital_name;
 
     /* Course info variables */
     float rating; //Ranges from 0 to 5
@@ -324,7 +326,8 @@ public class AddCourseReview extends AppCompatActivity{
                 else {
                     //All are added to an object for better organization
                     CourseReview review = new CourseReview();
-                    review.setCourseName(String.valueOf(course.getText()));
+                    capital_name = course.getText().toString().toUpperCase();
+                    review.setCourseName(capital_name);
                     review.setInstructorName(String.valueOf(instructor.getText()));
                     //review.setSemesterTaken(String.valueOf(semester.getText()));
                     review.setCourseDescr(String.valueOf(description.getText()));
@@ -337,7 +340,7 @@ public class AddCourseReview extends AppCompatActivity{
                     review.setElectronics(electronics);
                     review.setTextBook(textbook);
                     review.setCourseComment(String.valueOf(courseComment.getText()));
-                    s.write_course_review(String.valueOf(course.getText()), review);
+                    s.write_course_review(capital_name, review);
 
                 /* Go back to select a review */
                     Intent i = new Intent(AddCourseReview.this, SelectReview.class);

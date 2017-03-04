@@ -117,7 +117,7 @@
             android:layout_weight="0.68" />
 
         <TextView
-            android:text="Texbook is required:"
+            android:text="Textbook is required:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textbook_course_text"
