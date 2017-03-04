@@ -139,7 +139,6 @@ public class CourseDisplay extends AppCompatActivity {
                             }
                             toughness += course.toughness;
                         }
-
                         //Set statistics here
                         stars.setRating(rating/reviews.size());
 

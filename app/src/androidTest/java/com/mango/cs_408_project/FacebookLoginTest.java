@@ -25,13 +25,9 @@ public class FacebookLoginTest {
     public ActivityTestRule<FacebookLogin> FacebookLogin= new ActivityTestRule<FacebookLogin>(FacebookLogin.class);
 
     @Test
-    public void submitCourseButtonStartsSelectActivity() throws Exception{
+    public void checkLoginButton() throws Exception{
         Thread.sleep(1000);
         onView(withId(R.id.login_button)).perform(click());
-        intended(hasComponent(new ComponentName(getTargetContext(), SelectReview.class)));
         Thread.sleep(1000);
-
-
     }
-
 }
