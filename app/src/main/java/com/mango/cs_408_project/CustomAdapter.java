@@ -1,14 +1,20 @@
 package com.mango.cs_408_project;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -28,6 +34,12 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         RatingBar stars;
         TextView courseComment;
         ImageView info;
+
+        ImageView downVoteButton;
+        ImageView upVoteButton;
+        TextView upVote;
+        TextView downVote;
+
     }
 
     public CustomAdapter(ArrayList<CourseReview> data, Context context) {
@@ -49,6 +61,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
                 Snackbar.make(v, "Course Description: " +dataModel.courseDescr, Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
+
         }
     }
 
@@ -76,6 +89,11 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             viewHolder.courseComment = (TextView) convertView.findViewById(R.id.courseComment2);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
 
+            viewHolder.upVoteButton = (ImageView) convertView.findViewById(R.id.upVoteButton);
+            viewHolder.downVoteButton= (ImageView) convertView.findViewById(R.id.downVoteButton);
+            viewHolder.upVote = (TextView) convertView.findViewById(R.id.upVoteDisplay);
+            viewHolder.downVote = (TextView) convertView.findViewById(R.id.downVoteDisplay);
+
             convertView.setTag(viewHolder);
 
         } else {
@@ -88,10 +106,18 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         viewHolder.semesterTaken.setText(dataModel.semester);
         viewHolder.stars.setRating(dataModel.rating);
         viewHolder.courseComment.setText(dataModel.courseComment);
-        //viewHolder.semesterTaken.setText(dataModel.semester);
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
+
+        viewHolder.upVoteButton.setOnClickListener(this);
+        viewHolder.downVoteButton.setOnClickListener(this);
+        viewHolder.upVoteButton.setTag(position);
+        viewHolder.downVoteButton.setTag(position);
+        viewHolder.upVote.setText(dataModel.upVote);
+        viewHolder.downVote.setText(dataModel.downVote);
+
         // Return the completed view to render on screen
         return convertView;
     }
 }
+

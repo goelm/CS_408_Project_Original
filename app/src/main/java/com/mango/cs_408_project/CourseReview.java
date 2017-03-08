@@ -18,6 +18,8 @@ public class CourseReview {
     public boolean electronics;
     public boolean textBook;
     public String courseComment;
+    public int upVote;
+    public int downVote;
 
 
     public void setCourseName(String courseName) {
@@ -70,5 +72,13 @@ public class CourseReview {
 
     public void setCourseComment(String courseComment) {
         this.courseComment = courseComment;
+    }
+
+    public void setUpVote(int upVote) {
+        this.upVote = upVote;
+    }
+
+    public void setDownVote(int downVote) {
+        this.downVote = downVote;
     }
 }
