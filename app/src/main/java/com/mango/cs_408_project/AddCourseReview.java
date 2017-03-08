@@ -340,6 +340,7 @@ public class AddCourseReview extends AppCompatActivity{
                     review.setElectronics(electronics);
                     review.setTextBook(textbook);
                     review.setCourseComment(String.valueOf(courseComment.getText()));
+                    review.setSemesterTaken(String.valueOf(semester.getText()));
                     s.write_course_review(capital_name, review);
 
                 /* Go back to select a review */

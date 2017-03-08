@@ -48,7 +48,7 @@
         android:id="@+id/semester_taken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Semester Taken"
+        android:text="Semester Taken: "
         android:textColor="@android:color/black"
         android:layout_below="@+id/version_heading"
         android:layout_alignParentStart="true" />
@@ -60,16 +60,6 @@
         android:layout_alignBottom="@+id/linearLayout"
         android:layout_alignParentStart="true"
         android:id="@+id/textView" />
-
-    <RatingBar
-        android:id="@+id/reviewStars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/ratingBarStyleSmall"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@+id/semester_taken"
-        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="Comments"
@@ -89,5 +79,24 @@
         android:layout_below="@+id/textView7"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
+
+    <RatingBar
+        android:id="@+id/reviewStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/semester_taken"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/semester_takenInput"
+        android:layout_alignBaseline="@+id/semester_taken"
+        android:layout_alignBottom="@+id/semester_taken"
+        android:layout_toEndOf="@+id/semester_taken" />
 
 </RelativeLayout>

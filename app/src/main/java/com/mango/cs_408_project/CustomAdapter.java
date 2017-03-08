@@ -71,7 +71,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.review_item, null);
             viewHolder.instructorName = (TextView) convertView.findViewById(R.id.instructor_name);
-            viewHolder.semesterTaken = (TextView) convertView.findViewById(R.id.semester_taken);
+            viewHolder.semesterTaken = (TextView) convertView.findViewById(R.id.semester_takenInput);
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.reviewStars);
             viewHolder.courseComment = (TextView) convertView.findViewById(R.id.courseComment2);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
@@ -85,6 +85,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         lastPosition = position;
 
         viewHolder.instructorName.setText(dataModel.instructorName);
+        viewHolder.semesterTaken.setText(dataModel.semester);
         viewHolder.stars.setRating(dataModel.rating);
         viewHolder.courseComment.setText(dataModel.courseComment);
         //viewHolder.semesterTaken.setText(dataModel.semester);
