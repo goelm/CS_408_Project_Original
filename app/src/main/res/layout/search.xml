@@ -29,6 +29,8 @@
             android:text="Search for instructor / course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
             android:id="@+id/searchSubmit" />
 
         <TextView

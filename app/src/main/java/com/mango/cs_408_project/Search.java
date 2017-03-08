@@ -3,6 +3,7 @@ package com.mango.cs_408_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,11 +44,8 @@ public class Search extends AppCompatActivity {
     Button new_instructor;
     Button new_course;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
@@ -61,51 +59,55 @@ public class Search extends AppCompatActivity {
 
 
         /* Auto Complete Code in the search function */
-        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         //Child the root before all the push() keys are found and add a ValueEventListener()
         courseInfo.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
-                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
                     //Get the suggestion by childing the key of the string you want to get.
                     String className = suggestionSnapshot.getKey();
                     //Add the retrieved string to the list
                     autoComplete.add(className);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
+        //For the Professors
         profInfo.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
-                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
                     //Get the suggestion by childing the key of the string you want to get.
                     String instructorName = suggestionSnapshot.getKey();
                     //Add the retrieved string to the list
                     autoComplete.add(instructorName);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
+        /* End of auto complete Code */
 
-        AutoCompleteTextView ACTV= (AutoCompleteTextView)findViewById(R.id.searchQueryField);
+        AutoCompleteTextView ACTV = (AutoCompleteTextView) findViewById(R.id.searchQueryField);
         ACTV.setAdapter(autoComplete);
 
-
         submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-
-                TextView search_query = (TextView) findViewById(R.id.searchQueryField);
+                foundprof = false;
+                foundcourse = false;
+                final TextView search_query = (TextView) findViewById(R.id.searchQueryField);
                 user_input = search_query.getText().toString();
 
                 if (user_input.length() == 0) {
@@ -120,94 +122,82 @@ public class Search extends AppCompatActivity {
                     if (b) {
                         message.setVisibility(View.VISIBLE);
                         message.setText("Please try again without special characters");
-                    }
-                    else {
-
+                    } else {
                         message.setVisibility(View.VISIBLE);
                         message.setText("Good search query!");
 
-                        //Checking all the courses to see if anything matches
-                        final DatabaseReference refcourse = courseInfo.child(user_input.toUpperCase());
-
-                        refcourse.addListenerForSingleValueEvent(new ValueEventListener() {
+                        profInfo.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if(dataSnapshot.exists()){
-                                    foundcourse = true;
+                                if (dataSnapshot.hasChild(user_input.toUpperCase())) {
+                                    foundprof = true;
                                     message.setText("exists");
-                                }
-                                else{
-                                    foundcourse = false;
+                                    //new_instructor.setVisibility(View.INVISIBLE);
+                                   // new_course.setVisibility(View.INVISIBLE);
+                                    foundSomething(foundcourse, foundprof);
+                                } else {
+                                    foundprof = false;
+                                    message.setText("does not exist");
+                                    //Neither of them matched so we can display buttons to add new reviews
+                                    new_instructor.setVisibility(View.VISIBLE);
+                                    new_course.setVisibility(View.VISIBLE);
+
+                                    new_instructor.setOnClickListener(new View.OnClickListener() {
+                                        public void onClick(View v) {
+                                            Intent i = new Intent(Search.this, AddInstructorReview.class);
+                                            Search.this.startActivity(i);
+                                        }
+                                    });
+                                    new_course.setOnClickListener(new View.OnClickListener() {
+                                        public void onClick(View v) {
+                                            Intent i = new Intent(Search.this, AddCourseReview.class);
+                                            Search.this.startActivity(i);
+                                        }
+                                    });
+
                                 }
                             }
-
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
                             }
                         });
+                        courseInfo.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        // If none of the courses match, we can see if any of the instructors match
-                        if(!foundcourse) {
-                            final DatabaseReference refprof = profInfo.child(user_input.toUpperCase());
-
-                            refprof.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists()) {
-                                        foundprof = true;
-                                        message.setText("exists");
-                                    } else {
-                                        foundprof = false;
-                                        message.setText("does not exist");
-
-                                        //Neither of them matched so we can display buttons to add new reviews
-                                        new_instructor.setVisibility(View.VISIBLE);
-                                        new_course.setVisibility(View.VISIBLE);
-                                        new_instructor.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                Intent i = new Intent(Search.this, AddInstructorReview.class);
-                                                Search.this.startActivity(i);
-                                            }
-                                        });
-                                        new_course.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                Intent i = new Intent(Search.this, AddCourseReview.class);
-                                                Search.this.startActivity(i);
-                                            }
-                                        });
-                                    }
+                                if (dataSnapshot.hasChild(user_input.toUpperCase())) {
+                                    foundcourse = true;
+                                    message.setText("exists");
+                                    foundSomething(foundcourse, foundprof);
+                                    new_instructor.setVisibility(View.INVISIBLE);
+                                    new_course.setVisibility(View.INVISIBLE);
+                                } else {
+                                    foundcourse = false;
+                                    new_instructor.setVisibility(View.VISIBLE);
+                                    new_course.setVisibility(View.VISIBLE);
                                 }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-                        }
-
-                        if(foundcourse || foundprof){
-                            foundSomething(foundcourse, foundprof);
-                        }
-
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
                     }
-
                 }
             }
-
         });
     }
 
-    public void foundSomething(boolean course, boolean prof){
+    public void foundSomething(boolean course, boolean prof) {
 
         // If a course matched then it will open course dispaly and send the user input to that intent
-        if(course) {
+        if (course) {
             Intent i = new Intent(Search.this, CourseDisplay.class);
             i.putExtra("user_input", user_input);
             Search.this.startActivity(i);
         }
 
         // If a professor matched then it will open prof dispaly and send the user input to that intent
-        if(prof){
+        if (prof) {
             Intent i = new Intent(Search.this, ProfDisplay.class);
             i.putExtra("user_input", user_input);
             Search.this.startActivity(i);

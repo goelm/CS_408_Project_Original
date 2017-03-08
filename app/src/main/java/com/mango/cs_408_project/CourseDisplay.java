@@ -113,7 +113,7 @@ public class CourseDisplay extends AppCompatActivity {
         });
 
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
