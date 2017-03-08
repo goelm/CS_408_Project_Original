@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -56,6 +58,49 @@ public class Search extends AppCompatActivity {
         new_course = (Button) findViewById(R.id.new_course_button);
         new_instructor.setVisibility(View.GONE);
         new_course.setVisibility(View.GONE);
+
+
+        /* Auto Complete Code in the search function */
+        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        //Child the root before all the push() keys are found and add a ValueEventListener()
+        courseInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
+                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()){
+                    //Get the suggestion by childing the key of the string you want to get.
+                    String className = suggestionSnapshot.getKey();
+                    //Add the retrieved string to the list
+                    autoComplete.add(className);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        profInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
+                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()){
+                    //Get the suggestion by childing the key of the string you want to get.
+                    String instructorName = suggestionSnapshot.getKey();
+                    //Add the retrieved string to the list
+                    autoComplete.add(instructorName);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        AutoCompleteTextView ACTV= (AutoCompleteTextView)findViewById(R.id.searchQueryField);
+        ACTV.setAdapter(autoComplete);
+
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
