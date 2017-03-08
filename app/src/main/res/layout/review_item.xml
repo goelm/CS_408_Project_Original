@@ -100,38 +100,38 @@
         android:layout_below="@+id/semester_taken"
         android:layout_alignStart="@+id/textView7" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/downvote"
-        android:id="@+id/downVoteButton"
-        android:layout_below="@+id/semester_takenInput"
-        android:layout_toStartOf="@+id/info_item"
-        android:layout_above="@+id/courseComment2" />
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:srcCompat="@drawable/downvote"-->
+        <!--android:id="@+id/downVoteButton"-->
+        <!--android:layout_below="@+id/semester_takenInput"-->
+        <!--android:layout_toStartOf="@+id/info_item"-->
+        <!--android:layout_above="@+id/courseComment2" />-->
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/upvote"
-        android:id="@+id/upVoteButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/downVoteButton" />
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:srcCompat="@drawable/upvote"-->
+        <!--android:id="@+id/upVoteButton"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignStart="@+id/downVoteButton" />-->
 
-    <TextView
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/upVoteDisplay"
-        android:layout_above="@+id/downVoteButton"
-        android:layout_toEndOf="@+id/upVoteButton" />
+    <!--<TextView-->
+        <!--android:text="0"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/upVoteDisplay"-->
+        <!--android:layout_above="@+id/downVoteButton"-->
+        <!--android:layout_toEndOf="@+id/upVoteButton" />-->
 
-    <TextView
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/downVoteDisplay"
-        android:layout_above="@+id/courseComment2"
-        android:layout_alignStart="@+id/upVoteDisplay" />
+    <!--<TextView-->
+        <!--android:text="0"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/downVoteDisplay"-->
+        <!--android:layout_above="@+id/courseComment2"-->
+        <!--android:layout_alignStart="@+id/upVoteDisplay" />-->
 
 </RelativeLayout>
 

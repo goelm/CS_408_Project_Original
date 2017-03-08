@@ -35,10 +35,10 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         TextView courseComment;
         ImageView info;
 
-        ImageView downVoteButton;
-        ImageView upVoteButton;
-        TextView upVote;
-        TextView downVote;
+//        ImageView downVoteButton;
+//        ImageView upVoteButton;
+//        TextView upVote;
+//        TextView downVote;
 
     }
 
@@ -89,10 +89,10 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             viewHolder.courseComment = (TextView) convertView.findViewById(R.id.courseComment2);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
 
-            viewHolder.upVoteButton = (ImageView) convertView.findViewById(R.id.upVoteButton);
-            viewHolder.downVoteButton= (ImageView) convertView.findViewById(R.id.downVoteButton);
-            viewHolder.upVote = (TextView) convertView.findViewById(R.id.upVoteDisplay);
-            viewHolder.downVote = (TextView) convertView.findViewById(R.id.downVoteDisplay);
+//            viewHolder.upVoteButton = (ImageView) convertView.findViewById(R.id.upVoteButton);
+//            viewHolder.downVoteButton= (ImageView) convertView.findViewById(R.id.downVoteButton);
+//            viewHolder.upVote = (TextView) convertView.findViewById(R.id.upVoteDisplay);
+//            viewHolder.downVote = (TextView) convertView.findViewById(R.id.downVoteDisplay);
 
             convertView.setTag(viewHolder);
 
@@ -109,12 +109,12 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
 
-        viewHolder.upVoteButton.setOnClickListener(this);
-        viewHolder.downVoteButton.setOnClickListener(this);
-        viewHolder.upVoteButton.setTag(position);
-        viewHolder.downVoteButton.setTag(position);
-        viewHolder.upVote.setText(dataModel.upVote);
-        viewHolder.downVote.setText(dataModel.downVote);
+//        viewHolder.upVoteButton.setOnClickListener(this);
+//        viewHolder.downVoteButton.setOnClickListener(this);
+//        viewHolder.upVoteButton.setTag(position);
+//        viewHolder.downVoteButton.setTag(position);
+//        viewHolder.upVote.setText(dataModel.upVote);
+//        viewHolder.downVote.setText(dataModel.downVote);
 
         // Return the completed view to render on screen
         return convertView;
