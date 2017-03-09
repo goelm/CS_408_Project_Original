@@ -53,28 +53,28 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
         name_text = (TextView) findViewById(R.id.reviews_name_text);
         name_text.setText("Reviews for\n" + user_input);
 
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    display_prof_review(user_input.toUpperCase());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //display_prof_review(user_input.toUpperCase());
+//        Thread t = new Thread(new Runnable() {
+//            public void run() {
+//                try {
+//                    display_prof_review(user_input.toUpperCase());
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        t.start();
+//        try {
+//            t.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        display_prof_review(user_input.toUpperCase());
 
 
         prof_addReview = (Button) findViewById(R.id.professor_info_addReview_2);
 
         // SORTING
-        Spinner dropdown = (Spinner)findViewById(R.id.sort_menu);
+        Spinner dropdown = (Spinner)findViewById(R.id.sort_menu_prof);
         String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
@@ -147,7 +147,7 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
     }
 
 
-    public void display_prof_review(String prof_name) throws InterruptedException {
+    public void display_prof_review(String prof_name) {
 
         prof_mListView = (ListView) findViewById(R.id.prof_listView_reviews); //Checks to see if the strong from database goes in
         final DatabaseReference ref = profInfo.child(prof_name);

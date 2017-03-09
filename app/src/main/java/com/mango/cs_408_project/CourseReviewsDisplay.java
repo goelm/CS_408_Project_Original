@@ -3,11 +3,15 @@ package com.mango.cs_408_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +25,8 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by manasigoel on 3/2/17.
@@ -38,6 +44,8 @@ public class CourseReviewsDisplay extends AppCompatActivity{
     private final ArrayList<CourseReview> reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference courseInfo = database.getReference("message/reviews/course");
+    private ArrayList<CourseReview> new_display = new ArrayList<CourseReview>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,66 @@ public class CourseReviewsDisplay extends AppCompatActivity{
         user_input = getIntent().getStringExtra("user_input");
 
         display_course_review(user_input.toUpperCase());
+
+        Spinner dropdown = (Spinner)findViewById(R.id.sort_menu_course);
+        String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness"};
+        ArrayAdapter<String> adapter_sort = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter_sort);
+        adapter_sort.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter_sort);
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                if(reviews.size() !=0) {
+                    //NOTE: reviews should ALWAYS be ordered oldest to newest
+                    // Oldest to newest
+                    if(position == 0) {
+                        new_display = (ArrayList<CourseReview>) reviews.clone();
+                    }
+                    if(position == 1) {
+                        //Newest to oldest
+                        new_display = (ArrayList<CourseReview>) reviews.clone();
+                        Collections.reverse(new_display);
+                    }
+                    if(position==2) {
+                        // Rating - high to low
+                        new_display = (ArrayList<CourseReview>) reviews.clone();
+                        Collections.sort(new_display, new Comparator<CourseReview>() {
+                            @Override public int compare(CourseReview p1, CourseReview p2) {
+                                return (int)(p2.rating*2) - (int)(p1.rating*2); // Ascending
+                            }
+
+                        });
+                    }
+                    if(position ==3) {
+                        // Rating - low to high
+                        new_display = (ArrayList<CourseReview>) reviews.clone();
+                        Collections.sort(new_display, new Comparator<CourseReview>() {
+                            @Override public int compare(CourseReview p1, CourseReview p2) {
+                                return (int)(p1.rating*2) - (int)(p2.rating*2); // Ascending
+                            }
+
+                        });
+                    }
+                    if(position ==4) {
+                        // Whatever you want to happen when the thrid item gets selected
+                        // Helpfulness
+                    }
+                    //DISPLAY REVIEWS AGAIN (list is reviews)
+                    mListView = (ListView) findViewById(R.id.listView);
+                    adapter.notifyDataSetChanged();
+                    adapter = new CustomAdapter(new_display, getApplicationContext());
+                    mListView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Auto-generated method stub
+            }
+        });
 
     }
 

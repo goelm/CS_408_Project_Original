@@ -27,6 +27,20 @@
             android:layout_weight="0.10"
             android:textSize="20sp"
             android:textAlignment="center" />
+        <TextView
+            android:text="Sort by"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sort_by_text"
+            android:layout_weight="0.73"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/sort_menu_course"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
 
         <ListView
             android:layout_width="308dp"
