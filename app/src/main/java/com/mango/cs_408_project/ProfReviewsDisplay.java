@@ -75,7 +75,7 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
 
         // SORTING
         Spinner dropdown = (Spinner)findViewById(R.id.sort_menu_prof);
-        String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness"};
+        String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness (high to low)", "Helpfulness (low to high)"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,7 +96,7 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
                         new_display = (ArrayList<ProfReview>) prof_reviews.clone();
                         Collections.reverse(new_display);
                     }
-                    if(position==2) {
+                    if(position == 2) {
                         // Rating - high to low
                         new_display = (ArrayList<ProfReview>) prof_reviews.clone();
                         Collections.sort(new_display, new Comparator<ProfReview>() {
@@ -106,7 +106,7 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
 
                         });
                     }
-                    if(position ==3) {
+                    if(position == 3) {
                         // Rating - low to high
                         new_display = (ArrayList<ProfReview>) prof_reviews.clone();
                         Collections.sort(new_display, new Comparator<ProfReview>() {
@@ -116,9 +116,11 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
 
                         });
                     }
-                    if(position ==4) {
-                            // Whatever you want to happen when the thrid item gets selected
-                            // Helpfulness
+                    if(position == 4) {
+                        // Helpfulness - high to low
+                    }
+                    if(position == 5) {
+                        // Helpfulness - low to high
                     }
                     //DISPLAY REVIEWS AGAIN (list is prof_reviews)
                     prof_mListView = (ListView) findViewById(R.id.prof_listView_reviews);

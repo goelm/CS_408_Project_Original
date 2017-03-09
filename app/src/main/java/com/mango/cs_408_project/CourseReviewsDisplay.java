@@ -57,7 +57,7 @@ public class CourseReviewsDisplay extends AppCompatActivity{
         display_course_review(user_input.toUpperCase());
 
         Spinner dropdown = (Spinner)findViewById(R.id.sort_menu_course);
-        String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness"};
+        String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness (high to low)", "Helpfulness (low to high)"};
         ArrayAdapter<String> adapter_sort = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter_sort);
         adapter_sort.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,29 +78,45 @@ public class CourseReviewsDisplay extends AppCompatActivity{
                         new_display = (ArrayList<CourseReview>) reviews.clone();
                         Collections.reverse(new_display);
                     }
-                    if(position==2) {
+                    if(position == 2) {
                         // Rating - high to low
                         new_display = (ArrayList<CourseReview>) reviews.clone();
                         Collections.sort(new_display, new Comparator<CourseReview>() {
-                            @Override public int compare(CourseReview p1, CourseReview p2) {
-                                return (int)(p2.rating*2) - (int)(p1.rating*2); // Ascending
+                            @Override public int compare(CourseReview c1, CourseReview c2) {
+                                return (int)(c2.rating*2) - (int)(c1.rating*2); // Ascending
                             }
 
                         });
                     }
-                    if(position ==3) {
+                    if(position == 3) {
                         // Rating - low to high
                         new_display = (ArrayList<CourseReview>) reviews.clone();
                         Collections.sort(new_display, new Comparator<CourseReview>() {
-                            @Override public int compare(CourseReview p1, CourseReview p2) {
-                                return (int)(p1.rating*2) - (int)(p2.rating*2); // Ascending
+                            @Override public int compare(CourseReview c1, CourseReview c2) {
+                                return (int)(c1.rating*2) - (int)(c2.rating*2); // Ascending
                             }
 
                         });
                     }
-                    if(position ==4) {
-                        // Whatever you want to happen when the thrid item gets selected
-                        // Helpfulness
+                    if(position == 4) {
+                        // Helpfulness - high to low
+                        new_display = (ArrayList<CourseReview>) reviews.clone();
+                        Collections.sort(new_display, new Comparator<CourseReview>() {
+                            @Override public int compare(CourseReview c1, CourseReview c2) {
+                                return (int)(c2.likesCount) - (int)(c1.likesCount); // Ascending
+                            }
+
+                        });
+                    }
+                    if(position == 5) {
+                        // Helpfulness - low to high
+                        new_display = (ArrayList<CourseReview>) reviews.clone();
+                        Collections.sort(new_display, new Comparator<CourseReview>() {
+                            @Override public int compare(CourseReview c1, CourseReview c2) {
+                                return (int)(c1.likesCount) - (int)(c2.likesCount); // Ascending
+                            }
+
+                        });
                     }
                     //DISPLAY REVIEWS AGAIN (list is reviews)
                     mListView = (ListView) findViewById(R.id.listView);
