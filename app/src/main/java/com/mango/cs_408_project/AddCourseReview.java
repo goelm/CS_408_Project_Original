@@ -323,12 +323,12 @@ public class AddCourseReview extends AppCompatActivity{
                     message.setText("Please fill in every field");
                 }
 
-                else if (!courseName.contains(" ")) {
-                    message.setText("Please follow the format \"CS 408\"");
-                }
-
                 else if (invalidCourseName || invalidSemester) {
                     message.setText("Invalid inputs");
+                }
+
+                else if (!courseName.contains(" ")) {
+                    message.setText("Please follow the format \"CS 408\"");
                 }
 
                 else if (invalidInstructorName) {
@@ -368,8 +368,14 @@ public class AddCourseReview extends AppCompatActivity{
                 /* Go back to select a review */
                                     Intent i = new Intent(AddCourseReview.this, SelectReview.class);
                                     AddCourseReview.this.startActivity(i);
+                                } else {
+                                    message.setText("Please follow the format \"CS 408\" for course name");
                                 }
+                            } else {
+                                message.setText("Please follow the format \"CS 408\" for course name");
                             }
+                        } else {
+                            message.setText("Please follow the format \"CS 408\" for course name");
                         }
                     }else {
                         message.setText("Please follow the format \"CS 408\" for course name");

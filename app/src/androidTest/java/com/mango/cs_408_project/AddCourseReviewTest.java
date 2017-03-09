@@ -274,7 +274,7 @@ public class AddCourseReviewTest {
 
     @Test
     public void invalidInstructorName() throws Exception {
-        onView(withId(R.id.add_course_courseName)).perform(typeText("CourseNameTest"));
+        onView(withId(R.id.add_course_courseName)).perform(typeText("CS 180"));
         onView(withId(R.id.add_course_instructor)).perform(typeText("!"));
         onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
@@ -282,7 +282,7 @@ public class AddCourseReviewTest {
         onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
         onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
-        onView(withId(R.id.add_course_submitText)).check(matches(withText("Invalid inputs")));
+        onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"Buster Dunsmore\" for instructor name")));
         Thread.sleep(1000);
     }
 
@@ -365,24 +365,87 @@ public class AddCourseReviewTest {
     }
 
     @Test
-    public void invalidCharacterCourseName() throws Exception {
+    public void courseNameNoSpace() throws Exception {
         onView(withId(R.id.add_course_courseName)).perform(typeText("invalidCourseName"));
         onView(withId(R.id.add_course_instructor)).perform(typeText("Buster Dunsmore"));
-        onView(withId(R.id.add_course_description)).perform(typeText("CourseDescriptionTest"));
         onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
-        onView(withId(R.id.courseComment)).perform(scrollTo(), typeText("CourseCommentTest"));
+        onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"CS 408\"")));
+    }
+
+    @Test
+    public void courseNameCourseTooLong() throws Exception {
+        onView(withId(R.id.add_course_courseName)).perform(typeText("TOOLONG 180"));
+        onView(withId(R.id.add_course_instructor)).perform(typeText("Buster Dunsmore"));
+        onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
         onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"CS 408\" for course name")));
     }
 
     @Test
+    public void courseNameNumberTooShort() throws Exception {
+        onView(withId(R.id.add_course_courseName)).perform(typeText("CS 18"));
+        onView(withId(R.id.add_course_instructor)).perform(typeText("Buster Dunsmore"));
+        onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
+        onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"CS 408\" for course name")));
+    }
+
+    @Test
+    public void courseNameNumberTooLong() throws Exception {
+        onView(withId(R.id.add_course_courseName)).perform(typeText("CS 18000"));
+        onView(withId(R.id.add_course_instructor)).perform(typeText("Buster Dunsmore"));
+        onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
+        onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"CS 408\" for course name")));
+    }
+
+    @Test
+    public void invalidFirstName() throws Exception {
+        onView(withId(R.id.add_course_courseName)).perform(typeText("CS 18000"));
+        onView(withId(R.id.add_course_instructor)).perform(typeText("test01 Dunsmore"));
+        onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
+        onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"Buster Dunsmore\" for instructor name")));
+    }
+
+    @Test
+    public void invalidLastName() throws Exception {
+        onView(withId(R.id.add_course_courseName)).perform(typeText("CS 18000"));
+        onView(withId(R.id.add_course_instructor)).perform(typeText("Buster Dunsmore1"));
+        onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_grade_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_misc_yes)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_toughness_easy)).perform(scrollTo(), click());
+        onView(withId(R.id.course_submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_course_submitText)).check(matches(withText("Please follow the format \"Buster Dunsmore\" for instructor name")));
+    }
+
+    @Test
     public void submitDatabaseCourse() throws Exception{
-        onView(withId(R.id.add_course_courseName)).perform(typeText("CourseNameTest"));
-        onView(withId(R.id.add_course_instructor)).perform(typeText("InstructorTest"));
+        onView(withId(R.id.add_course_courseName)).perform(typeText("TEST 123"));
+        onView(withId(R.id.add_course_instructor)).perform(typeText("Test Name"));
         onView(withId(R.id.add_course_description)).perform(typeText("CourseDescriptionTest"));
         onView(withId(R.id.add_course_ezAccess)).perform(scrollTo(), click());
         onView(withId(R.id.add_course_book_yes)).perform(scrollTo(), click());
@@ -395,7 +458,7 @@ public class AddCourseReviewTest {
         //Read database to see if course info is in firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference courseInfo = database.getReference("message/reviews/course");
-        final DatabaseReference ref = courseInfo.child("CourseNameTest");
+        final DatabaseReference ref = courseInfo.child("TEST 123");
         counter = 0;
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -417,8 +480,8 @@ public class AddCourseReviewTest {
         });
         Thread.sleep(1000);
         CourseReview review_to_check = reviews.get(0);
-        assertEquals(review_to_check.courseName, "CourseNameTest");
-        assertEquals(review_to_check.instructorName, "InstructorTest");
+        assertEquals(review_to_check.courseName, "TEST 123");
+        assertEquals(review_to_check.instructorName, "Test Name");
         assertEquals(review_to_check.courseDescr, "CourseDescriptionTest");
         assertEquals(review_to_check.helpSession, true);
         assertEquals(review_to_check.extraCredit, true);
