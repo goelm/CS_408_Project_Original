@@ -297,8 +297,9 @@ public class AddCourseReview extends AppCompatActivity{
 
 
                 Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                Pattern p2 = Pattern.compile("[^a-zA-Z ]", Pattern.CASE_INSENSITIVE);
                 Matcher courseMatcher = p.matcher(course.getText());
-                Matcher instructorMatcher = p.matcher(instructor.getText());
+                Matcher instructorMatcher = p2.matcher(instructor.getText());
                 Matcher semesterMatcher = p.matcher(semester.getText());
 
                 boolean invalidCourseName = courseMatcher.find();
@@ -306,6 +307,9 @@ public class AddCourseReview extends AppCompatActivity{
                 boolean invalidSemester = semesterMatcher.find();
 
                 TextView message = (TextView) findViewById(R.id.add_course_submitText);
+
+
+                String courseName = course.getText().toString();
 
                 if (course.getText().toString().trim().length() == 0 ||
                         instructor.getText().toString().trim().length() == 0 ||
@@ -319,33 +323,57 @@ public class AddCourseReview extends AppCompatActivity{
                     message.setText("Please fill in every field");
                 }
 
-                else if (invalidCourseName || invalidInstructorName || invalidSemester) {
+                else if (!courseName.contains(" ")) {
+                    message.setText("Please follow the format \"CS 408\"");
+                }
+
+                else if (invalidCourseName || invalidSemester) {
                     message.setText("Invalid inputs");
                 }
 
+                else if (invalidInstructorName) {
+                    message.setText("Please follow the format \"Buster Dunsmore\" for instructor name");
+                }
+
                 else {
-                    //All are added to an object for better organization
-                    CourseReview review = new CourseReview();
-                    capital_name = course.getText().toString().toUpperCase();
-                    review.setCourseName(capital_name);
-                    review.setInstructorName(String.valueOf(instructor.getText()));
-                    //review.setSemesterTaken(String.valueOf(semester.getText()));
-                    review.setCourseDescr(String.valueOf(description.getText()));
-                    review.setRating(add_course_ratingProgress);
-                    review.setSeekV(textVProgress);
-                    review.setSeekU(textUProgress);
-                    review.setHelpSession(help_session);
-                    review.setExtraCredit(extra_credit);
-                    review.setToughness(toughness);
-                    review.setElectronics(electronics);
-                    review.setTextBook(textbook);
-                    review.setCourseComment(String.valueOf(courseComment.getText()));
-                    review.setSemesterTaken(String.valueOf(semester.getText()));
-                    s.write_course_review(capital_name, review);
+
+                    if (courseName.contains(" ")) {
+                        String[] split = courseName.split(" ");
+                        String letters = split[0];
+                        String numbers = split[1];
+
+                        if(numbers.matches(".*\\d.*")) {
+                            if (letters.length() >= 1 && letters.length() <= 5) {
+                                if (numbers.length() == 3) {
+
+                                    //All are added to an object for better organization
+                                    CourseReview review = new CourseReview();
+                                    capital_name = course.getText().toString().toUpperCase();
+                                    review.setCourseName(capital_name);
+                                    review.setInstructorName(String.valueOf(instructor.getText()));
+                                    //review.setSemesterTaken(String.valueOf(semester.getText()));
+                                    review.setCourseDescr(String.valueOf(description.getText()));
+                                    review.setRating(add_course_ratingProgress);
+                                    review.setSeekV(textVProgress);
+                                    review.setSeekU(textUProgress);
+                                    review.setHelpSession(help_session);
+                                    review.setExtraCredit(extra_credit);
+                                    review.setToughness(toughness);
+                                    review.setElectronics(electronics);
+                                    review.setTextBook(textbook);
+                                    review.setCourseComment(String.valueOf(courseComment.getText()));
+                                    review.setSemesterTaken(String.valueOf(semester.getText()));
+                                    s.write_course_review(capital_name, review);
 
                 /* Go back to select a review */
-                    Intent i = new Intent(AddCourseReview.this, SelectReview.class);
-                    AddCourseReview.this.startActivity(i);
+                                    Intent i = new Intent(AddCourseReview.this, SelectReview.class);
+                                    AddCourseReview.this.startActivity(i);
+                                }
+                            }
+                        }
+                    }else {
+                        message.setText("Please follow the format \"CS 408\" for course name");
+                    }
                 }
             }
 

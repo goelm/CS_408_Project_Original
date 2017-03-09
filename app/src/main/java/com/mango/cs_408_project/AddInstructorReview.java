@@ -285,7 +285,7 @@ public class AddInstructorReview extends AppCompatActivity{
                 TextView first = (TextView) findViewById(R.id.first_name);
                 TextView last = (TextView) findViewById(R.id.last_name);
 
-                Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                Pattern p = Pattern.compile("[^a-zA-Z]", Pattern.CASE_INSENSITIVE);
                 Matcher firstMatcher = p.matcher(first.getText());
                 Matcher lastMatcher = p.matcher(last.getText());
 
@@ -305,8 +305,12 @@ public class AddInstructorReview extends AppCompatActivity{
                     message.setText("Please fill in every field");
                 }
 
-                else if (firstB || lastB) {
-                    message.setText("Invalid inputs");
+                else if (firstB) {
+                    message.setText("Invalid first name");
+                }
+
+                else if (lastB) {
+                    message.setText("Invalid last name");
                 }
 
                 else {
