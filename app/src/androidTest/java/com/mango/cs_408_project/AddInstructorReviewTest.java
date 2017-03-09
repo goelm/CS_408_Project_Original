@@ -201,7 +201,21 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
         onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
         onView(withId(R.id.submitBut)).perform(scrollTo(), click());
-        onView(withId(R.id.add_info_submitText)).check(matches(withText("Invalid inputs")));
+        onView(withId(R.id.add_info_submitText)).check(matches(withText("Invalid first name")));
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void invalidFirstName2() throws Exception {
+        onView(withId(R.id.first_name)).perform(typeText("FirstNameTest1"));
+        onView(withId(R.id.last_name)).perform(typeText("LastNameTest"));
+        onView(withId(R.id.instructor)).perform(scrollTo(), click());
+        onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
+        onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_info_submitText)).check(matches(withText("Invalid first name")));
         Thread.sleep(1000);
     }
 
@@ -215,7 +229,21 @@ public class AddInstructorReviewTest {
         onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
         onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
         onView(withId(R.id.submitBut)).perform(scrollTo(), click());
-        onView(withId(R.id.add_info_submitText)).check(matches(withText("Invalid inputs")));
+        onView(withId(R.id.add_info_submitText)).check(matches(withText("Invalid last name")));
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void invalidLastName1() throws Exception {
+        onView(withId(R.id.first_name)).perform(typeText("FirstNameTest"));
+        onView(withId(R.id.last_name)).perform(typeText("LastNameTest1"));
+        onView(withId(R.id.instructor)).perform(scrollTo(), click());
+        onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
+        onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_info_submitText)).check(matches(withText("Invalid last name")));
         Thread.sleep(1000);
     }
 
