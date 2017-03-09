@@ -1,5 +1,8 @@
 package com.mango.cs_408_project;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Elvin Uthuppan on 2/26/2017.
  */
@@ -21,6 +24,22 @@ public class CourseReview {
     public int upVote;
     public int downVote;
 
+
+    //Likes field
+    public Map<String, Boolean> likes = new HashMap<>();
+    public int likesCount = 0;
+    public String key;
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return this.key;
+    }
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;

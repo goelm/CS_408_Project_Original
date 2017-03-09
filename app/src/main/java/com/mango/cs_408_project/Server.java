@@ -40,6 +40,8 @@ public class Server extends AppCompatActivity {
 
     public void write_course_review(String course_name, CourseReview review){
         DatabaseReference inst = myRef.child("reviews").child("course").child(course_name).push();
+        String key = inst.getKey();
+        review.setKey(key);
         inst.setValue(review);
     }
 }

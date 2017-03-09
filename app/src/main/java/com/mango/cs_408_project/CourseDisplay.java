@@ -12,13 +12,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.google.common.escape.Escaper;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -78,7 +77,6 @@ public class CourseDisplay extends AppCompatActivity {
         user_input = getIntent().getStringExtra("user_input");
 
         display_course_review(user_input.toUpperCase());
-       // display_course_review("HIST 371");
     }
 
 

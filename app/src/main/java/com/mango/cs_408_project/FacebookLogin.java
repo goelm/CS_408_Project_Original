@@ -39,6 +39,8 @@ public class FacebookLogin extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -143,6 +145,19 @@ public class FacebookLogin extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         //finish();
+    }
+
+    public String userID() {
+        AccessToken user = AccessToken.getCurrentAccessToken();
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            return user.getUserId();
+        } else {
+            // No user is signed in
+            System.out.println("No user signed in");
+            return null;
+        }
     }
 
 }

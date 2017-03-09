@@ -25,14 +25,6 @@
         android:textStyle="bold"
         android:layout_alignParentStart="true" />
 
-    <ImageView
-        android:id="@+id/info_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_dialog_info"
-        android:layout_below="@+id/courseComment2"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:id="@+id/instructor_name"
         android:layout_width="wrap_content"
@@ -62,15 +54,18 @@
         android:layout_alignParentStart="true"
         android:id="@+id/textView" />
 
+
+
     <TextView
         android:text="Comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
         android:layout_below="@+id/semester_taken"
-        android:textColor="@android:color/black"
         android:layout_toStartOf="@+id/instructor_name"
         android:layout_marginTop="13dp" />
+
+
 
     <TextView
         android:text="TextView"
@@ -80,8 +75,7 @@
         android:layout_weight="1"
         android:layout_below="@+id/textView7"
         android:layout_alignParentStart="true"
-        android:textColor="@android:color/black"
-        android:layout_alignParentEnd="true" />
+        android:layout_toStartOf="@+id/frameLayout" />
 
     <TextView
         android:text="semester"
@@ -101,6 +95,46 @@
         android:textColor="@android:color/black"
         android:layout_below="@+id/semester_taken"
         android:layout_alignStart="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/info_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_info"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/semester_takenInput"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/frameLayout">
+
+
+        <Button
+            android:id="@+id/likes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:text="helpful?"
+            android:textSize="10sp"
+            android:textColor="@color/tw__composer_black"/>
+
+        <TextView
+            android:id="@+id/badge_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_notification_overlay"
+            android:text="0"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:elevation="100dp"
+            />
+
+    </FrameLayout>
+
 
     <!--<ImageView-->
         <!--android:layout_width="wrap_content"-->
