@@ -203,6 +203,11 @@
             android:id="@+id/professor_info_addReview"
             android:layout_weight="0.73" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="0.68" />
+
 
         <!--
 

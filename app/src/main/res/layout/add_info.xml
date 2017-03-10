@@ -23,11 +23,11 @@
             android:layout_weight="0.73" />
 
         <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        app:srcCompat="@drawable/upload_image"
-        android:id="@+id/imageView3"
-        android:layout_weight="0.68" />
+            android:id="@+id/imageProf"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="0.68"
+            app:srcCompat="@drawable/upload_image" />
 
     <TableRow
         android:layout_width="match_parent"
