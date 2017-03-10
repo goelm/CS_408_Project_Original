@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * Created by elvin on 2/8/17.
  */
 
-public class AddInstructorReview extends AppCompatActivity{
+public class AddInstructorReview extends AppCompatActivity {
 
     // This is for the Server class
     final Server s = new Server();
@@ -81,9 +81,9 @@ public class AddInstructorReview extends AppCompatActivity{
         TextView first = (TextView) findViewById(R.id.first_name);
         TextView last = (TextView) findViewById(R.id.last_name);
 
-        if(getIntent().hasExtra("name")){
+        if (getIntent().hasExtra("name")) {
             String full_name = getIntent().getStringExtra("name");
-            String [] names = full_name.split(" ");
+            String[] names = full_name.split(" ");
             first.setText(names[0]);
             last.setText(names[1]);
         }
@@ -114,7 +114,7 @@ public class AddInstructorReview extends AppCompatActivity{
         ratingBarText = (TextView) findViewById(R.id.add_info_RatingBarValue);
 
         profComment = (EditText) findViewById(R.id.profComment);
-       // semester = (EditText)
+        // semester = (EditText)
 
         /*
         RADIOBUTTON SWITCHING
@@ -165,7 +165,7 @@ public class AddInstructorReview extends AppCompatActivity{
 
         rb_no1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                RadioButton rb_yes1= (RadioButton) findViewById(R.id.yesButton1);
+                RadioButton rb_yes1 = (RadioButton) findViewById(R.id.yesButton1);
                 rb_yes1.setChecked(false);
                 extra_credit = false;
             }
@@ -182,7 +182,7 @@ public class AddInstructorReview extends AppCompatActivity{
 
         rb_no2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                RadioButton rb_yes2= (RadioButton) findViewById(R.id.yesButton2);
+                RadioButton rb_yes2 = (RadioButton) findViewById(R.id.yesButton2);
                 rb_yes2.setChecked(false);
                 electronics = false;
             }
@@ -249,27 +249,31 @@ public class AddInstructorReview extends AppCompatActivity{
         // Seekbar
         seekV.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textVProgress = progress;
-                textV.setText(""+ textVProgress + "%");
+                textV.setText("" + textVProgress + "%");
 //                value = progress;
 //                textV.setText(String.valueOf(value)+"%");
             }
+
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
 
         seekU.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textUProgress = progress;
-                textU.setText(""+ textUProgress + "%");
+                textU.setText("" + textUProgress + "%");
 //                understand = progress;
 //                textU.setText(String.valueOf(understand)+"%");
             }
+
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
@@ -289,7 +293,8 @@ public class AddInstructorReview extends AppCompatActivity{
                 TextView first = (TextView) findViewById(R.id.first_name);
                 TextView last = (TextView) findViewById(R.id.last_name);
 
-                TextView courseName = (TextView) findViewById(R.id.add_info_courseName);
+                TextView course = (TextView) findViewById(R.id.add_info_courseName);
+                String courseName = course.getText().toString();
 
                 Pattern p = Pattern.compile("[^a-zA-Z]", Pattern.CASE_INSENSITIVE);
                 Matcher firstMatcher = p.matcher(first.getText());
@@ -307,38 +312,53 @@ public class AddInstructorReview extends AppCompatActivity{
                         (!rb_yes1.isChecked() && !rb_no1.isChecked()) ||
                         (!rb_yes2.isChecked() && !rb_no2.isChecked()) ||
                         (!rb_difEz.isChecked() && !rb_difMild.isChecked() && !rb_difNorm.isChecked()
-                        && !rb_difTough.isChecked() && !rb_difCrazy.isChecked())) {
+                                && !rb_difTough.isChecked() && !rb_difCrazy.isChecked())) {
                     message.setText("Please fill in every field");
-                }
-
-                else if (firstB) {
+                } else if (firstB) {
                     message.setText("Invalid first name");
-                }
-
-                else if (lastB) {
+                } else if (lastB) {
                     message.setText("Invalid last name");
-                }
+                } else {
 
-                else {
+                    if (courseName.contains(" ")) {
+                        String[] split = courseName.split(" ");
+                        String letters = split[0];
+                        String numbers = split[1];
 
-                    ProfReview review = new ProfReview();
-                    review.setProfName(first.getText().toString().toUpperCase() + " " + last.getText().toString().toUpperCase());
-                    //review.setCourseName();
-                    review.setCourseName(courseName.getText().toString().toUpperCase());
-                    review.setProf(prof);
-                    review.setRating(ratingProgress);
-                    review.setSeekV(textVProgress); //Value of lecture
-                    review.setSeekU(textUProgress); //Understandable trait
-                    review.setHelpSession(help_session);
-                    review.setExtraCredit(extra_credit);
-                    review.setToughness(toughness);
-                    review.setElectronics(electronics);
-                    review.setProfComment(String.valueOf(profComment.getText()));
-                    s.write_instructor_review(review.profName, review);
+                        if (numbers.matches(".*\\d.*")) {
+                            if (letters.length() >= 1 && letters.length() <= 5) {
+                                if (numbers.length() == 3) {
+
+                                    ProfReview review = new ProfReview();
+                                    review.setProfName(first.getText().toString().toUpperCase() + " " + last.getText().toString().toUpperCase());
+                                    //review.setCourseName();
+                                    review.setCourseName(course.getText().toString().toUpperCase());
+                                    review.setProf(prof);
+                                    review.setRating(ratingProgress);
+                                    review.setSeekV(textVProgress); //Value of lecture
+                                    review.setSeekU(textUProgress); //Understandable trait
+                                    review.setHelpSession(help_session);
+                                    review.setExtraCredit(extra_credit);
+                                    review.setToughness(toughness);
+                                    review.setElectronics(electronics);
+                                    review.setProfComment(String.valueOf(profComment.getText()));
+                                    s.write_instructor_review(review.profName, review);
 
                 /* Go back to select a review */
-                    Intent i = new Intent(AddInstructorReview.this, SelectReview.class);
-                    AddInstructorReview.this.startActivity(i);
+                                    Intent i = new Intent(AddInstructorReview.this, SelectReview.class);
+                                    AddInstructorReview.this.startActivity(i);
+                                } else {
+                                    message.setText("Please follow the format \"CS 408\" for course name");
+                                }
+                            } else {
+                                message.setText("Please follow the format \"CS 408\" for course name");
+                            }
+                        } else {
+                            message.setText("Please follow the format \"CS 408\" for course name");
+                        }
+                    } else {
+                        message.setText("Please follow the format \"CS 408\" for course name");
+                    }
                 }
             }
 

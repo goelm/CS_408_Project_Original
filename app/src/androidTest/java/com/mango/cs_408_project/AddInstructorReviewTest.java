@@ -248,6 +248,36 @@ public class AddInstructorReviewTest {
     }
 
     @Test
+    public void invalidCourseName() throws Exception {
+        onView(withId(R.id.first_name)).perform(typeText("FirstNameTest"));
+        onView(withId(R.id.last_name)).perform(typeText("LastNameTest"));
+        onView(withId(R.id.add_info_courseName)).perform(typeText("Sighs ..."));
+        onView(withId(R.id.instructor)).perform(scrollTo(), click());
+        onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
+        onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_info_submitText)).check(matches(withText("Please follow the format \"CS 408\" for course name")));
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void invalidCourseName2() throws Exception {
+        onView(withId(R.id.first_name)).perform(typeText("FirstNameTest"));
+        onView(withId(R.id.last_name)).perform(typeText("LastNameTest"));
+        onView(withId(R.id.add_info_courseName)).perform(typeText("CS 18000"));
+        onView(withId(R.id.instructor)).perform(scrollTo(), click());
+        onView(withId(R.id.ezAccess)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.yesButton2)).perform(scrollTo(), click());
+        onView(withId(R.id.diffButton1)).perform(scrollTo(), click());
+        onView(withId(R.id.submitBut)).perform(scrollTo(), click());
+        onView(withId(R.id.add_info_submitText)).check(matches(withText("Please follow the format \"CS 408\" for course name")));
+        Thread.sleep(1000);
+    }
+
+    @Test
     public void noInstructorAndTA() throws Exception {
         onView(withId(R.id.first_name)).perform(typeText("FirstNameTest"));
         onView(withId(R.id.last_name)).perform(typeText("LastNameTest"));
