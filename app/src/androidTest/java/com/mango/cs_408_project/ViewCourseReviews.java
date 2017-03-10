@@ -28,8 +28,11 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static java.util.EnumSet.allOf;
 import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.instanceOf;
 
 /**
  * Created by Elvin Uthuppan on 3/3/2017.
@@ -150,4 +153,202 @@ public class ViewCourseReviews {
 
     }
 
+    @Test
+    public void courseSortOldToNew() throws Exception {
+
+        onView(withId(R.id.searchQueryField)).perform(typeText("SORT 101"));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.view_course_reviews)).perform(click());
+
+        onView(withId(R.id.sort_menu_course)).perform(click());
+        Thread.sleep(1000);
+
+        onView(withText("Oldest to newest")).perform(click());
+        Thread.sleep(2000);
+
+        onView(withId(R.id.sort_menu_course)).check(matches(withSpinnerText("Oldest to newest")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(0)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 1")));
+        Thread.sleep(1000);
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(1)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 2")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(2)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 3")));
+    }
+
+    @Test
+    public void courseSortNewToOld() throws Exception {
+        onView(withId(R.id.searchQueryField)).perform(typeText("SORT 101"));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.view_course_reviews)).perform(click());
+
+        onView(withId(R.id.sort_menu_course)).perform(click());
+        Thread.sleep(1000);
+
+        onView(withText("Newest to oldest")).perform(click());
+        Thread.sleep(2000);
+
+        onView(withId(R.id.sort_menu_course)).check(matches(withSpinnerText("Newest to oldest")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(0)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 3")));
+        Thread.sleep(1000);
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(1)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 2")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(2)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 1")));
+    }
+
+    @Test
+    public void courseSortRatingHighToLow() throws Exception {
+        onView(withId(R.id.searchQueryField)).perform(typeText("SORT 101"));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.view_course_reviews)).perform(click());
+
+        onView(withId(R.id.sort_menu_course)).perform(click());
+        Thread.sleep(1000);
+
+        onView(withText("Rating (high to low)")).perform(click());
+        Thread.sleep(2000);
+
+        onView(withId(R.id.sort_menu_course)).check(matches(withSpinnerText("Rating (high to low)")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(0)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 3")));
+        Thread.sleep(1000);
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(1)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 2")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(2)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 1")));
+    }
+
+    @Test
+    public void courseSortRatingLowToHigh() throws Exception {
+        onView(withId(R.id.searchQueryField)).perform(typeText("SORT 101"));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.view_course_reviews)).perform(click());
+
+        onView(withId(R.id.sort_menu_course)).perform(click());
+        Thread.sleep(1000);
+
+        onView(withText("Rating (low to high)")).perform(click());
+        Thread.sleep(2000);
+
+        onView(withId(R.id.sort_menu_course)).check(matches(withSpinnerText("Rating (low to high)")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(0)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 1")));
+        Thread.sleep(1000);
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(1)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 2")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(2)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 3")));
+    }
+
+    @Test
+    public void courseSortLikesHighToLow() throws Exception {
+        onView(withId(R.id.searchQueryField)).perform(typeText("SORT 101"));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.view_course_reviews)).perform(click());
+
+        onView(withId(R.id.sort_menu_course)).perform(click());
+        Thread.sleep(1000);
+
+        onView(withText("Helpfulness (high to low)")).perform(click());
+        Thread.sleep(2000);
+
+        onView(withId(R.id.sort_menu_course)).check(matches(withSpinnerText("Helpfulness (high to low)")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(0)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 3")));
+        Thread.sleep(1000);
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(1)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 2")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(2)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 1")));
+    }
+
+    @Test
+    public void courseSortLikesLowToHigh() throws Exception {
+        onView(withId(R.id.searchQueryField)).perform(typeText("SORT 101"));
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.view_course_reviews)).perform(click());
+
+        onView(withId(R.id.sort_menu_course)).perform(click());
+        Thread.sleep(1000);
+
+        onView(withText("Helpfulness (low to high)")).perform(click());
+        Thread.sleep(2000);
+
+        onView(withId(R.id.sort_menu_course)).check(matches(withSpinnerText("Helpfulness (low to high)")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(0)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 1")));
+        Thread.sleep(1000);
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(1)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 2")));
+
+        onData(anything()).inAdapterView(withId(R.id.listView))
+                .atPosition(2)
+                .onChildView(withId(R.id.courseComment2))
+                .check(matches(withText("comment 3")));
+    }
 }
