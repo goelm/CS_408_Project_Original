@@ -147,8 +147,9 @@ public class SearchActivity {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("KEN"));
         Thread.sleep(300);
-        //onView(withId(R.id.searchQueryField)).perform(click());
-        device.click(200,250);
+
+        onView(withId(R.id.searchSubmit)).perform(click());
+        //device.click(200,250);
         //onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
         //onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
         Thread.sleep(1000);
@@ -166,7 +167,9 @@ public class SearchActivity {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("KZB"));
         Thread.sleep(300);
-        device.click(200,250);
+        onView(withId(R.id.searchSubmit)).perform(click());
+
+//        device.click(200,250);
 //        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
 //        Thread.sleep(300);
 //        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
