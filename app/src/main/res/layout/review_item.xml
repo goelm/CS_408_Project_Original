@@ -78,7 +78,7 @@
         android:layout_toStartOf="@+id/frameLayout" />
 
     <TextView
-        android:text="semester"
+        android:text="              "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/semester_takenInput"
@@ -115,10 +115,11 @@
         <Button
             android:id="@+id/likes_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginRight="8dp"
             android:text="helpful?"
-            android:textSize="10sp"
+            android:textSize="12sp"
+            android:textAlignment="viewEnd"
             android:textColor="@color/tw__composer_black"/>
 
         <TextView

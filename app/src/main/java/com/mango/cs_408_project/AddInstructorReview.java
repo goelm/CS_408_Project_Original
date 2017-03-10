@@ -61,8 +61,10 @@ public class AddInstructorReview extends AppCompatActivity{
     TextView textU;
     TextView textV;
     TextView ratingBarText;
+    //TextView semester;
 
     EditText profComment;
+
 
     int textUProgress = 0;
     int textVProgress = 0;
@@ -112,6 +114,8 @@ public class AddInstructorReview extends AppCompatActivity{
         ratingBarText = (TextView) findViewById(R.id.add_info_RatingBarValue);
 
         profComment = (EditText) findViewById(R.id.profComment);
+       // semester = (EditText)
+
         /*
         RADIOBUTTON SWITCHING
          */
@@ -317,6 +321,7 @@ public class AddInstructorReview extends AppCompatActivity{
 
                     ProfReview review = new ProfReview();
                     review.setProfName(first.getText().toString().toUpperCase() + " " + last.getText().toString().toUpperCase());
+                    //review.setCourseName();
                     review.setProf(prof);
                     review.setRating(ratingProgress);
                     review.setSeekV(textVProgress); //Value of lecture

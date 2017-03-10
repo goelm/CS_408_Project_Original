@@ -35,6 +35,8 @@ public class Server extends AppCompatActivity {
 
     public void write_instructor_review(String instructor_name, ProfReview review){
         DatabaseReference inst = myRef.child("reviews").child("instructor").child(instructor_name).push();
+        String key = inst.getKey();
+        review.setKey(key);
         inst.setValue(review);
     }
 

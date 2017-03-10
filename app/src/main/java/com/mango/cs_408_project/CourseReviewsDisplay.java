@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +56,42 @@ public class CourseReviewsDisplay extends AppCompatActivity{
         user_input = getIntent().getStringExtra("user_input");
 
         display_course_review(user_input.toUpperCase());
+
+        courseInfo.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                /*
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child: children) {
+                    CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
+                    reviews.add(course);
+                }
+                adapter.notifyDataSetChanged();
+                */
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                CourseReview course = dataSnapshot.getValue(CourseReview.class);
+                course.setLikesCount(course.likesCount);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         Spinner dropdown = (Spinner)findViewById(R.id.sort_menu_course);
         String[] items = new String[]{"Oldest to newest", "Newest to oldest", "Rating (high to low)", "Rating (low to high)", "Helpfulness (high to low)", "Helpfulness (low to high)"};

@@ -32,6 +32,7 @@ import java.util.Map;
  */
 
 public class CourseDisplay extends AppCompatActivity {
+    private static CustomAdapter adapter;
 
     String user_input;
 
@@ -73,7 +74,7 @@ public class CourseDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_info);
-
+        System.out.println("created new act");
         user_input = getIntent().getStringExtra("user_input");
 
         display_course_review(user_input.toUpperCase());
@@ -90,6 +91,7 @@ public class CourseDisplay extends AppCompatActivity {
         final RatingBar stars = (RatingBar) findViewById(R.id.course_rating); //Finds the stars to update
 
         final DatabaseReference ref = courseInfo.child(course_name);
+
 
         course_addReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,10 +113,11 @@ public class CourseDisplay extends AppCompatActivity {
         });
 
 
-        ref.addValueEventListener(new ValueEventListener() {
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
+                        System.out.println("changing last page data");
                         Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                         for (DataSnapshot child: children) {
                             CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
@@ -123,7 +126,7 @@ public class CourseDisplay extends AppCompatActivity {
                             rating += course.rating;//for stars
                             value_lectures += course.seekV;
                             understandable +=course.seekU;
-                            if(course.extraCredit == true) {
+                            if(course.extraCredit) {
                                 extra_credit++;
                             }
                             if(course.helpSession){
@@ -138,6 +141,7 @@ public class CourseDisplay extends AppCompatActivity {
                             toughness += course.toughness;
                         }
                         //Set statistics here
+
                         stars.setRating(rating/reviews.size());
 
                         num_reviews_text = (TextView) findViewById(R.id.num_reviews_course_text);
@@ -179,6 +183,7 @@ public class CourseDisplay extends AppCompatActivity {
                         electronics_bar.setProgress((int)((electronics/counter)*100));
                         toughness_bar.setProgress((int)((toughness/(counter*5))*100));
                         textbook_bar.setProgress((int)((textbook/counter)*100));
+
                     }
 
                     @Override

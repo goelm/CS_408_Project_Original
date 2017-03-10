@@ -89,57 +89,15 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         switch (v.getId())
         {
             case R.id.likes_button:
-                System.out.println("hello");
                 onLikeClicked(courseInfo , dataModel);
                 break;
 
             case R.id.info_item:
-                System.out.println("hello");
                 Snackbar.make(v, "Course Description: " + dataModel.courseDescr, Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
         }
     }
-
-    /*
-    class likesChildEventListener implements ChildEventListener {
-
-        @Override
-        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            CourseReview course = dataSnapshot.getValue(CourseReview.class);
-            course.setKey(dataSnapshot.getKey());
-            dataSet.add(0, course);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            String key = dataSnapshot.getKey();
-            CourseReview newreview = dataSnapshot.getValue(CourseReview.class);
-            for (CourseReview c : dataSet) {
-                if (c.getKey().equals(key)) {
-
-                }
-            }
-        }
-
-        @Override
-        public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-        }
-
-        @Override
-        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    }
-    */
-
 
     private void onLikeClicked(final DatabaseReference postRef, final CourseReview course) {
         postRef.child(course.courseName).child(course.getKey()).runTransaction(new Transaction.Handler() {
@@ -147,28 +105,20 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
                 //CourseReview course = mutableData.getValue(CourseReview.class);
-                System.out.println("User id: " + uid);
-
                 if (course == null) {
                     return Transaction.success(mutableData);
                 }
 
                 if (course.likes.containsKey(uid)) {
                     // Unstar the post and remove self from stars
-                    System.out.println("take away");
                     course.likesCount = course.likesCount - 1;
                     course.likes.remove(uid);
                 } else {
-                    System.out.println("add");
-
                     // Star the post and add self to stars
                     course.likesCount = course.likesCount + 1;
                     course.likes.put(uid, true);
 
                 }
-
-                // Set value and report transaction success
-              //  mutableData.setValue(course.likesCount);
                 postRef.child(course.courseName).child(course.getKey()).setValue(course);
                 return Transaction.success(mutableData);
             }

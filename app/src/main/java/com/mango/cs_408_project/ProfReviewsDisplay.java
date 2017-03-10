@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,8 +69,39 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        display_prof_review(user_input.toUpperCase());
 
+
+
+        display_prof_review(user_input.toUpperCase());
+        //Detects like button
+        profInfo.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                ProfReview prof = dataSnapshot.getValue(ProfReview.class);
+                prof.setLikesCount(prof.likesCount);
+                prof_adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         prof_addReview = (Button) findViewById(R.id.professor_info_addReview_2);
 

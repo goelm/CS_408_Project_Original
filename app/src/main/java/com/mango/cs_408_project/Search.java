@@ -183,6 +183,9 @@ public class Search extends AppCompatActivity {
                         });
                     }
                 }
+                /*
+                Plant foundSomething() here for bug
+                 */
             }
         });
     }

@@ -159,5 +159,4 @@ public class FacebookLogin extends AppCompatActivity {
             return null;
         }
     }
-
 }
