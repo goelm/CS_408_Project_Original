@@ -147,19 +147,9 @@ public class SearchActivity {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("KEN"));
         Thread.sleep(300);
-
         onView(withId(R.id.searchSubmit)).perform(click());
-        //device.click(200,250);
-        //onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
-        //onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
         Thread.sleep(1000);
-
         onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KENDALL BOWLES")));
-        onView(withId(R.id.searchSubmit)).perform(click());
-        //onView(withId(R.id.searchSubmit)).perform(click());
-        Thread.sleep(500);
-        intended(hasComponent(new ComponentName(getTargetContext(), ProfDisplay.class)));
-        Thread.sleep(1000);
     }
 
     @Test
@@ -168,16 +158,9 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("KZB"));
         Thread.sleep(300);
         onView(withId(R.id.searchSubmit)).perform(click());
-
-//        device.click(200,250);
-//        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
-//        Thread.sleep(300);
-//        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
         Thread.sleep(1000);
-
         onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KZB")));
         onView(withId(R.id.searchSubmit)).perform(click());
-        //onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(500);
         onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         Thread.sleep(1000);
