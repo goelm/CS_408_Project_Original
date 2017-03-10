@@ -6,14 +6,20 @@ import android.support.test.espresso.core.deps.guava.util.concurrent.ThreadFacto
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.uiautomator.Tracer;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiSelector;
+import android.widget.AutoCompleteTextView;
 import android.widget.TabHost;
 
 import org.junit.Rule;
 import org.junit.Test;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.InstrumentationRegistry.getTargetContext;
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.action.ViewActions.typeTextIntoFocusedView;
@@ -21,7 +27,10 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
+import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
@@ -80,7 +89,6 @@ public class SearchActivity {
     public void search_courseLower() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         onView(withId(R.id.searchSubmit)).perform(click());
         intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
@@ -90,7 +98,6 @@ public class SearchActivity {
     public void search_mix() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("hIsT 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         onView(withId(R.id.searchSubmit)).perform(click());
         intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
@@ -100,7 +107,6 @@ public class SearchActivity {
     public void search_courseUpper() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("HIST 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         onView(withId(R.id.searchSubmit)).perform(click());
         intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
@@ -132,6 +138,46 @@ public class SearchActivity {
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
         intended(hasComponent(new ComponentName(getTargetContext(), ProfDisplay.class)));
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void search_autofill() throws Exception {
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        onView(withId(R.id.searchQueryField)).perform(typeText("KEN")); //should autocomplete to "KENDALL BOWLES"
+        Thread.sleep(300);
+        //device.findObject(new UiSelector().className("android.widget.AutoCompleteTextView")).click();
+        pressKey(20); //press "down"
+        pressKey(4); //press "back"
+
+        //onView(withClassName("AutoCompleteTextView");
+        //onData(is(instanceOf(AutoCompleteTextView.class)));
+        //onView(withSpinnerText("KENDALL BOWLES")).perform(click());
+
+        Thread.sleep(3000);
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        intended(hasComponent(new ComponentName(getTargetContext(), ProfDisplay.class)));
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void search_autofill_fail() throws Exception {
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        onView(withId(R.id.searchQueryField)).perform(typeText("KZB")); //no corresponding autocomplete
+        Thread.sleep(300);
+        //device.findObject(new UiSelector().className("android.widget.AutoCompleteTextView")).click();
+        pressKey(20); //press "down"
+        pressKey(4); //press "back"
+
+        //onView(withClassName("AutoCompleteTextView");
+        //onData(is(instanceOf(AutoCompleteTextView.class)));
+        //onView(withSpinnerText("KENDALL BOWLES")).perform(click());
+
+        Thread.sleep(3000);
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         Thread.sleep(1000);
     }
 
