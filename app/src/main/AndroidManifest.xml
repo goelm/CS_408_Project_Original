@@ -22,8 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourseDisplay"
-            android:launchMode="singleInstance">
+        <activity android:name=".CourseDisplay">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,22 +54,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfDisplay"
-            android:launchMode="singleInstance">
+        <activity android:name=".ProfDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfReviewsDisplay"
-            android:launchMode="singleInstance">
+        <activity android:name=".ProfReviewsDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourseReviewsDisplay"
-            android:launchMode="singleInstance">
+        <activity android:name=".CourseReviewsDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />

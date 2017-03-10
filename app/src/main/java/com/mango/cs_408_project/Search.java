@@ -61,7 +61,7 @@ public class Search extends AppCompatActivity {
         /* Auto Complete Code in the search function */
         final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         //Child the root before all the push() keys are found and add a ValueEventListener()
-        courseInfo.addValueEventListener(new ValueEventListener() {
+        courseInfo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
@@ -78,7 +78,7 @@ public class Search extends AppCompatActivity {
             }
         });
         //For the Professors
-        profInfo.addValueEventListener(new ValueEventListener() {
+        profInfo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
@@ -125,7 +125,7 @@ public class Search extends AppCompatActivity {
                         message.setVisibility(View.VISIBLE);
                         message.setText("Good search query!");
 
-                        profInfo.addValueEventListener(new ValueEventListener() {
+                        profInfo.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(user_input.toUpperCase())) {
@@ -160,7 +160,7 @@ public class Search extends AppCompatActivity {
                             public void onCancelled(DatabaseError databaseError) {
                             }
                         });
-                        courseInfo.addValueEventListener(new ValueEventListener() {
+                        courseInfo.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 

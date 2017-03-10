@@ -41,6 +41,7 @@ public class ViewCourseReviews {
     public ActivityTestRule<Search> viewCourseReviewsTest =
             new ActivityTestRule<Search>(Search.class);
 
+
     @Test
     public void addCourseShowsFillsName() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
@@ -58,7 +59,6 @@ public class ViewCourseReviews {
     public void viewReviews() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("HIST 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
-        //onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(3000);
         onView(withId(R.id.view_course_reviews)).perform(click());
@@ -98,35 +98,6 @@ public class ViewCourseReviews {
         //onView(withId(R.id.add_course_courseName)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
         //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
 
-    }
-
-/*
-    @Test
-    public void addCourseShowsFillsName() throws Exception {
-        onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
-        onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.searchSubmit)).perform(click());
-        Thread.sleep(3000);
-        onView(withId(R.id.course_info_addReview)).perform(click()); //Clicks add review
-        Thread.sleep(1000);
-        onView(withId(R.id.add_course_courseName)).check(matches(withText("HIST 371")));
-
-        //onView(withId(R.id.listView)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
-        //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
-        Thread.sleep(1000);
-    }
-
-
-    @Test
-    public void viewReviews() throws Exception {
-        onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
-        onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.searchSubmit)).perform(click());
-        Thread.sleep(3000);
-        onView(withId(R.id.view_course_reviews)).perform(click());
-        onView(withId(R.id.listView)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
-        //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
-        Thread.sleep(1000);
     }
 
     @Test
@@ -178,5 +149,5 @@ public class ViewCourseReviews {
         Thread.sleep(1000);
 
     }
-    */
+
 }

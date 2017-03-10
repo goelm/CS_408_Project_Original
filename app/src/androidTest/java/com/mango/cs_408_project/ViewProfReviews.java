@@ -106,37 +106,17 @@ public class ViewProfReviews {
 
     }
 
-    /*
-    @Rule
-    public ActivityTestRule<Search> viewProfReviewsTest =
-            new ActivityTestRule<Search>(Search.class);
-
-
-
     @Test
     public void theAddCourseShowsFillsName() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("buster dunsmore"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
-        Thread.sleep(3000);
-        onView(withId(R.id.view_reviews_button)).perform(click());
-        onView(withId(R.id.professor_info_addReview_2)).perform(click()); //Clicks add review
+        Thread.sleep(1000);
+        onView(withId(R.id.instructor_rating)).perform(swipeUp()); //To fix off screen issue
+        onView(withId(R.id.professor_info_addReview)).perform(click()); //Clicks add review
+        Thread.sleep(1000);
         onView(withId(R.id.first_name)).check(matches(withText("BUSTER")));
         onView(withId(R.id.last_name)).check(matches(withText("DUNSMORE")));
-        //onView(withId(R.id.listView)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
-        //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
-        Thread.sleep(1000);
-    }
-
-    @Test
-    public void viewReviews() throws Exception {
-        onView(withId(R.id.searchQueryField)).perform(typeText("buster dunsmore"));
-        onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.searchSubmit)).perform(click());
-        Thread.sleep(3000);
-        onView(withId(R.id.view_reviews_button)).perform(click());
-        onView(withId(R.id.prof_listView_reviews)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
-        //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
     }
 
@@ -166,7 +146,7 @@ public class ViewProfReviews {
 
         onData(anything()).inAdapterView(withId(R.id.prof_listView_reviews))
                 .atPosition(0)
-                .onChildView(withId(R.id.badge_notification2)).check(matches(withText("0"))); //Start of mr test
+                .onChildView(withId(R.id.badge_notification2)).check(matches(withText("1"))); //Start of mr test
 
         Thread.sleep(2000);
         onView(withId(R.id.prof_listView_reviews)).check(matches(isDisplayed()));
@@ -177,7 +157,7 @@ public class ViewProfReviews {
 
         onData(anything()).inAdapterView(withId(R.id.prof_listView_reviews))
                 .atPosition(0)
-                .onChildView(withId(R.id.badge_notification2)).check(matches(withText("1")));
+                .onChildView(withId(R.id.badge_notification2)).check(matches(withText("2")));
 
         Thread.sleep(2000);
         onView(withId(R.id.prof_listView_reviews)).check(matches(isDisplayed())); //Reset back to normal for next test
@@ -188,5 +168,5 @@ public class ViewProfReviews {
 
         Thread.sleep(1000);
     }
-*/
+
 }
