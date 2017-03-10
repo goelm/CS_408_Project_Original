@@ -42,19 +42,6 @@ public class ViewProfReviews {
 
 
     @Test
-    public void addCourseShowsFillsName() throws Exception {
-        onView(withId(R.id.searchQueryField)).perform(typeText("bUsTeR"));
-        Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
-        Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
-        Thread.sleep(2000);
-        onView(withId(R.id.searchQueryField)).check(matches(withText("BUSTER DUNSMORE")));
-        Thread.sleep(1000);
-    }
-
-
-    @Test
     public void viewReviews() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("BUSTER DUNSMORE"));
         onView(withId(R.id.searchSubmit)).perform(click());
@@ -108,12 +95,13 @@ public class ViewProfReviews {
     }
 
     @Test
-    public void theAddCourseShowsFillsName() throws Exception {
+    public void theAddProfShowsFillsName() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("buster dunsmore"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
         onView(withId(R.id.instructor_rating)).perform(swipeUp()); //To fix off screen issue
+        Thread.sleep(1000);
         onView(withId(R.id.professor_info_addReview)).perform(click()); //Clicks add review
         Thread.sleep(1000);
         onView(withId(R.id.first_name)).check(matches(withText("BUSTER")));

@@ -46,15 +46,11 @@ public class ViewCourseReviews {
 
 
     @Test
-    public void addCourseShowsFillsName() throws Exception {
+    public void theAddProfShowsFillsName() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
-        Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
-        Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
-        Thread.sleep(2000);
-        onView(withId(R.id.searchQueryField)).check(matches(withText("HIST 371")));
+        onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
+        onView(withId(R.id.searchQueryField)).check(matches(withText("HIST 371")));
     }
 
 

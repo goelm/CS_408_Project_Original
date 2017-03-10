@@ -91,6 +91,7 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
         intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
     }
@@ -100,6 +101,7 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("hIsT 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
         intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
     }
@@ -109,6 +111,7 @@ public class SearchActivity {
         onView(withId(R.id.searchQueryField)).perform(typeText("HIST 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
         intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
     }
@@ -150,6 +153,16 @@ public class SearchActivity {
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
         onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KENDALL BOWLES")));
+    }
+
+    @Test
+    public void search_autofill_prof() throws Exception {
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        onView(withId(R.id.searchQueryField)).perform(typeText("bust"));
+        Thread.sleep(300);
+        onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(1000);
+        onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("BUSTER DUNSMORE")));
     }
 
     @Test
