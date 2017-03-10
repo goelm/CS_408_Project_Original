@@ -32,6 +32,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.AllOf.allOf;
 
 /**
  * Created by manasigoel on 2/11/17.
@@ -144,19 +145,17 @@ public class SearchActivity {
     @Test
     public void search_autofill() throws Exception {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
-        onView(withId(R.id.searchQueryField)).perform(typeText("KEN")); //should autocomplete to "KENDALL BOWLES"
+        onView(withId(R.id.searchQueryField)).perform(typeText("KEN"));
         Thread.sleep(300);
-        //device.findObject(new UiSelector().className("android.widget.AutoCompleteTextView")).click();
-        pressKey(20); //press "down"
-        pressKey(4); //press "back"
+        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
+        Thread.sleep(300);
+        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
+        Thread.sleep(1000);
 
-        //onView(withClassName("AutoCompleteTextView");
-        //onData(is(instanceOf(AutoCompleteTextView.class)));
-        //onView(withSpinnerText("KENDALL BOWLES")).perform(click());
-
-        Thread.sleep(3000);
+        onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KENDALL BOWLES")));
         onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.searchSubmit)).perform(click());
+        //onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(500);
         intended(hasComponent(new ComponentName(getTargetContext(), ProfDisplay.class)));
         Thread.sleep(1000);
     }
@@ -164,19 +163,17 @@ public class SearchActivity {
     @Test
     public void search_autofill_fail() throws Exception {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
-        onView(withId(R.id.searchQueryField)).perform(typeText("KZB")); //no corresponding autocomplete
+        onView(withId(R.id.searchQueryField)).perform(typeText("KZB"));
         Thread.sleep(300);
-        //device.findObject(new UiSelector().className("android.widget.AutoCompleteTextView")).click();
-        pressKey(20); //press "down"
-        pressKey(4); //press "back"
+        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
+        Thread.sleep(300);
+        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
+        Thread.sleep(1000);
 
-        //onView(withClassName("AutoCompleteTextView");
-        //onData(is(instanceOf(AutoCompleteTextView.class)));
-        //onView(withSpinnerText("KENDALL BOWLES")).perform(click());
-
-        Thread.sleep(3000);
+        onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KZB")));
         onView(withId(R.id.searchSubmit)).perform(click());
-        onView(withId(R.id.searchSubmit)).perform(click());
+        //onView(withId(R.id.searchSubmit)).perform(click());
+        Thread.sleep(500);
         onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         Thread.sleep(1000);
     }
