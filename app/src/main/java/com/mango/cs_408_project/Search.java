@@ -68,7 +68,6 @@ public class Search extends AppCompatActivity {
                 for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
                     //Get the suggestion by childing the key of the string you want to get.
                     String className = suggestionSnapshot.getKey();
-                    //Add the retrieved string to the list
                     autoComplete.add(className);
                 }
             }
