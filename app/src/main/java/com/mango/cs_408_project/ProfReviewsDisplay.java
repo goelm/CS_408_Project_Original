@@ -150,9 +150,23 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
                     }
                     if(position == 4) {
                         // Helpfulness - high to low
+                        new_display = (ArrayList<ProfReview>) prof_reviews.clone();
+                        Collections.sort(new_display, new Comparator<ProfReview>() {
+                            @Override public int compare(ProfReview p1, ProfReview p2) {
+                                return p2.likesCount - p1.likesCount; // Ascending
+                            }
+
+                        });
                     }
                     if(position == 5) {
                         // Helpfulness - low to high
+                        new_display = (ArrayList<ProfReview>) prof_reviews.clone();
+                        Collections.sort(new_display, new Comparator<ProfReview>() {
+                            @Override public int compare(ProfReview p1, ProfReview p2) {
+                                return p1.likesCount - p2.likesCount; // Ascending
+                            }
+
+                        });
                     }
                     //DISPLAY REVIEWS AGAIN (list is prof_reviews)
                     prof_mListView = (ListView) findViewById(R.id.prof_listView_reviews);
