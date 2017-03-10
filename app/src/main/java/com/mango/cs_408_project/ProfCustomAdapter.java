@@ -56,6 +56,8 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
         TextView profComment;
         Button likes;
         TextView numOfLikes;
+
+        TextView courseName;
     }
 
     public ProfCustomAdapter(ArrayList<ProfReview> data, Context context) {
@@ -147,7 +149,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
             viewHolder.stars = (RatingBar) convertView.findViewById(R.id.prof_reviewStars);
             viewHolder.profComment = (TextView) convertView.findViewById(R.id.profComment2);
             //viewHolder.semesterTaken = (TextView) convertView.findViewById(R.id.prof_semester_taken);
-            //viewHolder.courseName = (TextView) convertView.findViewById(R.id.instructor_course_name);
+            viewHolder.courseName = (TextView) convertView.findViewById(R.id.instructor_course_name);
             viewHolder.likes = (Button) convertView.findViewById(R.id.likes_button2);
             viewHolder.numOfLikes = (TextView) convertView.findViewById(R.id.badge_notification2);
 
@@ -164,7 +166,7 @@ public class ProfCustomAdapter extends ArrayAdapter<ProfReview> implements View.
         Log.d("DataModel rating: ", String.valueOf(dataModel.rating));
         viewHolder.stars.setRating(dataModel.rating);
         viewHolder.profComment.setText(dataModel.profComment);
-        //viewHolder.courseName.setText(dataModel.course);
+        viewHolder.courseName.setText(dataModel.course);
        // viewHolder.semesterTaken.setText(dataModel.semester);
         viewHolder.likes.setOnClickListener(this);
         viewHolder.likes.setTag(position);

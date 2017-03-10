@@ -53,6 +53,13 @@
             android:layout_weight="1" />
     </TableRow>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/add_info_courseName"
+            android:hint="Course Taught"
+            android:layout_weight="1" />
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"

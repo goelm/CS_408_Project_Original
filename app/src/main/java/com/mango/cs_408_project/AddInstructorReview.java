@@ -289,6 +289,8 @@ public class AddInstructorReview extends AppCompatActivity{
                 TextView first = (TextView) findViewById(R.id.first_name);
                 TextView last = (TextView) findViewById(R.id.last_name);
 
+                TextView courseName = (TextView) findViewById(R.id.add_info_courseName);
+
                 Pattern p = Pattern.compile("[^a-zA-Z]", Pattern.CASE_INSENSITIVE);
                 Matcher firstMatcher = p.matcher(first.getText());
                 Matcher lastMatcher = p.matcher(last.getText());
@@ -322,6 +324,7 @@ public class AddInstructorReview extends AppCompatActivity{
                     ProfReview review = new ProfReview();
                     review.setProfName(first.getText().toString().toUpperCase() + " " + last.getText().toString().toUpperCase());
                     //review.setCourseName();
+                    review.setCourseName(courseName.getText().toString().toUpperCase());
                     review.setProf(prof);
                     review.setRating(ratingProgress);
                     review.setSeekV(textVProgress); //Value of lecture
