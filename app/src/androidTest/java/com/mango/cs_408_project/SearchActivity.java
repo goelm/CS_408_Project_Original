@@ -147,9 +147,10 @@ public class SearchActivity {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("KEN"));
         Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
-        Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
+        //onView(withId(R.id.searchQueryField)).perform(click());
+        device.click(200,250);
+        //onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
+        //onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
         Thread.sleep(1000);
 
         onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KENDALL BOWLES")));
@@ -165,9 +166,10 @@ public class SearchActivity {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("KZB"));
         Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
-        Thread.sleep(300);
-        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
+        device.click(200,250);
+//        onView(withId(R.id.searchQueryField)).perform(pressKey(20)); //press down
+//        Thread.sleep(300);
+//        onView(withId(R.id.searchQueryField)).perform(pressKey(66)); //press enter
         Thread.sleep(1000);
 
         onView(allOf(withId(R.id.searchQueryField))).check(matches(withText("KZB")));

@@ -6,12 +6,14 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +45,10 @@ public class Search extends AppCompatActivity {
     DatabaseReference profInfo = database.getReference("message/reviews/instructor");
     Button new_instructor;
     Button new_course;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +194,18 @@ public class Search extends AppCompatActivity {
             }
         });
     }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        // MotionEvent object holds X-Y values
+//        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+//            String text = "You click at x = " + event.getX() + " and y = " + event.getY();
+//            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+//        }
+//
+//        return super.onTouchEvent(event);
+//    }
+
 
     public void foundSomething(boolean course, boolean prof) {
 
