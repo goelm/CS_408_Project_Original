@@ -146,7 +146,7 @@ public class SearchActivity {
     }
 
     @Test
-    public void search_autofill() throws Exception {
+    public void search_autofill_prof() throws Exception {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("KEN"));
         Thread.sleep(300);
@@ -159,7 +159,7 @@ public class SearchActivity {
     }
 
     @Test
-    public void search_autofill_prof() throws Exception {
+    public void search_autofill_course() throws Exception {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         onView(withId(R.id.searchQueryField)).perform(typeText("hist"));
         Thread.sleep(300);

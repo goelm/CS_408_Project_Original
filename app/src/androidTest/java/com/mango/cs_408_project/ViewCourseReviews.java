@@ -74,16 +74,12 @@ public class ViewCourseReviews {
     public void addReview() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("HIST 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
-        //onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(500);
         onView(withId(R.id.course_rating)).perform(swipeUp());
         Thread.sleep(1000);
         onView(withId(R.id.course_info_addReview)).perform(click());
         onView(withId(R.id.add_course_courseName)).check(matches(withText("HIST 371")));
-
-        //onView(withId(R.id.add_course_courseName)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
-        //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
         Thread.sleep(1000);
     }
 

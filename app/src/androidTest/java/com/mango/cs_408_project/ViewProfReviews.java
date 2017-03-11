@@ -83,15 +83,11 @@ public class ViewProfReviews {
     public void reviewFoundGoBack() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("BUSTER DUNSMORE"));
         onView(withId(R.id.searchSubmit)).perform(click());
-        //onView(withId(R.id.success_fail_message)).check(matches(withText("does not exist")));
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(500);
         onView(withId(R.id.textProfName)).perform(pressBack());
         Thread.sleep(500);
         onView(withId(R.id.searchQueryField)).check(matches(withText("BUSTER DUNSMORE")));
-
-        //onView(withId(R.id.add_course_courseName)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
-        //intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
 
     }
 
