@@ -10,6 +10,7 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -37,8 +38,8 @@ import static org.hamcrest.Matchers.anything;
 public class ViewProfReviews {
 
     @Rule
-    public ActivityTestRule<Search> viewProfReviewsTest =
-            new ActivityTestRule<Search>(Search.class);
+    public IntentsTestRule<Search> viewProfReviewsTest =
+            new IntentsTestRule<Search>(Search.class);
 
 
     @Test

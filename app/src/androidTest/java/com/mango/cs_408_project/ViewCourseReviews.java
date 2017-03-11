@@ -3,9 +3,12 @@ package com.mango.cs_408_project;
 import android.content.ComponentName;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.widget.TextView;
+
+import android.content.Intent;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;
@@ -41,16 +44,17 @@ import static org.hamcrest.Matchers.instanceOf;
 public class ViewCourseReviews {
 
     @Rule
-    public ActivityTestRule<Search> viewCourseReviewsTest =
-            new ActivityTestRule<Search>(Search.class);
+    public IntentsTestRule<Search> viewCourseReviewsTest =
+            new IntentsTestRule<Search>(Search.class);
 
 
     @Test
     public void theAddProfShowsFillsName() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("hist 371"));
         onView(withId(R.id.searchSubmit)).perform(click());
+        onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
-        onView(withId(R.id.searchQueryField)).check(matches(withText("HIST 371")));
+        intended(hasComponent(new ComponentName(getTargetContext(), CourseDisplay.class)));
     }
 
 
