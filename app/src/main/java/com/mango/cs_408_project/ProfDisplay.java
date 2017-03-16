@@ -34,6 +34,7 @@ public class ProfDisplay extends AppCompatActivity {
     TextView help_sessions_text;
     TextView toughness_text;
     TextView electronics_text;
+    TextView courses_list;
 
     ProgressBar value_lectures_bar;
     ProgressBar understandable_bar;
@@ -50,6 +51,10 @@ public class ProfDisplay extends AppCompatActivity {
     int electronics = 0;
     private float rating = 0;
     private float counter = 0;
+    private final ArrayList<String> courses_taught = new ArrayList<>();
+    private final ArrayList<Integer> courses_count = new ArrayList<>();
+    private final ArrayList<Float> courses_ratings = new ArrayList<>();
+
 
     Button view_reviews;
     Button prof_addReview;
@@ -126,6 +131,17 @@ public class ProfDisplay extends AppCompatActivity {
                     }
                     toughness += instructor.toughness;
 
+                    if(!courses_taught.contains(instructor.course)){
+                        courses_taught.add(instructor.course);
+                        courses_count.add(1);
+                        courses_ratings.add(instructor.rating);
+                    }
+                    else{
+                        int i = courses_taught.indexOf(instructor.course);
+                        courses_count.set(i, courses_count.get(i)+1);
+                        courses_ratings.set(i, courses_ratings.get(i)+instructor.rating);
+                    }
+
                 }
                 //Set statistics here
                 stars.setRating(rating/prof_reviews.size());
@@ -139,6 +155,7 @@ public class ProfDisplay extends AppCompatActivity {
                 help_sessions_text = (TextView) findViewById(R.id.help_sessions_prof);
                 toughness_text = (TextView) findViewById(R.id.toughness_prof_text);
                 electronics_text = (TextView) findViewById(R.id.electronics_prof_text);
+                courses_list = (TextView) findViewById(R.id.courses_taught_list);
 
                 value_lectures_text.setText(value_lectures_text.getText()+" (" + Integer.toString((int)(value_lectures/counter)) + "%)");
                 understandable_text.setText(understandable_text.getText()+" (" + Integer.toString((int)(understandable/counter)) + "%)");
@@ -146,7 +163,6 @@ public class ProfDisplay extends AppCompatActivity {
                 help_sessions_text.setText(help_sessions_text.getText()+" (" + Integer.toString((int)((help_sessions/counter)*100)) + "%)");
                 toughness_text.setText(toughness_text.getText()+" (" + Float.toString(toughness/counter) + "/5)");
                 electronics_text.setText(electronics_text.getText()+" (" + Integer.toString((int)((electronics/counter)*100)) + "%)");
-
 
                 value_lectures_bar = (ProgressBar) findViewById(R.id.value_lecture_bar);
                 understandable_bar = (ProgressBar) findViewById(R.id.understandable_bar);
@@ -165,6 +181,17 @@ public class ProfDisplay extends AppCompatActivity {
                 help_sessions_bar.setProgress((int)((help_sessions/counter)*100));
                 electronics_bar.setProgress((int)((electronics/counter)*100));
                 toughness_bar.setProgress((int)((toughness/(counter*5))*100));
+
+                String courses = "";
+                for(int i = 0; i<courses_taught.size(); i++){
+                    if(i != 0){
+                        courses += ", ";
+                    }
+                    courses += courses_taught.get(i) + " (" + Float.toString(courses_ratings.get(i)/courses_count.get(i)) + ")";
+                }
+
+                courses_list.setText(courses);
+
             }
 
             @Override
