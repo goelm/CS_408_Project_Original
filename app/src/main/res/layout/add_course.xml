@@ -432,11 +432,17 @@
         </ScrollView>
 
         <Button
-            android:text="submit course"
+            android:text="submit review"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
             android:elevation="0dp"
             android:id="@+id/course_submitBut" />
+
+        <Button
+            android:text="SUBMIT AND SHARE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_submit_and_share_button" />
 
         <TextView
             android:layout_width="match_parent"

@@ -47,6 +47,7 @@ public class CourseDisplay extends AppCompatActivity {
     TextView toughness_text;
     TextView electronics_text;
     TextView textbook_text;
+    TextView instructors_list;
 
     ProgressBar value_lectures_bar;
     ProgressBar understandable_bar;
@@ -69,6 +70,10 @@ public class CourseDisplay extends AppCompatActivity {
     private final ArrayList<CourseReview> reviews = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference courseInfo = database.getReference("message/reviews/course");
+
+    private final ArrayList<String> instructors_teaching = new ArrayList<>();
+    private final ArrayList<Integer> instructors_count = new ArrayList<>();
+    private final ArrayList<Float> instructors_ratings = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +144,17 @@ public class CourseDisplay extends AppCompatActivity {
                                 textbook++;
                             }
                             toughness += course.toughness;
+
+                            if(!instructors_teaching.contains(course.instructorName)){
+                                instructors_teaching.add(course.instructorName);
+                                instructors_count.add(1);
+                                instructors_ratings.add(course.rating);
+                            }
+                            else{
+                                int i = instructors_teaching.indexOf(course.instructorName);
+                                instructors_count.set(i, instructors_count.get(i)+1);
+                                instructors_ratings.set(i, instructors_ratings.get(i)+course.rating);
+                            }
                         }
                         //Set statistics here
 
@@ -154,6 +170,7 @@ public class CourseDisplay extends AppCompatActivity {
                         toughness_text = (TextView) findViewById(R.id.toughness_course_text);
                         electronics_text = (TextView) findViewById(R.id.electronics_course_text);
                         textbook_text = (TextView) findViewById(R.id.textbook_course_text);
+                        instructors_list = (TextView) findViewById(R.id.instructors_teaching_list);
 
                         value_lectures_text.setText(value_lectures_text.getText()+" (" + Integer.toString((int)(value_lectures/counter)) + "%)");
                         understandable_text.setText(understandable_text.getText()+" (" + Integer.toString((int)(understandable/counter)) + "%)");
@@ -184,6 +201,15 @@ public class CourseDisplay extends AppCompatActivity {
                         toughness_bar.setProgress((int)((toughness/(counter*5))*100));
                         textbook_bar.setProgress((int)((textbook/counter)*100));
 
+                        String instructors = "";
+                        for(int i = 0; i<instructors_teaching.size(); i++){
+                            if(i != 0){
+                                instructors += ", ";
+                            }
+                            instructors += instructors_teaching.get(i) + " (" + Float.toString(instructors_ratings.get(i)/instructors_count.get(i)) + ")";
+                        }
+
+                        instructors_list.setText(instructors);
                     }
 
                     @Override

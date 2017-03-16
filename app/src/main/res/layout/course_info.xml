@@ -152,10 +152,24 @@
         <!--android:id="@+id/listView"-->
         <!--android:layout_weight="1.01" />-->
 
+        <TextView
+            android:text="Instructors teaching (and average ratings):"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instructors_text"
+            android:layout_weight="0.10" />
+
+        <TextView
+            android:text="PROF ABC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instructors_teaching_list"
+            android:layout_weight="0.10"
+            android:textSize="18sp" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="0.10" />
+            android:layout_height="11dp" />
 
         <Button
             android:id="@+id/view_course_reviews"
@@ -168,7 +182,8 @@
             android:id="@+id/course_info_addReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add review" />
+            android:text="Add review"
+            android:layout_weight="0.10" />
 
         <Space
             android:layout_width="match_parent"
