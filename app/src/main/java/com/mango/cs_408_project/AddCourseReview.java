@@ -16,6 +16,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -74,6 +76,8 @@ public class AddCourseReview extends AppCompatActivity{
     EditText courseComment;
 
     TextView course;
+
+    ShareDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -296,9 +300,14 @@ public class AddCourseReview extends AppCompatActivity{
 
         });
 
+        dialog = new ShareDialog(this);
         submit_share_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //share
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    //TODO: fix content shared on Facebook here
+                    ShareLinkContent content = new ShareLinkContent.Builder().setContentTitle("Title").setContentDescription("description").build();
+                    dialog.show(content);
+                }
                 submit();
             }
 
