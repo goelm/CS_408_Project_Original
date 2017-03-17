@@ -73,10 +73,13 @@ public class SelectReview extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.editCourseReviews:
                 Toast.makeText(SelectReview.this, "My Course Reviews", Toast.LENGTH_SHORT).show();
-
+                Intent i = new Intent(SelectReview.this, AccountCourses.class);
+                SelectReview.this.startActivity(i);
                 return true;
             case R.id.editProfReviews:
                 Toast.makeText(SelectReview.this, "My Instructor Reviews", Toast.LENGTH_SHORT).show();
+                Intent j = new Intent(SelectReview.this, AccountProfs.class);
+                SelectReview.this.startActivity(j);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

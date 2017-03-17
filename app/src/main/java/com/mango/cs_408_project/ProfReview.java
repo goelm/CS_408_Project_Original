@@ -20,6 +20,7 @@ public class ProfReview {
     public String semester; //make sure this is added
     public String profComment;
     public String course; //make sure this is added
+    public String userId;
 
     //Likes Fields
     public Map<String, Boolean> likes = new HashMap<>();
@@ -35,6 +36,14 @@ public class ProfReview {
 
     public String getKey() {
         return this.key;
+    }
+
+    public void setUserId(String id) {
+        this.userId = id;
+    }
+
+    public String getUserId() {
+        return this.userId;
     }
 
     public void setCourseName(String courseName) {

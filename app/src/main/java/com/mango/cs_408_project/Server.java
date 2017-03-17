@@ -1,4 +1,5 @@
 package com.mango.cs_408_project;
+import android.hardware.camera2.params.Face;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -27,7 +28,10 @@ public class Server extends AppCompatActivity {
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
-    DatabaseReference courseInfo = database.getReference("message/reviews/course");
+    //DatabaseReference courseInfo = database.getReference("message/reviews/course");
+
+    FacebookLogin f = new FacebookLogin();
+    String user = f.userID();
 
     public Server(){
 
@@ -36,7 +40,8 @@ public class Server extends AppCompatActivity {
     public void write_instructor_review(String instructor_name, ProfReview review){
         DatabaseReference inst = myRef.child("reviews").child("instructor").child(instructor_name).push();
         String key = inst.getKey();
-        review.setKey(key);
+        review.setKey(key); //Firebase random token
+        review.setUserId(user); //Facebook userId
         inst.setValue(review);
     }
 
@@ -44,6 +49,7 @@ public class Server extends AppCompatActivity {
         DatabaseReference inst = myRef.child("reviews").child("course").child(course_name).push();
         String key = inst.getKey();
         review.setKey(key);
+        review.setUserId(user);
         inst.setValue(review);
     }
 }

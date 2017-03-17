@@ -46,8 +46,8 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference courseInfo = database.getReference("message/reviews/course");
 
-    FacebookLogin f = new FacebookLogin();
-    String uid = f.userID();
+    private FacebookLogin f = new FacebookLogin();
+    private String uid = f.userID();
 
    // String uid = user.getUid();
 

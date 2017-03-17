@@ -228,6 +228,8 @@ public class CourseReviewsDisplay extends AppCompatActivity{
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children) {
                     CourseReview course = child.getValue(CourseReview.class); // <-- do . at end here to specify which child
+
+                    
                     reviews.add(course);
                 }
                 adapter.notifyDataSetChanged();

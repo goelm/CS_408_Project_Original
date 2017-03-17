@@ -21,6 +21,7 @@ public class CourseReview {
     public boolean electronics;
     public boolean textBook;
     public String courseComment;
+    public String userId;
 
 
     //Likes field
@@ -34,6 +35,15 @@ public class CourseReview {
     public void setKey(String key) {
         this.key = key;
     }
+
+    public void setUserId(String id) {
+        this.userId = id;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
 
     public String getKey() {
         return this.key;
