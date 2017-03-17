@@ -78,9 +78,9 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
     @Override
     public void onClick(View v) {
 
-        int position = (Integer) v.getTag();
+        final int position = (Integer) v.getTag();
         Object object = getItem(position);
-        CourseReview dataModel = (CourseReview) object;
+        final CourseReview dataModel = (CourseReview) object;
 
 
         switch (v.getId()) {
@@ -89,14 +89,16 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
                 break;
 
             case R.id.deleteReview:
-                /*
-                Context context = v.getContext();
-                new AlertDialog.Builder(context)
+
+                //Context context = mContext;
+
+                new AlertDialog.Builder(mContext, R.style.AppTheme)
                         .setTitle("Delete entry")
                         .setMessage("Are you sure you want to delete this entry?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
+                                onDeleteClicked(courseInfo, dataModel, position);
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -106,9 +108,6 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-                        */
-                onDeleteClicked(courseInfo, dataModel);
-
 
 
                 break;
@@ -154,7 +153,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         });
     }
 
-    private void onDeleteClicked(final DatabaseReference postRef, final CourseReview course) {
+    private void onDeleteClicked(final DatabaseReference postRef, final CourseReview course, final int index) {
         postRef.child(course.courseName).child(course.getKey()).runTransaction(new Transaction.Handler() {
 
             @Override
@@ -163,19 +162,12 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
 
                 if (course.userId.equals(uid)) {
                     // Unstar the post and remove self from stars
-                    course.setInstructorName("Deleted");
-                    course.setRating(0);
-                    course.setSemesterTaken("Deleted");
-                    course.setCourseComment("Deleted");
-                    course.setCourseDescr("Deleted");
-                    course.likesCount = 0;
-
+                    dataSet.remove(index); // *****This gets the data from the arraylist at the exact index!!
+                    //course.likesCount = 0;
                     postRef.child(course.courseName).child(course.getKey()).removeValue();
-
                 } else { //Nothing
 
                 }
-
                 postRef.child(course.courseName).child(course.getKey()).setValue(null);
 
                 //notifyDataSetChanged();

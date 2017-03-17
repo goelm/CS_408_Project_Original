@@ -92,8 +92,6 @@ public class AccountCourses extends AppCompatActivity{
 
     private void display_course_reviews() {
 
-        course_addReview = (Button) findViewById(R.id.add_review_course_reviews);
-
         mListView = (ListView) findViewById(R.id.accountCourseListView); //Checks to see if the strong from database goes in
         final DatabaseReference ref = courseInfo;
 
@@ -148,7 +146,7 @@ public class AccountCourses extends AppCompatActivity{
 
             }
         });
-        adapter = new CustomAdapter(reviews, getApplicationContext());
+        adapter = new CustomAdapter(reviews, AccountCourses.this);
         mListView.setAdapter(adapter);
     }
 }

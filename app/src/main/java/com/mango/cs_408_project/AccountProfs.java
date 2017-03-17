@@ -142,7 +142,7 @@ public class AccountProfs extends AppCompatActivity {
 
             }
         });
-        prof_adapter = new ProfCustomAdapter(prof_reviews, getApplicationContext());
+        prof_adapter = new ProfCustomAdapter(prof_reviews, AccountProfs.this);
         prof_mListView.setAdapter(prof_adapter);
     }
 
