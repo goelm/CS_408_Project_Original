@@ -2,6 +2,7 @@ package com.mango.cs_408_project;
 
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -84,6 +85,10 @@ public class AddCourseReview extends AppCompatActivity{
         Intent intent = getIntent();
 
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Course Review Form");
+
         setContentView(R.layout.add_course);
 
         rb_ezAccess = (RadioButton) findViewById(R.id.add_course_ezAccess);

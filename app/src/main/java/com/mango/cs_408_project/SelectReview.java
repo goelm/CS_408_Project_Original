@@ -2,9 +2,15 @@ package com.mango.cs_408_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
@@ -20,7 +26,12 @@ public class SelectReview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Edits the action bar on top
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Select an Option");
+        //actionBar.openOptionsMenu();
         setContentView(R.layout.select_review_type);
+
 
         Button instructor = (Button) findViewById(R.id.instructor_review_button);
         Button course = (Button) findViewById(R.id.course_review_button);
@@ -28,11 +39,6 @@ public class SelectReview extends AppCompatActivity {
 
         Button search_button = (Button) findViewById(R.id.search_select_button);
 
-        /*
-        if (AccessToken.getCurrentAccessToken() == null) {
-            goLoginScreen();
-        }
-        */
         instructor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i=new Intent(SelectReview.this, AddInstructorReview.class);
@@ -53,34 +59,27 @@ public class SelectReview extends AppCompatActivity {
                 SelectReview.this.startActivity(k);
             }
         });
-        /*
-        logOut.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-                logout(v);
-            }
-        });
-        */
-    }
-    /*
-    private void goLoginScreen() {
-        //Test to see if the user is logged out
-        f.signedIn = false;
-        //LoginManager.getInstance().logOut();
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, FacebookLogin.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
     }
 
-
-    public void logout(View view) {
-        f.signedIn = false;
-        //Test to see if the user
-        FirebaseAuth.getInstance().signOut();
-        LoginManager.getInstance().logOut();
-        goLoginScreen();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
-    */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.editCourseReviews:
+                Toast.makeText(SelectReview.this, "My Course Reviews", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.editProfReviews:
+                Toast.makeText(SelectReview.this, "My Instructor Reviews", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

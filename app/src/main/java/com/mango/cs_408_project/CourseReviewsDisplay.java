@@ -2,6 +2,7 @@ package com.mango.cs_408_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -51,6 +52,10 @@ public class CourseReviewsDisplay extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Course Reviews");
+
         setContentView(R.layout.course_review_list);
 
         user_input = getIntent().getStringExtra("user_input");

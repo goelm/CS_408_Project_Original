@@ -2,6 +2,7 @@ package com.mango.cs_408_project;
 
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,6 +77,10 @@ public class AddInstructorReview extends AppCompatActivity {
         Intent intent = getIntent();
 
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Professor Review Form");
+
         setContentView(R.layout.add_info);
 
         TextView first = (TextView) findViewById(R.id.first_name);
