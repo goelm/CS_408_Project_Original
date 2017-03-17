@@ -1,15 +1,20 @@
 package com.mango.cs_408_project;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.camera2.params.Face;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -66,7 +71,8 @@ public class AccountCourses extends AppCompatActivity{
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                CourseReview course = dataSnapshot.getValue(CourseReview.class);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -79,6 +85,8 @@ public class AccountCourses extends AppCompatActivity{
 
             }
         });
+
+
     }
 
 
@@ -88,6 +96,7 @@ public class AccountCourses extends AppCompatActivity{
 
         mListView = (ListView) findViewById(R.id.accountCourseListView); //Checks to see if the strong from database goes in
         final DatabaseReference ref = courseInfo;
+
 
         //Allows the scrollview to be disabled when scrolling through the list View
         mListView.setOnTouchListener(new ListView.OnTouchListener() {

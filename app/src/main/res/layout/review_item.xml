@@ -96,14 +96,6 @@
         android:layout_below="@+id/semester_taken"
         android:layout_alignStart="@+id/textView7" />
 
-    <ImageView
-        android:id="@+id/info_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_dialog_info"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,6 +127,23 @@
             />
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/deleteReview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@android:drawable/ic_delete"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/info_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_info"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/deleteReview" />
 
 
     <!--<ImageView-->

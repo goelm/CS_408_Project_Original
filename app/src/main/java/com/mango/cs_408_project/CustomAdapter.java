@@ -1,10 +1,12 @@
 package com.mango.cs_408_project;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +19,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +37,7 @@ import static com.firebase.ui.auth.ui.email.RegisterEmailFragment.TAG;
  * Created by Elvin Uthuppan on 2/26/2017.
  */
 
-public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.OnClickListener{
+public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.OnClickListener {
 
     private ArrayList<CourseReview> dataSet;
     Context mContext;
@@ -49,7 +48,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
     private FacebookLogin f = new FacebookLogin();
     private String uid = f.userID();
 
-   // String uid = user.getUid();
+    // String uid = user.getUid();
 
     // View lookup cache
     private static class ViewHolder {
@@ -60,6 +59,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         ImageView info;
         Button likes;
         TextView numOfLikes;
+        ImageView delete;
 
 //        ImageView downVoteButton;
 //        ImageView upVoteButton;
@@ -69,33 +69,55 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
     }
 
 
-
     public CustomAdapter(ArrayList<CourseReview> data, Context context) {
         super(context, R.layout.review_item, data);
         this.dataSet = data;
-        this.mContext=context;
+        this.mContext = context;
     }
-
-
 
     @Override
     public void onClick(View v) {
 
-        int position=(Integer) v.getTag();
-        Object object= getItem(position);
-        CourseReview dataModel =(CourseReview)object;
+        int position = (Integer) v.getTag();
+        Object object = getItem(position);
+        CourseReview dataModel = (CourseReview) object;
 
 
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.likes_button:
-                onLikeClicked(courseInfo , dataModel);
+                onLikeClicked(courseInfo, dataModel);
+                break;
+
+            case R.id.deleteReview:
+                /*
+                Context context = v.getContext();
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                        */
+                onDeleteClicked(courseInfo, dataModel);
+
+
+
                 break;
 
             case R.id.info_item:
                 Snackbar.make(v, "Course Description: " + dataModel.courseDescr, Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
+
         }
     }
 
@@ -132,6 +154,43 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         });
     }
 
+    private void onDeleteClicked(final DatabaseReference postRef, final CourseReview course) {
+        postRef.child(course.courseName).child(course.getKey()).runTransaction(new Transaction.Handler() {
+
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                //CourseReview course = mutableData.getValue(CourseReview.class);
+
+                if (course.userId.equals(uid)) {
+                    // Unstar the post and remove self from stars
+                    course.setInstructorName("Deleted");
+                    course.setRating(0);
+                    course.setSemesterTaken("Deleted");
+                    course.setCourseComment("Deleted");
+                    course.setCourseDescr("Deleted");
+                    course.likesCount = 0;
+
+                    postRef.child(course.courseName).child(course.getKey()).removeValue();
+
+                } else { //Nothing
+
+                }
+
+                postRef.child(course.courseName).child(course.getKey()).setValue(null);
+
+                //notifyDataSetChanged();
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b,
+                                   DataSnapshot dataSnapshot) {
+                // Transaction completed
+                //Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+            }
+        });
+    }
+
 
     private int lastPosition = -1;
 
@@ -156,6 +215,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
             viewHolder.info = (ImageView) convertView.findViewById(R.id.info_item);
             viewHolder.likes = (Button) convertView.findViewById(R.id.likes_button);
             viewHolder.numOfLikes = (TextView) convertView.findViewById(R.id.badge_notification);
+            viewHolder.delete = (ImageView) convertView.findViewById(R.id.deleteReview);
 
 
 //            viewHolder.upVoteButton = (ImageView) convertView.findViewById(R.id.upVoteButton);
@@ -180,6 +240,15 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
         viewHolder.likes.setOnClickListener(this);
         viewHolder.likes.setTag(position);
         viewHolder.numOfLikes.setText(String.valueOf(dataModel.likesCount));
+        viewHolder.delete.setOnClickListener(this);
+        viewHolder.delete.setTag(position);
+
+        //Remove delete button if it isn't the user's review
+        if (dataModel.getUserId() == null) {
+            viewHolder.delete.setVisibility(View.GONE);
+        } else if (!dataModel.getUserId().equals(uid)) {
+            viewHolder.delete.setVisibility(View.GONE);
+        }
 
 //        viewHolder.upVoteButton.setOnClickListener(this);
 //        viewHolder.downVoteButton.setOnClickListener(this);

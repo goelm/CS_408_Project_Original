@@ -68,7 +68,7 @@ public class AccountProfs extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                prof_adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -81,8 +81,6 @@ public class AccountProfs extends AppCompatActivity {
 
             }
         });
-
-        prof_addReview = (Button) findViewById(R.id.professor_info_addReview_2);
     }
 
 
