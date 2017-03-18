@@ -242,7 +242,7 @@ public class CourseReviewsDisplay extends AppCompatActivity{
             }
         });
 
-        adapter = new CustomAdapter(reviews, getApplicationContext());
+        adapter = new CustomAdapter(reviews, CourseReviewsDisplay.this);
         mListView.setAdapter(adapter);
     }
 

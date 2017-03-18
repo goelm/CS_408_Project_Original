@@ -249,7 +249,7 @@ public class ProfReviewsDisplay extends  AppCompatActivity{
 
             }
         });
-        prof_adapter = new ProfCustomAdapter(prof_reviews, getApplicationContext());
+        prof_adapter = new ProfCustomAdapter(prof_reviews, ProfReviewsDisplay.this);
         prof_mListView.setAdapter(prof_adapter);
     }
 
