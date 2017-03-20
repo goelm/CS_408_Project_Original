@@ -67,6 +67,7 @@ public class CustomAdapter extends ArrayAdapter<CourseReview> implements View.On
 //        TextView downVote;
 
     }
+    //
 
 
     public CustomAdapter(ArrayList<CourseReview> data, Context context) {
