@@ -67,8 +67,8 @@ public class AddInstructorReview extends AppCompatActivity {
     EditText profComment;
 
 
-    int textUProgress = 0;
-    int textVProgress = 0;
+    int textUProgress = 50;
+    int textVProgress = 50;
     float ratingProgress = 0;
 
 

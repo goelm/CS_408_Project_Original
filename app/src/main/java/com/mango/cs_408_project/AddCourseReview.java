@@ -68,8 +68,8 @@ public class AddCourseReview extends AppCompatActivity{
     TextView textV;
     TextView add_courseratingBarText;
 
-    int textUProgress = 0;
-    int textVProgress = 0;
+    int textUProgress = 50;
+    int textVProgress = 50;
     float add_course_ratingProgress = 0;
 
     Button submit_button;
