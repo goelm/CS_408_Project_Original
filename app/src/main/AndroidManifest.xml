@@ -14,7 +14,8 @@
         <activity android:name=".FacebookLogin">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-            </intent-filter> </activity>
+            </intent-filter>
+        </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_application_id"/>
         <activity android:name=".SafeLoginActivity">
             <intent-filter>
