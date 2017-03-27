@@ -41,7 +41,6 @@ public class ViewProfReviews {
     public IntentsTestRule<Search> viewProfReviewsTest =
             new IntentsTestRule<Search>(Search.class);
 
-
     @Test
     public void viewReviews() throws Exception {
         onView(withId(R.id.searchQueryField)).perform(typeText("BUSTER DUNSMORE"));
@@ -98,6 +97,8 @@ public class ViewProfReviews {
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
         onView(withId(R.id.instructor_rating)).perform(swipeUp()); //To fix off screen issue
+        onView(withId(R.id.instructor_rating)).perform(swipeUp()); //To fix off screen issue
+
         Thread.sleep(1000);
         onView(withId(R.id.professor_info_addReview)).perform(click()); //Clicks add review
         Thread.sleep(1000);
@@ -112,6 +113,8 @@ public class ViewProfReviews {
         onView(withId(R.id.searchSubmit)).perform(click());
         onView(withId(R.id.searchSubmit)).perform(click());
         Thread.sleep(1000);
+        onView(withId(R.id.textProfName)).perform(swipeUp()); //To fix off screen issue
+        Thread.sleep(2000);
         onView(withId(R.id.view_reviews_button)).perform(click());
         onView(withId(R.id.prof_listView_reviews)).check(matches(isDisplayed())); //Checks to see if reviews are displayed
         onData(anything()).inAdapterView(withId(R.id.prof_listView_reviews))
